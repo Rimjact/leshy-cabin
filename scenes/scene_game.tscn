@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://l45ulfy34dub"]
+[gd_scene load_steps=12 format=3 uid="uid://l45ulfy34dub"]
 
 [ext_resource type="Texture2D" uid="uid://cp273stosr4oh" path="res://assets/textures/canvas_texture_table.tres" id="1_1bfyv"]
 [ext_resource type="PackedScene" uid="uid://c0cgt1twu3ob7" path="res://objects/cards/object_card_ermine.tscn" id="2_3rjnv"]
 [ext_resource type="Texture2D" uid="uid://dhdt7jf1rpg1x" path="res://assets/sprites/light_table.png" id="2_6ecnt"]
+[ext_resource type="Script" uid="uid://c3dvs5buh7fan" path="res://scripts/player_cards_controller.gd" id="2_fygdh"]
 [ext_resource type="PackedScene" uid="uid://cctcfv2olunqu" path="res://objects/object_card_slot_player.tscn" id="3_g5tdj"]
 [ext_resource type="PackedScene" uid="uid://cnakuiumtyp53" path="res://objects/object_player_animals_deck.tscn" id="3_k8cpo"]
 [ext_resource type="PackedScene" uid="uid://wjx8d6ndswmn" path="res://objects/object_player_squirrels_deck.tscn" id="4_p0t2e"]
 [ext_resource type="PackedScene" uid="uid://c6aj0r6ynutug" path="res://objects/object_card_slot_opponent.tscn" id="4_y67a7"]
 [ext_resource type="PackedScene" uid="uid://dfqf8c4f0uky5" path="res://objects/object_bell.tscn" id="5_4kvec"]
 [ext_resource type="PackedScene" uid="uid://61cfn7m8tv2g" path="res://objects/object_hearts_bar.tscn" id="6_e4b80"]
+[ext_resource type="Script" uid="uid://d3w4v7f3va1vj" path="res://scripts/input_manager.gd" id="11_xpam0"]
 
 [node name="Game" type="CanvasLayer"]
 layer = 0
@@ -25,10 +27,37 @@ metadata/_edit_lock_ = true
 
 [node name="Table" type="Node2D" parent="."]
 
-[node name="PlayerCards" type="Node2D" parent="Table"]
+[node name="PlayerCardsController" type="Node2D" parent="Table" node_paths=PackedStringArray("input_manager", "cards")]
 position = Vector2(176, 200)
+script = ExtResource("2_fygdh")
+input_manager = NodePath("../../InputManager")
+cards = [NodePath("Card"), NodePath("Card2"), NodePath("Card3"), NodePath("Card4"), NodePath("Card5"), NodePath("Card6"), NodePath("Card7"), NodePath("Card8"), NodePath("Card9")]
 
-[node name="Card" parent="Table/PlayerCards" instance=ExtResource("2_3rjnv")]
+[node name="Card" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+
+[node name="Card2" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(56, 0)
+
+[node name="Card3" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(112, 0)
+
+[node name="Card4" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(160, 0)
+
+[node name="Card5" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(216, 0)
+
+[node name="Card6" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(216, 0)
+
+[node name="Card7" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(216, 0)
+
+[node name="Card8" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(216, 0)
+
+[node name="Card9" parent="Table/PlayerCardsController" instance=ExtResource("2_3rjnv")]
+position = Vector2(216, 0)
 
 [node name="PlayerDecks" type="Node2D" parent="Table"]
 position = Vector2(366, 200)
@@ -86,3 +115,6 @@ position = Vector2(213, 120)
 energy = 1.2
 texture = ExtResource("2_6ecnt")
 height = 125.0
+
+[node name="InputManager" type="Node2D" parent="."]
+script = ExtResource("11_xpam0")
