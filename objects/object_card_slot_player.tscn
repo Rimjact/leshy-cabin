@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cctcfv2olunqu"]
+
+[ext_resource type="Texture2D" uid="uid://cjvc1voupsvfy" path="res://assets/textures/canvas_texture_card_slot.tres" id="1_yiefv"]
+[ext_resource type="PackedScene" uid="uid://4oxmgxcgiy4k" path="res://objects/components/clickbox_component.tscn" id="2_qq8dw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bjmeh"]
+size = Vector2(50, 66)
+
+[node name="CardSlot" type="Node2D"]
+
+[node name="SlotSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_yiefv")
+
+[node name="ClickboxComponent" parent="." instance=ExtResource("2_qq8dw")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
+shape = SubResource("RectangleShape2D_bjmeh")

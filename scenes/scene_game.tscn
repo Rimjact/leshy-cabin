@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://l45ulfy34dub"]
+[gd_scene load_steps=10 format=3 uid="uid://l45ulfy34dub"]
 
 [ext_resource type="Texture2D" uid="uid://cp273stosr4oh" path="res://assets/textures/canvas_texture_table.tres" id="1_1bfyv"]
+[ext_resource type="PackedScene" uid="uid://c0cgt1twu3ob7" path="res://objects/cards/object_card_ermine.tscn" id="2_3rjnv"]
 [ext_resource type="Texture2D" uid="uid://dhdt7jf1rpg1x" path="res://assets/sprites/light_table.png" id="2_6ecnt"]
+[ext_resource type="PackedScene" uid="uid://cctcfv2olunqu" path="res://objects/object_card_slot_player.tscn" id="3_g5tdj"]
+[ext_resource type="PackedScene" uid="uid://cnakuiumtyp53" path="res://objects/object_player_animals_deck.tscn" id="3_k8cpo"]
+[ext_resource type="PackedScene" uid="uid://wjx8d6ndswmn" path="res://objects/object_player_squirrels_deck.tscn" id="4_p0t2e"]
+[ext_resource type="PackedScene" uid="uid://c6aj0r6ynutug" path="res://objects/object_card_slot_opponent.tscn" id="4_y67a7"]
+[ext_resource type="PackedScene" uid="uid://dfqf8c4f0uky5" path="res://objects/object_bell.tscn" id="5_4kvec"]
+[ext_resource type="PackedScene" uid="uid://61cfn7m8tv2g" path="res://objects/object_hearts_bar.tscn" id="6_e4b80"]
 
 [node name="Game" type="CanvasLayer"]
 layer = 0
@@ -19,8 +26,54 @@ metadata/_edit_lock_ = true
 [node name="Table" type="Node2D" parent="."]
 
 [node name="PlayerCards" type="Node2D" parent="Table"]
+position = Vector2(176, 200)
+
+[node name="Card" parent="Table/PlayerCards" instance=ExtResource("2_3rjnv")]
 
 [node name="PlayerDecks" type="Node2D" parent="Table"]
+position = Vector2(366, 200)
+
+[node name="PlayerAnimalsDeck" parent="Table/PlayerDecks" instance=ExtResource("3_k8cpo")]
+position = Vector2(-28, 0)
+
+[node name="PlayerSquirrelsDeck" parent="Table/PlayerDecks" instance=ExtResource("4_p0t2e")]
+position = Vector2(28, 0)
+
+[node name="PlayerSlots" type="Node2D" parent="Table"]
+position = Vector2(180, 88)
+
+[node name="CardSlot1" parent="Table/PlayerSlots" instance=ExtResource("3_g5tdj")]
+position = Vector2(-88, 40)
+
+[node name="CardSlot2" parent="Table/PlayerSlots" instance=ExtResource("3_g5tdj")]
+position = Vector2(-32, 40)
+
+[node name="CardSlot3" parent="Table/PlayerSlots" instance=ExtResource("3_g5tdj")]
+position = Vector2(24, 40)
+
+[node name="CardSlot4" parent="Table/PlayerSlots" instance=ExtResource("3_g5tdj")]
+position = Vector2(80, 40)
+
+[node name="OpponentSlots" type="Node2D" parent="Table"]
+position = Vector2(180, 88)
+
+[node name="CardSlot1" parent="Table/OpponentSlots" instance=ExtResource("4_y67a7")]
+position = Vector2(-88, -32)
+
+[node name="CardSlot2" parent="Table/OpponentSlots" instance=ExtResource("4_y67a7")]
+position = Vector2(-32, -32)
+
+[node name="CardSlot3" parent="Table/OpponentSlots" instance=ExtResource("4_y67a7")]
+position = Vector2(24, -32)
+
+[node name="CardSlot4" parent="Table/OpponentSlots" instance=ExtResource("4_y67a7")]
+position = Vector2(80, -32)
+
+[node name="Bell" parent="Table" instance=ExtResource("5_4kvec")]
+position = Vector2(48, 92)
+
+[node name="HeartsBar" parent="Table" instance=ExtResource("6_e4b80")]
+position = Vector2(24, 92)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(213, 120)

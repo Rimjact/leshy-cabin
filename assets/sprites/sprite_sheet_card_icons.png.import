@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3hbmexb2ifs1"
-path="res://.godot/imported/sprite_sheet_abilities.png-aa76c3fe2e51d3deeecf2df5c415a27d.ctex"
+path="res://.godot/imported/sprite_sheet_card_icons.png-f50dc8fa660cf5a3ca375552a11069be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/sprite_sheet_abilities.png"
-dest_files=["res://.godot/imported/sprite_sheet_abilities.png-aa76c3fe2e51d3deeecf2df5c415a27d.ctex"]
+source_file="res://assets/sprites/sprite_sheet_card_icons.png"
+dest_files=["res://.godot/imported/sprite_sheet_card_icons.png-f50dc8fa660cf5a3ca375552a11069be.ctex"]
 
 [params]
 

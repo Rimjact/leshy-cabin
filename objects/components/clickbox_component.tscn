@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://4oxmgxcgiy4k"]
+
+[node name="ClickboxComponent" type="Area2D"]

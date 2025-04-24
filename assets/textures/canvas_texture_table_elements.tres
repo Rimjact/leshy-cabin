@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://c0wil6axjct2w"]
+
+[ext_resource type="Texture2D" uid="uid://6h8yjetjt7dm" path="res://assets/sprites/sprite_sheet_table_elements.png" id="1_48dc4"]
+[ext_resource type="Texture2D" uid="uid://cjhqvndl4yr0f" path="res://assets/sprites/sprite_sheet_table_elements_n.png" id="2_1f2dj"]
+
+[resource]
+diffuse_texture = ExtResource("1_48dc4")
+normal_texture = ExtResource("2_1f2dj")

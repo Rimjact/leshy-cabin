@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ohbfg6ak7oki"]
+
+[ext_resource type="Texture2D" uid="uid://c3hbmexb2ifs1" path="res://assets/sprites/sprite_sheet_card_icons.png" id="1_0mtha"]
+[ext_resource type="LabelSettings" uid="uid://crehmvg1iwbr3" path="res://assets/label-settings/label_settings_card_stats.tres" id="2_fbmkr"]
+
+[node name="AttackComponent" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.25, 6)
+texture = ExtResource("1_0mtha")
+region_enabled = true
+region_rect = Rect2(3, 20, 9, 9)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -5.0
+offset_top = -9.0
+offset_right = 31.0
+offset_bottom = 39.0
+scale = Vector2(0.25, 0.25)
+text = "6"
+label_settings = ExtResource("2_fbmkr")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnakuiumtyp53"]
+
+[ext_resource type="Texture2D" uid="uid://dtwg3w0vc6m3p" path="res://assets/textures/canvas_texture_card.tres" id="1_q4otc"]
+[ext_resource type="PackedScene" uid="uid://4oxmgxcgiy4k" path="res://objects/components/clickbox_component.tscn" id="2_pdu2c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umnf7"]
+size = Vector2(48, 64)
+
+[node name="PlayerAnimalsDeck" type="Node2D"]
+
+[node name="AnimalsDeckSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_q4otc")
+region_enabled = true
+region_rect = Rect2(98, 0, 49, 64)
+
+[node name="ClickboxComponent" parent="." instance=ExtResource("2_pdu2c")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
+shape = SubResource("RectangleShape2D_umnf7")
