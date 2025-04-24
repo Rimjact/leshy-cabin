@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://l45ulfy34dub"]
+[gd_scene load_steps=3 format=3 uid="uid://l45ulfy34dub"]
+
+[ext_resource type="Texture2D" uid="uid://cp273stosr4oh" path="res://assets/textures/canvas_texture_table.tres" id="1_1bfyv"]
+[ext_resource type="Texture2D" uid="uid://dhdt7jf1rpg1x" path="res://assets/sprites/light_table.png" id="2_6ecnt"]
 
 [node name="Game" type="CanvasLayer"]
+layer = 0
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_1bfyv")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Table" type="Node2D" parent="."]
+
+[node name="PlayerCards" type="Node2D" parent="Table"]
+
+[node name="PlayerDecks" type="Node2D" parent="Table"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(213, 120)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.151277, 0.151276, 0.151276, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(213, 120)
+energy = 1.2
+texture = ExtResource("2_6ecnt")
+height = 125.0

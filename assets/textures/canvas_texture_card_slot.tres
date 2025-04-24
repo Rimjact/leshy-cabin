@@ -1,0 +1,8 @@
+[gd_resource type="CanvasTexture" load_steps=3 format=3 uid="uid://cjvc1voupsvfy"]
+
+[ext_resource type="Texture2D" uid="uid://hilw1lk1oct8" path="res://assets/sprites/sprite_card_slot.png" id="1_lo1uf"]
+[ext_resource type="Texture2D" uid="uid://dkyqne5dicwqt" path="res://assets/sprites/sprite_card_slot_n.png" id="2_vkjtq"]
+
+[resource]
+diffuse_texture = ExtResource("1_lo1uf")
+normal_texture = ExtResource("2_vkjtq")
