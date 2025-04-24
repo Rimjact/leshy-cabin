@@ -3,6 +3,9 @@ extends Node2D
 ## Класс игровых карточек.
 
 
+@export_group("Components")
+@export var clickbox_component: ClickboxComponent
+
 ## Текущее состояние карточки.
 var state: Global.CardState = Global.CardState.IN_DECK
 
@@ -15,3 +18,29 @@ func on_mouse_entered() -> void:
 ## Когда курсор ушёл от этой карточки.
 func on_mouse_exited() -> void:
 	EventBus.card_cursor_exited.emit(self)
+
+
+## Когда курсор нажал левой кнопкой мыши.
+func on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
+	var source_parent = source.get_parent()
+	if source_parent is not Card:
+		return
+
+	var card_node: Card = source_parent
+	if card_node != self:
+		return
+
+	EventBus.card_cursor_left_button_clicked.emit(self)
+
+
+## Когда курсор нажал правую нопку мыши.
+func on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
+	var source_parent = source.get_parent()
+	if source_parent is not Card:
+		return
+
+	var card_node: Card = source_parent
+	if card_node != self:
+		return
+
+	EventBus.card_cursor_right_button_clicked.emit(self)

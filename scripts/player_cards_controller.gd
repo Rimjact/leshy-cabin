@@ -15,6 +15,8 @@ const MAX_HAND_DECK_WIDTH: float = 224
 
 ## Карточка, на которую наведён курсор.
 var _hovered_card: Card = null
+## Карточка, которая выбрана на данный момент.
+var _selected_card: Card = null
 
 
 func _ready() -> void:
@@ -28,6 +30,8 @@ func on_card_cursor_entered(card: Card) -> void:
 		return
 	if card.state != Global.CardState.IN_HAND:
 		return
+	if _selected_card:
+		return
 
 	highlight_card(card, true)
 	_hovered_card = card
@@ -35,6 +39,11 @@ func on_card_cursor_entered(card: Card) -> void:
 
 ## Когда от карточки ушёл курсор.
 func on_card_cursor_exited(card: Card) -> void:
+	if card.state != Global.CardState.IN_HAND:
+		return
+	if _selected_card:
+		return
+
 	highlight_card(card, false)
 
 	var another_card: Card = input_manager.get_card_node_on_mouse_pos()
@@ -44,6 +53,24 @@ func on_card_cursor_exited(card: Card) -> void:
 		return
 
 	_hovered_card = null
+
+
+## Когда курсор кликнул на карточку левой кнопкой мыши.
+func on_card_cursor_left_button_clicked(card: Card) -> void:
+	if card.state != Global.CardState.IN_HAND:
+		return
+	if not _selected_card:
+		select_card(card)
+		return
+	if _selected_card and card != _selected_card:
+		return
+
+	deselect_card()
+
+
+## Когда курсор кликнул на карточку правой кнопкой мыши.
+func on_card_cursor_right_button_clicked(card: Card) -> void:
+	print(card)
 
 
 ## Подсвечивает указанную карточку.
@@ -58,6 +85,18 @@ func highlight_card(card: Card, is_hovered: bool) -> void:
 
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "global_position", target_pos, .2)
+
+
+## Добавляет выделение карточку.
+func select_card(card: Card) -> void:
+	_selected_card = card
+	highlight_card(_selected_card, true)
+
+
+## Снимает выделение с карточки.
+func deselect_card() -> void:
+	highlight_card(_selected_card, false)
+	_selected_card = null
 
 
 ## Обновляет позицию карточек, находящихся у игрока.
@@ -124,3 +163,5 @@ func update_card_state(card: Card, state: Global.CardState) -> void:
 func _subscribe_on_events() -> void:
 	EventBus.card_cursor_entered.connect(on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(on_card_cursor_exited)
+	EventBus.card_cursor_left_button_clicked.connect(on_card_cursor_left_button_clicked)
+	EventBus.card_cursor_right_button_clicked.connect(on_card_cursor_right_button_clicked)

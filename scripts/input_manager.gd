@@ -3,6 +3,12 @@ extends Node2D
 ## Класс менеджера ввода.
 
 
+func _ready() -> void:
+    get_viewport().physics_object_picking = true
+    get_viewport().physics_object_picking_first_only = true
+    get_viewport().physics_object_picking_sort = true
+
+
 ## Возвращает ноду или ничего в текущей позиции курсора.
 func get_node_on_mouse_pos() -> Node:
     var space_state = get_world_2d().direct_space_state

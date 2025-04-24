@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfqf8c4f0uky5"]
+[gd_scene load_steps=7 format=3 uid="uid://dfqf8c4f0uky5"]
 
 [ext_resource type="Texture2D" uid="uid://c0wil6axjct2w" path="res://assets/textures/canvas_texture_table_elements.tres" id="1_vs33a"]
 [ext_resource type="PackedScene" uid="uid://4oxmgxcgiy4k" path="res://objects/components/clickbox_component.tscn" id="2_303lg"]
+[ext_resource type="Script" uid="uid://b04qwju67a5jw" path="res://scripts/clickbox_component.gd" id="3_4a75b"]
 
 [sub_resource type="Gradient" id="Gradient_303lg"]
 colors = PackedColorArray(1.01075e-06, 0.692124, 0.332376, 1, 0, 0, 0, 1)
@@ -31,6 +32,7 @@ texture = SubResource("GradientTexture2D_4a75b")
 height = 25.0
 
 [node name="ClickboxComponent" parent="." instance=ExtResource("2_303lg")]
+script = ExtResource("3_4a75b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
 shape = SubResource("RectangleShape2D_303lg")
