@@ -85,6 +85,23 @@ func on_deck_card_given(_deck: PlayerDeck, _card: Card) -> void:
 	update_cards_positions()
 
 
+## Когда курсор кликнул на слот для карточек левой кнопкой мыши.
+func on_card_slot_left_button_clicked(slot: PlayerCardSlot) -> void:
+	if _selected_card == null:
+		return
+	if slot.card != null:
+		return
+
+	move_card_to_player_card_slot(_selected_card, slot)
+
+
+
+## Когда курсор кликнул на слот для карточек правой кнопкой мыши.
+func on_card_slot_right_button_clicked(slot: PlayerCardSlot) -> void:
+	pass
+
+
+
 ## Подсвечивает указанную карточку.
 func highlight_card(card: Card, is_hovered: bool) -> void:
 	card.z_index = 3 if is_hovered else 2
@@ -159,12 +176,18 @@ func calc_compressed_card_pos_x(index: int, cards_count: float, x_center: float)
 	return x_pos
 
 
-## Выполняет плавную анимацию движения карточки до указанной точки.
+## Выполняет плавную анимацию движения карточки до указанной точки в руке игрока.
 func animate_card_move_in_hand(card: Card, target_pos: Vector2) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "global_position", target_pos, .2)
 	tween.tween_callback(update_card_state.bind(card, Global.CardState.IN_HAND))
 
+
+## Выполняет плавную анимацию движения карточки к слоту.
+func animate_card_move_to_card_slot(card: Card, target_pos: Vector2) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(card, "global_position", target_pos, .2)
+	tween.tween_callback(update_card_state.bind(card, Global.CardState.IN_SLOT))
 
 ## Обновляет состояние карточки.
 func update_card_state(card: Card, state: Global.CardState) -> void:
@@ -190,6 +213,25 @@ func move_card_to_player_cards(card: Card) -> void:
 	cards.push_back(card)
 
 
+## Перемещает указаную карточку
+func move_card_to_player_card_slot(card: Card, slot: PlayerCardSlot) -> void:
+	cards.erase(card)
+
+	var card_collider: CollisionShape2D = card.get_node("ClickboxComponent/CollisionShape2D")
+	card_collider.disabled = true
+
+	card.reparent(slot)
+	animate_card_move_to_card_slot(card, slot.global_position)
+
+	slot.card = card
+	card.slot = slot
+
+	_selected_card = null
+	_hovered_card = null
+
+	EventBus.card_slot_card_placed.emit(slot, card)
+
+
 ## Подписывает на нужные события EventBus.
 func _subscribe_on_events() -> void:
 	EventBus.card_cursor_entered.connect(on_card_cursor_entered)
@@ -198,3 +240,6 @@ func _subscribe_on_events() -> void:
 	EventBus.card_cursor_right_button_clicked.connect(on_card_cursor_right_button_clicked)
 	EventBus.deck_cursor_left_button_clicked.connect(on_deck_cursor_left_button_clicked)
 	EventBus.deck_card_given.connect(on_deck_card_given)
+	EventBus.deck_filled.connect(on_deck_filled)
+	EventBus.card_slot_cursor_left_button_clicked.connect(on_card_slot_left_button_clicked)
+	EventBus.card_slot_cursor_right_button_clicked.connect(on_card_slot_right_button_clicked)

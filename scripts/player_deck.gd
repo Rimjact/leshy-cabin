@@ -16,8 +16,8 @@ extends Node2D
 
 ## to-do
 func _ready() -> void:
-	_fill_deck()
 	_subscribe_on_events()
+	_fill_deck()
 
 
 ## Заполняет колоду картчоками.

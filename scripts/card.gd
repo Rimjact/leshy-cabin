@@ -8,6 +8,8 @@ extends Node2D
 
 ## Текущее состояние карточки.
 var state: Global.CardState = Global.CardState.IN_DECK
+## Текущий слот, на который помещена карточка.
+var slot: PlayerCardSlot = null
 
 
 ## Когда курсор навёлся на эту карточку.

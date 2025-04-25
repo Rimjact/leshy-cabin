@@ -19,3 +19,10 @@ signal deck_cursor_right_button_clicked(deck: PlayerDeck)
 signal deck_filled(deck: PlayerDeck)
 ## (Сигнал) Карточка взята из колоды.
 signal deck_card_given(deck: PlayerDeck, card: Card)
+
+## (Сигнал) Курсор кликнул левой кнопкой мыши по слоту для карточек.
+signal card_slot_cursor_left_button_clicked(slot: PlayerCardSlot)
+## (Сигнал) Курсор кликнул правой кнопкой мыши по слоту для краточек.
+signal card_slot_cursor_right_button_clicked(slot: PlayerCardSlot)
+## (Сигнал) Карточка помещена на слот для карточек.
+signal card_slot_card_placed(slot: PlayerCardSlot, card: Card)
