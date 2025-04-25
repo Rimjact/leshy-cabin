@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://4oxmgxcgiy4k"]
+[gd_scene load_steps=2 format=3 uid="uid://4oxmgxcgiy4k"]
+
+[ext_resource type="Script" uid="uid://b04qwju67a5jw" path="res://scripts/clickbox_component.gd" id="1_sw3ap"]
 
 [node name="ClickboxComponent" type="Area2D"]
+script = ExtResource("1_sw3ap")

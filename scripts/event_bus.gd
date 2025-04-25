@@ -10,3 +10,12 @@ signal card_cursor_exited(card: Card)
 signal card_cursor_left_button_clicked(card: Card)
 ## (Сигнал) Курсор кликнул правой кнопкой мыши по карточке.
 signal card_cursor_right_button_clicked(card: Card)
+
+## (Сигнал) Курсор кликнул левой конопкой мыши по колоде.
+signal deck_cursor_left_button_clicked(deck: PlayerDeck)
+## (Сигнал) Курсор кликнул правой кнопкой мыши по колоде.
+signal deck_cursor_right_button_clicked(deck: PlayerDeck)
+## (Сигнал) Колода карточек заполнена.
+signal deck_filled(deck: PlayerDeck)
+## (Сигнал) Карточка взята из колоды.
+signal deck_card_given(deck: PlayerDeck, card: Card)

@@ -1,19 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://wjx8d6ndswmn"]
+[gd_scene load_steps=6 format=3 uid="uid://wjx8d6ndswmn"]
 
+[ext_resource type="Script" uid="uid://doqt0m0ew1hbo" path="res://scripts/player_deck.gd" id="1_5fj8v"]
 [ext_resource type="Texture2D" uid="uid://dtwg3w0vc6m3p" path="res://assets/textures/canvas_texture_card.tres" id="1_inc7i"]
 [ext_resource type="PackedScene" uid="uid://4oxmgxcgiy4k" path="res://objects/components/clickbox_component.tscn" id="2_5fj8v"]
+[ext_resource type="LabelSettings" uid="uid://cobdlqegubxp1" path="res://assets/label-settings/label_settings_deck_counter.tres" id="3_82df3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_umnf7"]
 size = Vector2(48, 64)
 
-[node name="PlayerSquirrelsDeck" type="Node2D"]
+[node name="PlayerSquirrelsDeck" type="Node2D" node_paths=PackedStringArray("label_counter")]
+script = ExtResource("1_5fj8v")
+type = 4
+label_counter = NodePath("CounterLabel")
 
 [node name="SquirrelsDeckSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_inc7i")
 region_enabled = true
 region_rect = Rect2(49, 0, 49, 64)
 
+[node name="CounterLabel" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = 28.0
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = ExtResource("3_82df3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ClickboxComponent" parent="." instance=ExtResource("2_5fj8v")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
 shape = SubResource("RectangleShape2D_umnf7")
+
+[connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="." method="_on_mouse_left_button_clicked"]
+[connection signal="mouse_right_button_clicked" from="ClickboxComponent" to="." method="_on_mouse_right_button_clicked"]
