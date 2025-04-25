@@ -5,7 +5,7 @@ extends Node2D
 
 @export_group("Basic Properties")
 ## Тип колоды.
-@export var type: Global.DeckType
+@export var type: Global.DeckType = Global.DeckType.ANIMALS
 ## Счётчик карточек в колоде.
 @export var label_counter: Label
 

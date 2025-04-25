@@ -10,6 +10,13 @@ signal card_cursor_exited(card: Card)
 signal card_cursor_left_button_clicked(card: Card)
 ## (Сигнал) Курсор кликнул правой кнопкой мыши по карточке.
 signal card_cursor_right_button_clicked(card: Card)
+## (Сигнал) Карточка убита.
+signal card_killed(card: Card, killer: Card)
+## (Сигнал) Карточка вылечена.
+signal card_healed(card: Card, healer: Card)
+## (Сигнал) Здоровье карточки изменено.
+signal card_health_changed(card: Card, old_value: int, new_value: int)
+
 
 ## (Сигнал) Курсор кликнул левой конопкой мыши по колоде.
 signal deck_cursor_left_button_clicked(deck: PlayerDeck)
