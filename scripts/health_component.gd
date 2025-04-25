@@ -18,6 +18,8 @@ func heal(heal_info: HealInfo) -> void:
     var card: Card = self.get_parent()
     var healer: Card = heal_info.source
 
+    _update_counter_label_text()
+
     EventBus.card_healed.emit(card, healer)
     EventBus.card_health_changed.emit(card, old_health, health)
 
@@ -30,11 +32,12 @@ func take_damage(attack_info: AttackInfo) -> void:
 
     var card: Card = self.get_parent()
 
+    _update_counter_label_text()
+
     EventBus.card_health_changed.emit(card, old_health, health)
 
     if health == 0:
         var killer: Card = attack_info.source
-
         EventBus.card_killed.emit(card, killer)
 
 

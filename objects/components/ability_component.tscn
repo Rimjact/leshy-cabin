@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctqilvrx6rvlx"]
+
+[ext_resource type="Script" uid="uid://b10f2lf1o0exk" path="res://scripts/ability_component.gd" id="1_0fqjs"]
+[ext_resource type="Texture2D" uid="uid://c3hbmexb2ifs1" path="res://assets/sprites/sprite_sheet_card_icons.png" id="2_md4ax"]
+
+[node name="AbilityComponent" type="Node2D" node_paths=PackedStringArray("icon_sprite")]
+script = ExtResource("1_0fqjs")
+ability_name = "flying"
+icon_sprite = NodePath("IconSprite")
+
+[node name="IconSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_md4ax")
+region_enabled = true
+region_rect = Rect2(16, 112, 16, 16)

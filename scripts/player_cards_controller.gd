@@ -101,6 +101,10 @@ func on_card_slot_right_button_clicked(slot: PlayerCardSlot) -> void:
 	pass
 
 
+## Когда карточка была перемещена на слот для карточек игрока.
+func on_card_slot_card_placed(_slot: PlayerCardSlot, _card: Card) -> void:
+	update_cards_positions()
+
 
 ## Подсвечивает указанную карточку.
 func highlight_card(card: Card, is_hovered: bool) -> void:
@@ -243,3 +247,4 @@ func _subscribe_on_events() -> void:
 	EventBus.deck_filled.connect(on_deck_filled)
 	EventBus.card_slot_cursor_left_button_clicked.connect(on_card_slot_left_button_clicked)
 	EventBus.card_slot_cursor_right_button_clicked.connect(on_card_slot_right_button_clicked)
+	EventBus.card_slot_card_placed.connect(on_card_slot_card_placed)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0cgt1twu3ob7"]
+[gd_scene load_steps=10 format=3 uid="uid://c0cgt1twu3ob7"]
 
 [ext_resource type="Texture2D" uid="uid://dtwg3w0vc6m3p" path="res://assets/textures/canvas_texture_card.tres" id="1_284yj"]
 [ext_resource type="Script" uid="uid://142bc8483law" path="res://scripts/card.gd" id="1_i847d"]
@@ -7,14 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://sdgmd8hpm0sg" path="res://assets/sprites/sprite_sheet_animals.png" id="4_d6jmb"]
 [ext_resource type="LabelSettings" uid="uid://crehmvg1iwbr3" path="res://assets/label-settings/label_settings_card_stats.tres" id="5_p6777"]
 [ext_resource type="PackedScene" uid="uid://4oxmgxcgiy4k" path="res://objects/components/clickbox_component.tscn" id="6_g0vwg"]
+[ext_resource type="PackedScene" uid="uid://ctqilvrx6rvlx" path="res://objects/components/ability_component.tscn" id="7_8g8wo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0vwg"]
 size = Vector2(48, 64)
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("clickbox_component")]
+[node name="Card" type="Node2D" node_paths=PackedStringArray("clickbox_component", "health_component", "attack_component")]
 z_index = 2
 script = ExtResource("1_i847d")
 clickbox_component = NodePath("ClickboxComponent")
+health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponent")
 
 [node name="CardSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_284yj")
@@ -44,6 +47,10 @@ position = Vector2(-17, 19)
 
 [node name="AttackComponent" parent="." instance=ExtResource("3_vnihg")]
 position = Vector2(17, 19)
+
+[node name="AbilityComponent" parent="." instance=ExtResource("7_8g8wo")]
+position = Vector2(0.5, 20)
+icon_rect = Rect2(16, 48, 16, 16)
 
 [node name="ClickboxComponent" parent="." instance=ExtResource("6_g0vwg")]
 

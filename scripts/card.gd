@@ -5,6 +5,9 @@ extends Node2D
 
 @export_group("Components")
 @export var clickbox_component: ClickboxComponent
+@export var health_component: HealthComponent
+@export var attack_component: AttackComponent
+@export var ability_component: AbilityComponent
 
 ## Текущее состояние карточки.
 var state: Global.CardState = Global.CardState.IN_DECK
