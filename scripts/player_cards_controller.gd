@@ -64,7 +64,7 @@ func on_card_cursor_left_button_clicked(card: Card) -> void:
 
 ## Когда курсор кликнул на карточку правой кнопкой мыши.
 func on_card_cursor_right_button_clicked(card: Card) -> void:
-	print(card)
+	card.attack_component.attack()
 
 
 ## Когда курсор кликнул на колоду карт левой кнопкой мыши.

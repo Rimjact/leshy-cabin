@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckrxpcel5gfht"]
+
+[ext_resource type="Script" uid="uid://cglm4c0n1rl84" path="res://scripts/ability_default.gd" id="1_if3jv"]
+
+[node name="AbilityDefault" type="Node2D"]
+script = ExtResource("1_if3jv")
+ability_name = "default"
+icon_rect = Rect2(16, 112, 16, 16)

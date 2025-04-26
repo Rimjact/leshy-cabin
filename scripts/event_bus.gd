@@ -10,6 +10,10 @@ signal card_cursor_exited(card: Card)
 signal card_cursor_left_button_clicked(card: Card)
 ## (Сигнал) Курсор кликнул правой кнопкой мыши по карточке.
 signal card_cursor_right_button_clicked(card: Card)
+## (Сигнал) Карточка атакует.
+signal card_attack(attack_info: AttackInfo)
+## (Сигнал) Карточка атакована.
+signal card_attacked(card: Card, attack_info: AttackInfo)
 ## (Сигнал) Карточка убита.
 signal card_killed(card: Card, killer: Card)
 ## (Сигнал) Карточка вылечена.

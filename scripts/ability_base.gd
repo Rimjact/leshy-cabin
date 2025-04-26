@@ -8,6 +8,15 @@ extends Node2D
 ## Координаты иконки способности.
 @export var icon_rect: Rect2
 
+## Карточка, которой пренадлежит способность.
+@onready var card: Card = get_node("../../")
+## Компонент здоровья карточки.
+@onready var health_component: HealthComponent = get_node("../../HealthComponent")
+## Компонент атаки карточки.
+@onready var attack_component: AttackComponent = get_node("../../AttackComponent")
+## Компонент способности карточки.
+@onready var ability_component: AbilityComponent = get_node("../../AbilityComponent")
+
 
 func _ready() -> void:
     _subscribe_on_event()
@@ -19,17 +28,12 @@ func _on_card_moved_to_slot() -> void:
 
 
 ## Перезаписываемый метод обработчика атаки карточки.
-func _on_card_attack() -> void:
+func _on_card_attack(attack_info: AttackInfo) -> void:
     pass
 
 
 ## Перезаписываемый метод обработчика атаки на карточку.
-func _on_card_attacked() -> void:
-    pass
-
-
-## Перезаписываемый метод обработчика конца хода игрока.
-func _on_player_turn_end() -> void:
+func _on_card_attacked(card: Card, attack_info: AttackInfo) -> void:
     pass
 
 
@@ -38,6 +42,12 @@ func _on_player_turn_start() -> void:
     pass
 
 
+## Перезаписываемый метод обработчика конца хода игрока.
+func _on_player_turn_end() -> void:
+    pass
+
+
 ## Подписывает на события.
 func _subscribe_on_event() -> void:
-    pass
+    EventBus.card_attack.connect(_on_card_attack)
+    EventBus.card_attacked.connect(_on_card_attacked)
