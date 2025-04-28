@@ -2,6 +2,9 @@ extends Node
 ## Шина событий.
 
 
+## (Сигнал) Состояние игры изменено.
+signal game_state_changed(from_state: GameState, to_state_name: String)
+
 ## (Сигнал) Курсор навёлся на карточку.
 signal card_cursor_entered(card: Card)
 ## (Сигнал) Курсор ушел от карточки.
@@ -21,7 +24,6 @@ signal card_healed(card: Card, healer: Card)
 ## (Сигнал) Здоровье карточки изменено.
 signal card_health_changed(card: Card, old_value: int, new_value: int)
 
-
 ## (Сигнал) Курсор кликнул левой конопкой мыши по колоде.
 signal deck_cursor_left_button_clicked(deck: PlayerDeck)
 ## (Сигнал) Курсор кликнул правой кнопкой мыши по колоде.
@@ -38,5 +40,5 @@ signal card_slot_cursor_right_button_clicked(slot: PlayerCardSlot)
 ## (Сигнал) Карточка помещена на слот для карточек.
 signal card_slot_card_placed(slot: PlayerCardSlot, card: Card)
 
-## (Сигнал) Состояние игры изменено.
-signal game_state_changed(new_state: GameState)
+## (Сигнал) Курсор кликнул левой кнопкой мыши по звоночку.
+signal bell_cursor_left_button_clicked()

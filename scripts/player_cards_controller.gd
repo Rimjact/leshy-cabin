@@ -5,6 +5,8 @@ extends Node2D
 
 ## Нода менеджера ввода.
 @export var input_manager: InputManager
+## Нода автомата состояния игры.
+@export var game_state_machine: GameStateMachine
 ## Массив карточек, находящихся у игрока.
 @export var cards: Array[Card]
 
@@ -20,6 +22,8 @@ func _ready() -> void:
 
 ## Когда на карточку навёлся курсор.
 func on_card_cursor_entered(card: Card) -> void:
+	if game_state_machine.cur_state.name != "player_turn":
+		return
 	if _hovered_card != null:
 		return
 	if card.state != Global.CardState.IN_HAND:
@@ -33,6 +37,8 @@ func on_card_cursor_entered(card: Card) -> void:
 
 ## Когда от карточки ушёл курсор.
 func on_card_cursor_exited(card: Card) -> void:
+	if game_state_machine.cur_state.name != "player_turn":
+		return
 	if card.state != Global.CardState.IN_HAND:
 		return
 	if _selected_card:
@@ -51,6 +57,8 @@ func on_card_cursor_exited(card: Card) -> void:
 
 ## Когда курсор кликнул на карточку левой кнопкой мыши.
 func on_card_cursor_left_button_clicked(card: Card) -> void:
+	if game_state_machine.cur_state.name != "player_turn":
+		return
 	if card.state != Global.CardState.IN_HAND:
 		return
 	if not _selected_card:
@@ -62,13 +70,11 @@ func on_card_cursor_left_button_clicked(card: Card) -> void:
 	deselect_card()
 
 
-## Когда курсор кликнул на карточку правой кнопкой мыши.
-func on_card_cursor_right_button_clicked(card: Card) -> void:
-	card.attack_component.attack()
-
-
 ## Когда курсор кликнул на колоду карт левой кнопкой мыши.
 func on_deck_cursor_left_button_clicked(deck: PlayerDeck) -> void:
+	if game_state_machine.cur_state.name != "player_pick_card":
+		return
+
 	give_card_from_deck(deck)
 
 
@@ -87,18 +93,14 @@ func on_deck_card_given(_deck: PlayerDeck, _card: Card) -> void:
 
 ## Когда курсор кликнул на слот для карточек левой кнопкой мыши.
 func on_card_slot_left_button_clicked(slot: PlayerCardSlot) -> void:
+	if game_state_machine.cur_state.name != "player_turn":
+		return
 	if _selected_card == null:
 		return
 	if slot.card != null:
 		return
 
 	move_card_to_player_card_slot(_selected_card, slot)
-
-
-
-## Когда курсор кликнул на слот для карточек правой кнопкой мыши.
-func on_card_slot_right_button_clicked(slot: PlayerCardSlot) -> void:
-	pass
 
 
 ## Когда карточка была перемещена на слот для карточек игрока.
@@ -193,6 +195,7 @@ func animate_card_move_to_card_slot(card: Card, target_pos: Vector2) -> void:
 	tween.tween_property(card, "global_position", target_pos, .2)
 	tween.tween_callback(update_card_state.bind(card, Global.CardState.IN_SLOT))
 
+
 ## Обновляет состояние карточки.
 func update_card_state(card: Card, state: Global.CardState) -> void:
 	card.state = state
@@ -241,10 +244,8 @@ func _subscribe_on_events() -> void:
 	EventBus.card_cursor_entered.connect(on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(on_card_cursor_exited)
 	EventBus.card_cursor_left_button_clicked.connect(on_card_cursor_left_button_clicked)
-	EventBus.card_cursor_right_button_clicked.connect(on_card_cursor_right_button_clicked)
 	EventBus.deck_cursor_left_button_clicked.connect(on_deck_cursor_left_button_clicked)
 	EventBus.deck_card_given.connect(on_deck_card_given)
 	EventBus.deck_filled.connect(on_deck_filled)
 	EventBus.card_slot_cursor_left_button_clicked.connect(on_card_slot_left_button_clicked)
-	EventBus.card_slot_cursor_right_button_clicked.connect(on_card_slot_right_button_clicked)
 	EventBus.card_slot_card_placed.connect(on_card_slot_card_placed)

@@ -9,27 +9,30 @@ extends Node2D
 ## Список состояний игры.
 var states: Dictionary = {}
 ## Текущее состояние игры.
-var cur_state: GameState
+@export var cur_state: GameState
 
 
 func _ready() -> void:
     _get_game_states()
     _init_state()
+    _subscribe_on_events()
 
 
 ## Обработчик события, когда состояние игры изменено.
-func on_game_state_changed(new_state: GameState) -> void:
-    if new_state != cur_state:
+func on_game_state_changed(from_state: GameState, to_state_name: String) -> void:
+    if from_state != cur_state:
         return
 
-    var target_state = states.get(new_state.name.to_lower())
+    var target_state: GameState = states.get(to_state_name.to_lower())
     if not target_state:
         return
 
     if cur_state:
-        cur_state.exit()
+        cur_state._exit()
 
-    target_state.enter()
+    target_state._enter()
+
+    cur_state = target_state
 
 
 ## Получает состояния игры в дочерних нодах.
@@ -43,10 +46,10 @@ func _get_game_states() -> void:
 ## Инициализирует текущее состояние.
 func _init_state() -> void:
     if initial_state:
-        initial_state.enter()
+        initial_state._enter()
         cur_state = initial_state
 
 
-## Подключает методы к событиям.
-func _connect_to_event() -> void:
+## Подписывает методы на события.
+func _subscribe_on_events() -> void:
     EventBus.game_state_changed.connect(on_game_state_changed)

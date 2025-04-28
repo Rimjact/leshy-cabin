@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://l45ulfy34dub"]
+[gd_scene load_steps=15 format=3 uid="uid://l45ulfy34dub"]
 
 [ext_resource type="Texture2D" uid="uid://cp273stosr4oh" path="res://assets/textures/canvas_texture_table.tres" id="1_1bfyv"]
 [ext_resource type="Texture2D" uid="uid://dhdt7jf1rpg1x" path="res://assets/sprites/light_table.png" id="2_6ecnt"]
@@ -9,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://c6aj0r6ynutug" path="res://objects/object_card_slot_opponent.tscn" id="4_y67a7"]
 [ext_resource type="PackedScene" uid="uid://dfqf8c4f0uky5" path="res://objects/object_bell.tscn" id="5_4kvec"]
 [ext_resource type="PackedScene" uid="uid://61cfn7m8tv2g" path="res://objects/object_hearts_bar.tscn" id="6_e4b80"]
+[ext_resource type="Script" uid="uid://dbgry75q63r3s" path="res://scripts/game_state_player_pick_card.gd" id="11_ahrb4"]
+[ext_resource type="Script" uid="uid://hg3fukv2aq7u" path="res://scripts/game_state_machine.gd" id="11_cgls0"]
 [ext_resource type="Script" uid="uid://d3w4v7f3va1vj" path="res://scripts/input_manager.gd" id="11_xpam0"]
+[ext_resource type="Script" uid="uid://cf072omlvljrx" path="res://scripts/game_state_player_turn.gd" id="13_cgls0"]
+[ext_resource type="Script" uid="uid://bowc0rtsfd0tb" path="res://scripts/game_state_player_cards_attack.gd" id="14_uj20q"]
 
 [node name="Game" type="CanvasLayer"]
 layer = 0
@@ -26,10 +30,11 @@ metadata/_edit_lock_ = true
 
 [node name="Table" type="Node2D" parent="."]
 
-[node name="PlayerCardsController" type="Node2D" parent="Table" node_paths=PackedStringArray("input_manager")]
+[node name="PlayerCardsController" type="Node2D" parent="Table" node_paths=PackedStringArray("input_manager", "game_state_machine")]
 position = Vector2(176, 200)
 script = ExtResource("2_fygdh")
 input_manager = NodePath("../../InputManager")
+game_state_machine = NodePath("../../GameStateMachine")
 
 [node name="PlayerDecks" type="Node2D" parent="Table"]
 position = Vector2(366, 200)
@@ -70,8 +75,9 @@ position = Vector2(24, -32)
 [node name="CardSlot4" parent="Table/OpponentSlots" instance=ExtResource("4_y67a7")]
 position = Vector2(80, -32)
 
-[node name="Bell" parent="Table" instance=ExtResource("5_4kvec")]
+[node name="Bell" parent="Table" node_paths=PackedStringArray("game_state_machine") instance=ExtResource("5_4kvec")]
 position = Vector2(48, 92)
+game_state_machine = NodePath("../../GameStateMachine")
 
 [node name="HeartsBar" parent="Table" instance=ExtResource("6_e4b80")]
 position = Vector2(24, 92)
@@ -91,7 +97,18 @@ height = 125.0
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("11_xpam0")
 
-[node name="GameStateMachine" type="Node2D" parent="."]
+[node name="GameStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("11_cgls0")
+initial_state = NodePath("player_pick_card")
+
+[node name="player_pick_card" type="Node2D" parent="GameStateMachine"]
+script = ExtResource("11_ahrb4")
+
+[node name="player_turn" type="Node2D" parent="GameStateMachine"]
+script = ExtResource("13_cgls0")
+
+[node name="player_cards_attack" type="Node2D" parent="GameStateMachine"]
+script = ExtResource("14_uj20q")
 
 [node name="TimersController" type="Node" parent="."]
 
