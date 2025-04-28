@@ -37,3 +37,6 @@ signal card_slot_cursor_left_button_clicked(slot: PlayerCardSlot)
 signal card_slot_cursor_right_button_clicked(slot: PlayerCardSlot)
 ## (Сигнал) Карточка помещена на слот для карточек.
 signal card_slot_card_placed(slot: PlayerCardSlot, card: Card)
+
+## (Сигнал) Состояние игры изменено.
+signal game_state_changed(new_state: GameState)

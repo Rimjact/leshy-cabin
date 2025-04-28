@@ -114,7 +114,7 @@ func highlight_card(card: Card, is_hovered: bool) -> void:
 
 	var target_x: float = card.global_position.x
 	var target_y: float = y_center - 3 if is_hovered else y_center
-	var target_pos: Vector2 = Vector2(target_x, target_y)
+	var target_pos := Vector2(target_x, target_y)
 
 	var tween = get_tree().create_tween()
 	tween.tween_property(card, "global_position", target_pos, .2)

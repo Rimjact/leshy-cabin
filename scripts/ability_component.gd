@@ -10,9 +10,9 @@ extends Node2D
 
 
 func _ready() -> void:
-    change_icon()
+    update_icon()
 
 
 ## Обновляет иконку способности.
-func change_icon() -> void:
+func update_icon() -> void:
     icon_sprite.region_rect = ability.icon_rect

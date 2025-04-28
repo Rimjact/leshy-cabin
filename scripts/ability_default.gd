@@ -11,6 +11,7 @@ func _on_card_attack(attack_info: AttackInfo) -> void:
     if attack_info.source != card:
         return
 
+    print("Card " + attack_info.source.to_string() + " attack by default pattern!")
     ## default attack pattern to-do
 
 

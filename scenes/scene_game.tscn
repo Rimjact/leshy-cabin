@@ -90,3 +90,9 @@ height = 125.0
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("11_xpam0")
+
+[node name="GameStateMachine" type="Node2D" parent="."]
+
+[node name="TimersController" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="TimersController"]

@@ -27,12 +27,7 @@ func on_mouse_exited() -> void:
 
 ## Когда на мышке нажата левая конопка мыши по компоненту.
 func on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
-	var source_parent = source.get_parent()
-	if source_parent is not Card:
-		return
-
-	var card_node: Card = source_parent
-	if card_node != self:
+	if not _check_source_parent_is_self_card(source):
 		return
 
 	EventBus.card_cursor_left_button_clicked.emit(self)
@@ -40,12 +35,20 @@ func on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
 
 ## Когда на мышке нажата правая конопка мыши по компоненту.
 func on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
-	var source_parent = source.get_parent()
-	if source_parent is not Card:
-		return
-
-	var card_node: Card = source_parent
-	if card_node != self:
+	if not _check_source_parent_is_self_card(source):
 		return
 
 	EventBus.card_cursor_right_button_clicked.emit(self)
+
+
+## Проверяет, является ли карточка источника этой карточкой.
+func _check_source_parent_is_self_card(source: ClickboxComponent) -> bool:
+	var source_parent = source.get_parent()
+	if source_parent is not Card:
+		return false
+
+	var card_node: Card = source_parent
+	if card_node != self:
+		return false
+
+	return true
