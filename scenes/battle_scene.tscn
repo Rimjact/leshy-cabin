@@ -1,3 +1,83 @@
-[gd_scene format=3 uid="uid://ccmxog728cmmn"]
+[gd_scene load_steps=9 format=3 uid="uid://ccmxog728cmmn"]
+
+[ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_idkgt"]
+[ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_1i8jf"]
+[ext_resource type="PackedScene" uid="uid://bcbo78gp7j7gp" path="res://objects/node_player_slot.tscn" id="2_kinr6"]
+[ext_resource type="PackedScene" uid="uid://bosn66xrsn0p7" path="res://objects/node_bell.tscn" id="3_8qdv8"]
+[ext_resource type="PackedScene" uid="uid://hs4askqo6lfg" path="res://objects/node_opponent_slot.tscn" id="3_pxwbd"]
+[ext_resource type="PackedScene" uid="uid://chvyeytdgjlk0" path="res://objects/node_animals_deck.tscn" id="3_rum4d"]
+[ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_squirrels_deck.tscn" id="4_3oc74"]
+[ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 
 [node name="BattleScene" type="CanvasLayer"]
+layer = 0
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_idkgt")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(213, 120)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(213, 120)
+texture = ExtResource("2_1i8jf")
+height = 125.0
+
+[node name="Table" type="Node2D" parent="."]
+
+[node name="PlayerDecks" type="Node2D" parent="Table"]
+position = Vector2(364, 200)
+
+[node name="AnimalsDeck" parent="Table/PlayerDecks" instance=ExtResource("3_rum4d")]
+position = Vector2(28, 0)
+
+[node name="SquirrelsDeck" parent="Table/PlayerDecks" instance=ExtResource("4_3oc74")]
+position = Vector2(-28, 0)
+
+[node name="PlayerCards" type="Node2D" parent="Table"]
+position = Vector2(180, 200)
+
+[node name="PlayerSlots" type="Node2D" parent="Table"]
+position = Vector2(180, 88)
+
+[node name="PlayerSlot1" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+position = Vector2(-84, 35)
+
+[node name="PlayerSlot2" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+position = Vector2(-28, 35)
+
+[node name="PlayerSlot3" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+position = Vector2(28, 35)
+
+[node name="PlayerSlot4" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+position = Vector2(84, 35)
+
+[node name="OpponentSlots" type="Node2D" parent="Table"]
+position = Vector2(180, 88)
+
+[node name="OpponentSlot1" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+position = Vector2(-84, -35)
+
+[node name="OpponentSlot2" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+position = Vector2(-28, -35)
+
+[node name="OpponentSlot3" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+position = Vector2(28, -35)
+
+[node name="OpponentSlot4" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+position = Vector2(84, -35)
+
+[node name="Bell" parent="Table" instance=ExtResource("3_8qdv8")]
+position = Vector2(48, 88)
+
+[node name="HeartsBar" parent="Table" instance=ExtResource("4_pxwbd")]
+position = Vector2(24, 88)

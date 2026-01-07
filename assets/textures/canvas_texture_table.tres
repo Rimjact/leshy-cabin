@@ -6,3 +6,4 @@
 [resource]
 diffuse_texture = ExtResource("1_k5mrt")
 normal_texture = ExtResource("2_h3spi")
+texture_filter = 1

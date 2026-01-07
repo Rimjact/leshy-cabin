@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://chvyeytdgjlk0"]
+
+[ext_resource type="Texture2D" uid="uid://wxn8mx847ko6" path="res://assets/textures/canvas_texture_card.tres" id="1_p0avc"]
+[ext_resource type="PackedScene" uid="uid://752707y07m4d" path="res://objects/node_clickbox_component.tscn" id="2_r4gpc"]
+[ext_resource type="LabelSettings" uid="uid://bx0sh5hsc2175" path="res://assets/labels/ls_deck_counter.tres" id="2_xw2dn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xw2dn"]
+size = Vector2(48, 64)
+
+[node name="AnimalsDeck" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p0avc")
+region_enabled = true
+region_rect = Rect2(98, 0, 49, 64)
+
+[node name="CounterLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 29.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+text = "0"
+label_settings = ExtResource("2_xw2dn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ClickboxComponent" parent="." instance=ExtResource("2_r4gpc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
+shape = SubResource("RectangleShape2D_xw2dn")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bosn66xrsn0p7"]
+
+[ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="1_7ijnq"]
+[ext_resource type="PackedScene" uid="uid://752707y07m4d" path="res://objects/node_clickbox_component.tscn" id="2_halhd"]
+
+[sub_resource type="Gradient" id="Gradient_7ijnq"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bdcg"]
+gradient = SubResource("Gradient_7ijnq")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.75, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_halhd"]
+size = Vector2(28, 32)
+
+[node name="Bell" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7ijnq")
+region_enabled = true
+region_rect = Rect2(34, 0, 28, 32)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 11)
+color = Color(1, 0, 0, 1)
+energy = 1.25
+texture = SubResource("GradientTexture2D_1bdcg")
+height = 25.0
+
+[node name="ClickboxComponent" parent="." instance=ExtResource("2_halhd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_halhd")
