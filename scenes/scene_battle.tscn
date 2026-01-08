@@ -105,5 +105,5 @@ position = Vector2(48, 88)
 [node name="HeartsBar" parent="Table" instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
 
-[connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
+[connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
