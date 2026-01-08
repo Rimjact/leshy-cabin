@@ -9,8 +9,6 @@ extends Node2D
 ## Состояние карточки
 @export var state: Global.CardState = Global.CardState.IN_DECK
 
-@export var cursor_handle_priority: int = 0
-
 
 ## Когда курсор навёлся на эту карточку
 func _on_card_hover_started(card: CardBase) -> void:
@@ -63,10 +61,6 @@ func _calc_hover_pos(is_hover: bool) -> Vector2:
 func _move_to_smoothly(target_pos: Vector2) -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "global_position", target_pos, .2)
-
-
-func _update_clickbox_component_handle_priority() -> void:
-	clickbox_component.priority = cursor_handle_priority
 
 
 ## Подключает к сигналам Шины

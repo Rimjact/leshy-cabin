@@ -46,27 +46,26 @@ position = Vector2(28, 0)
 position = Vector2(-28, 0)
 
 [node name="PlayerCardsController" type="Node2D" parent="Table"]
-position = Vector2(184, 200)
+position = Vector2(180, 200)
 script = ExtResource("5_pxl38")
 
 [node name="Card1" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
-position = Vector2(-24, 0)
 state = 1
 
 [node name="Card2" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
-position = Vector2(-8, 0)
+position = Vector2(12, 0)
 state = 1
 
 [node name="Card3" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
-position = Vector2(8, 0)
+position = Vector2(28, 0)
 state = 1
 
 [node name="Card4" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
-position = Vector2(24, 0)
+position = Vector2(44, 0)
 state = 1
 
 [node name="PlayerSlots" type="Node2D" parent="Table"]
@@ -106,4 +105,3 @@ position = Vector2(48, 88)
 position = Vector2(24, 88)
 
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
-[connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
