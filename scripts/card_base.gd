@@ -3,25 +3,26 @@ extends Node2D
 ## Класс карточки
 
 
-## Состояние карточки 
+@export_group("Components")
+@export var clickbox_component: ClickboxComponent
+
+## Состояние карточки
 @export var state: Global.CardState = Global.CardState.IN_DECK
+
+@export var cursor_handle_priority: int = 0
 
 
 ## Когда курсор навёлся на эту карточку
-func _on_card_cursor_entered(card: CardBase) -> void:
+func _on_card_hover_started(card: CardBase) -> void:
 	if card != self:
-		return
-	if state != Global.CardState.IN_HAND:
 		return
 	
 	_hover()
 
 
 ## Когда курсор ушёл с этой карточки
-func _on_card_cursor_exited(card: CardBase) -> void:
+func _on_card_hover_stopped(card: CardBase) -> void:
 	if card != self:
-		return
-	if state != Global.CardState.IN_HAND_HOVERED:
 		return
 	
 	_remove_hover()
@@ -64,7 +65,11 @@ func _move_to_smoothly(target_pos: Vector2) -> void:
 	tween.tween_property(self, "global_position", target_pos, .2)
 
 
+func _update_clickbox_component_handle_priority() -> void:
+	clickbox_component.priority = cursor_handle_priority
+
+
 ## Подключает к сигналам Шины
 func _connect_to_signals() -> void:
-	EventBus.card_cursor_entered.connect(_on_card_cursor_entered)
-	EventBus.card_cursor_exited.connect(_on_card_cursor_exited)
+	EventBus.card_hover_started.connect(_on_card_hover_started)
+	EventBus.card_hover_stopped.connect(_on_card_hover_stopped)

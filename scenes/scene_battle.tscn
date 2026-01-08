@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccmxog728cmmn"]
+[gd_scene load_steps=11 format=3 uid="uid://ccmxog728cmmn"]
 
 [ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_idkgt"]
 [ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_1i8jf"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_squirrels_deck.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="PackedScene" uid="uid://cj5sjrxje6ea" path="res://objects/node_card_ermine.tscn" id="5_is3ya"]
+[ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 
 [node name="BattleScene" type="CanvasLayer"]
 layer = 0
@@ -44,27 +45,31 @@ position = Vector2(28, 0)
 [node name="SquirrelsDeck" parent="Table/PlayerDecks" instance=ExtResource("4_3oc74")]
 position = Vector2(-28, 0)
 
-[node name="PlayerCards" type="Node2D" parent="Table"]
+[node name="PlayerCardsController" type="Node2D" parent="Table"]
 position = Vector2(180, 200)
+script = ExtResource("5_pxl38")
 
-[node name="Card" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+[node name="Card" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
 state = 1
 
-[node name="Card2" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+[node name="Card2" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
 position = Vector2(12, 0)
 state = 1
+cursor_handle_priority = 1
 
-[node name="Card3" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+[node name="Card3" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
 position = Vector2(28, 0)
 state = 1
+cursor_handle_priority = 2
 
-[node name="Card4" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+[node name="Card4" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
 z_index = 2
 position = Vector2(44, 0)
 state = 1
+cursor_handle_priority = 3
 
 [node name="PlayerSlots" type="Node2D" parent="Table"]
 position = Vector2(180, 88)
@@ -101,3 +106,5 @@ position = Vector2(48, 88)
 
 [node name="HeartsBar" parent="Table" instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
+
+[connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
