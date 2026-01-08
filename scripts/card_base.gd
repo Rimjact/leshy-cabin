@@ -12,14 +12,12 @@ var state: Global.CardState = Global.CardState.IN_DECK
 
 ## Курсор мыши навёлся на эту карточку
 func on_mouse_entered() -> void:
-	## To-do
-	pass
+	EventBus.card_cursor_entered.emit(self)
 
 
 ## Курсор мыши навёлся на эту карточку
 func on_mouse_exited() -> void:
-	# To-do
-	pass
+	EventBus.card_cursor_exited.emit(self)
 
 
 ## Когда произошел левый клик по компоненту
@@ -27,7 +25,7 @@ func on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
 	if not _is_source_parent_equels_self(source):
 		return
 	
-	pass
+	EventBus.card_cursor_left_button_clicked.emit(self)
 
 
 ## Когда произошел правый клик по компоненту
@@ -35,7 +33,7 @@ func on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
 	if not _is_source_parent_equels_self(source):
 		return
 	
-	pass
+	EventBus.card_cursor_right_button_clicked.emit(self)
 
 
 ## Проверяет, является ли родительская нода источника этой карточкой
