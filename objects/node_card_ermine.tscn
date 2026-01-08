@@ -46,6 +46,7 @@ metadata/_custom_type_script = "uid://fil5s0axuw8o"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
 shape = SubResource("RectangleShape2D_oljun")
 
+[connection signal="ready" from="." to="." method="_connect_to_signals"]
 [connection signal="mouse_entered" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_entered"]
 [connection signal="mouse_exited" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_exited"]
 [connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_left_button_clicked"]

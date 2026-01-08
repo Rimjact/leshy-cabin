@@ -6,6 +6,8 @@ extends Node
 enum CardState {
 	IN_DECK,
 	IN_HAND,
+	IN_HAND_HOVERED,
+	IN_HAND_SELECTED,
 	IN_SLOT,
 }
 ## Типы колод карточек

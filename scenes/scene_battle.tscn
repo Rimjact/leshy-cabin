@@ -48,6 +48,23 @@ position = Vector2(-28, 0)
 position = Vector2(180, 200)
 
 [node name="Card" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+z_index = 2
+state = 1
+
+[node name="Card2" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+z_index = 2
+position = Vector2(12, 0)
+state = 1
+
+[node name="Card3" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+z_index = 2
+position = Vector2(28, 0)
+state = 1
+
+[node name="Card4" parent="Table/PlayerCards" instance=ExtResource("5_is3ya")]
+z_index = 2
+position = Vector2(44, 0)
+state = 1
 
 [node name="PlayerSlots" type="Node2D" parent="Table"]
 position = Vector2(180, 88)
