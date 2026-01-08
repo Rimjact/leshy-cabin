@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj5sjrxje6ea"]
+[gd_scene load_steps=8 format=3 uid="uid://cj5sjrxje6ea"]
 
 [ext_resource type="Script" uid="uid://blwuc0q5ksjvn" path="res://scripts/card_base.gd" id="1_51jb4"]
 [ext_resource type="Texture2D" uid="uid://derv8smv52rsi" path="res://assets/textures/texture_card.png" id="1_surbv"]
 [ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="2_51jb4"]
 [ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="2_oljun"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="2_u6p8m"]
+[ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="5_w15so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("clickbox_component")]
+[node name="Card" type="Node2D"]
 script = ExtResource("1_51jb4")
-clickbox_component = NodePath("ClickboxComponent")
 
 [node name="CardBackground" type="Sprite2D" parent="."]
 texture = ExtResource("1_surbv")
@@ -36,6 +36,9 @@ texture = ExtResource("2_51jb4")
 region_enabled = true
 region_rect = Rect2(1, 97, 43, 31)
 
+[node name="CardInputComponent" type="Node2D" parent="."]
+script = ExtResource("5_w15so")
+
 [node name="ClickboxComponent" type="Area2D" parent="."]
 script = ExtResource("2_u6p8m")
 metadata/_custom_type_script = "uid://fil5s0axuw8o"
@@ -43,7 +46,7 @@ metadata/_custom_type_script = "uid://fil5s0axuw8o"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
 shape = SubResource("RectangleShape2D_oljun")
 
-[connection signal="mouse_entered" from="ClickboxComponent" to="." method="on_mouse_entered"]
-[connection signal="mouse_exited" from="ClickboxComponent" to="." method="on_mouse_exited"]
-[connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="." method="on_mouse_left_button_clicked"]
-[connection signal="mouse_right_button_clicked" from="ClickboxComponent" to="." method="on_mouse_right_button_clicked"]
+[connection signal="mouse_entered" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_entered"]
+[connection signal="mouse_exited" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_exited"]
+[connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_left_button_clicked"]
+[connection signal="mouse_right_button_clicked" from="ClickboxComponent" to="CardInputComponent" method="on_mouse_right_button_clicked"]
