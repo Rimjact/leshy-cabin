@@ -3,9 +3,9 @@ extends Area2D
 ## Класс компонента для обработки нажатий кнопок мыши
 
 
-## (Сигнал) Нажатие левой кнопки мыши
+## Вызывается, когда произошел левый клик по компоненту
 signal mouse_left_button_clicked(source: ClickboxComponent)
-## (Сигнал) Нажатие правой кнопки мыши
+## Вызывается, когда произошел правый клик по компоненту
 signal mouse_right_button_clicked(source: ClickboxComponent)
 
 
