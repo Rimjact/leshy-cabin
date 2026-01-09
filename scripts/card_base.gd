@@ -3,9 +3,7 @@ extends Node2D
 ## Класс карточки
 
 
-@export_group("Components")
-@export var clickbox_component: ClickboxComponent
-
+@export_group("Card Properties")
 ## Состояние карточки
 @export var state: Global.CardState = Global.CardState.IN_DECK
 

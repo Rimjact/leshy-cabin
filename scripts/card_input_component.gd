@@ -15,7 +15,7 @@ func _on_mouse_exited() -> void:
 
 ## Когда произошел левый клик по компоненту
 func _on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
-	if not _is_source_parent_equels_self_parent(source):
+	if not _is_that_card(source):
 		return
 	
 	EventBus.card_cursor_left_button_clicked.emit(get_parent())
@@ -23,15 +23,14 @@ func _on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
 
 ## Когда произошел правый клик по компоненту
 func _on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
-	if not _is_source_parent_equels_self_parent(source):
+	if not _is_that_card(source):
 		return
 	
 	EventBus.card_cursor_right_button_clicked.emit(get_parent())
-	EventBus.player_cards_in_hand_count_changed.emit()
 
 
 ## Проверяет, является ли родительская нода источника этой карточкой
-func _is_source_parent_equels_self_parent(source: ClickboxComponent) -> bool:
+func _is_that_card(source: ClickboxComponent) -> bool:
 	var source_parent = source.get_parent()
 	if source_parent is not CardBase:
 		return false
