@@ -7,7 +7,6 @@ extends Node2D
 ## Состояние карточки
 @export var state: Global.CardState = Global.CardState.IN_DECK
 
-
 @export_group("Components")
 ## Компонент ввода карточки
 @export var card_input_component: CardInputComponent
@@ -34,12 +33,14 @@ func _on_card_in_player_deck_position_updated(card: CardBase, index: int, cards_
 	if card != self:
 		return
 	
+	state = Global.CardState.ON_MOVE
+	
 	var player_deck_node: Node2D = get_parent()
 	var new_pos_y: float = player_deck_node.global_position.y
 	var new_pos_x: float = _calc_new_pos_x(index, cards_count)
 	
 	var new_pos := Vector2(new_pos_x, new_pos_y)
-	_move_to_smoothly(new_pos)
+	_change_pos_tween(new_pos, Global.CardState.IN_HAND)
 
 
 ## Когда игроку добавлена карточка
@@ -52,6 +53,11 @@ func _on_player_card_added(card: CardBase) -> void:
 	state = Global.CardState.IN_HAND
 
 
+## Когда твин пермещения карточки завершён
+func _on_change_pos_tween_completed(target_state: Global.CardState) -> void:
+	state = target_state
+
+
 ## Выделяет карточку среди прочих
 func _hover() -> void:
 	state = Global.CardState.IN_HAND_HOVERED
@@ -59,7 +65,7 @@ func _hover() -> void:
 	z_index = 3
 	
 	var hover_pos: Vector2 = _calc_hover_pos(true)
-	_move_to_smoothly(hover_pos)
+	_hover_tween(hover_pos)
 
 
 ## Убирает выделение карточки среди прочих
@@ -69,7 +75,7 @@ func _remove_hover() -> void:
 	z_index = 2
 	
 	var remove_hover_pos: Vector2 = _calc_hover_pos(false)
-	_move_to_smoothly(remove_hover_pos)
+	_hover_tween(remove_hover_pos)
 
 
 ## Расчитывает позицию для выделения карточки или для снятия выделения
@@ -115,10 +121,17 @@ func _calc_new_pos_x_normal(index: int, total_cards_width: float, x_center: floa
 	return x_pos
 
 
-## Плавно перемещает карточку на новую позицию 
-func _move_to_smoothly(target_pos: Vector2) -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "global_position", target_pos, .2)
+## Плавно перемещает карточку для выделения
+func _hover_tween(target_pos: Vector2) -> void:
+	var hover_tween = get_tree().create_tween()
+	hover_tween.tween_property(self, "global_position", target_pos, .2)
+
+
+## Плавно перемещает карточку на новую позицию и задаёт состояние
+func _change_pos_tween(target_pos: Vector2, target_state: Global.CardState) -> void:
+	var change_pos_tween = get_tree().create_tween()
+	change_pos_tween.tween_property(self, "global_position", target_pos, .2)
+	change_pos_tween.tween_callback(_on_change_pos_tween_completed.bind(target_state))
 
 
 ## Подключает к сигналам Шины

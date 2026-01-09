@@ -11,6 +11,7 @@
 size = Vector2(48, 64)
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("card_input_component")]
+z_index = 2
 script = ExtResource("1_vaipe")
 card_input_component = NodePath("CardInputComponent")
 

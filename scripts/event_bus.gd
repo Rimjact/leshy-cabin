@@ -39,5 +39,3 @@ signal deck_cursor_right_button_clicked(deck: DeckBase)
 signal deck_fill_started(deck: DeckBase)
 ## Вызывается, когда заполнение колоды карточками закончено
 signal deck_fill_completed(deck: DeckBase)
-## Вызывается, когда карточка выдана
-signal deck_card_given(deck: DeckBase, card: CardBase)

@@ -9,6 +9,7 @@ enum CardState {
 	IN_HAND_HOVERED,
 	IN_HAND_SELECTED,
 	IN_SLOT,
+	ON_MOVE,
 }
 ## Типы колод карточек
 enum DeckType {
