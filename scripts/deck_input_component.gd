@@ -1,5 +1,5 @@
 class_name DeckInputComponent
-extends Node2D
+extends Node
 ## Класс колоды для обработки ввода
 
 

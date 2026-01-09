@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://chvyeytdgjlk0"]
+[gd_scene load_steps=7 format=3 uid="uid://chvyeytdgjlk0"]
 
+[ext_resource type="Script" uid="uid://fa18qtpgr6qm" path="res://scripts/deck_base.gd" id="1_252wo"]
 [ext_resource type="Texture2D" uid="uid://wxn8mx847ko6" path="res://assets/textures/canvas_texture_card.tres" id="1_p0avc"]
 [ext_resource type="PackedScene" uid="uid://752707y07m4d" path="res://objects/node_clickbox_component.tscn" id="2_r4gpc"]
 [ext_resource type="LabelSettings" uid="uid://bx0sh5hsc2175" path="res://assets/labels/ls_deck_counter.tres" id="2_xw2dn"]
+[ext_resource type="Script" uid="uid://cjaexsyghgj4h" path="res://scripts/deck_input_component.gd" id="4_ekuuy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xw2dn"]
 size = Vector2(48, 64)
 
 [node name="AnimalsDeck" type="Node2D"]
+script = ExtResource("1_252wo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_p0avc")
@@ -30,7 +33,15 @@ label_settings = ExtResource("2_xw2dn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DeckInputComponent" type="Node2D" parent="."]
+script = ExtResource("4_ekuuy")
+
 [node name="ClickboxComponent" parent="." instance=ExtResource("2_r4gpc")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
 shape = SubResource("RectangleShape2D_xw2dn")
+
+[connection signal="mouse_entered" from="ClickboxComponent" to="DeckInputComponent" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ClickboxComponent" to="DeckInputComponent" method="_on_mouse_exited"]
+[connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="DeckInputComponent" method="_on_mouse_left_button_clicked"]
+[connection signal="mouse_right_button_clicked" from="ClickboxComponent" to="DeckInputComponent" method="_on_mouse_right_button_clicked"]
