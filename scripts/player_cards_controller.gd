@@ -4,7 +4,8 @@ extends Node2D
 
 
 ## Карточки у игрока
-var cards: Array[CardBase] 
+@export var cards: Array[CardBase] 
+
 
 ## Когда на карточку навёлся курсор
 func _on_card_cursor_entered(card: CardBase) -> void:
@@ -22,10 +23,20 @@ func _on_card_cursor_exited(card: CardBase) -> void:
 	EventBus.card_hover_stopped.emit(card)
 
 
+## Когда количество карт в руке игрока обновлено
+func _on_player_cards_in_hand_count_changed() -> void:
+	var cards_count: int = cards.size()
+	var index: int = 0
+	for card: CardBase in cards:
+		EventBus.card_in_player_deck_position_updated.emit(card, index, cards_count)
+		index += 1
+
+
 ## Присоединяет к сигналам Шины
 func _connect_to_signals() -> void:
 	EventBus.card_cursor_entered.connect(_on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(_on_card_cursor_exited)
+	EventBus.player_cards_in_hand_count_changed.connect(_on_player_cards_in_hand_count_changed)
 
 
 ## Включает правильную сортировку для выбора объектов

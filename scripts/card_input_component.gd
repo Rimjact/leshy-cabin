@@ -4,17 +4,17 @@ extends Node
 
 
 ## Курсор мыши навёлся на эту карточку
-func on_mouse_entered() -> void:
+func _on_mouse_entered() -> void:
 	EventBus.card_cursor_entered.emit(get_parent())
 
 
 ## Курсор мыши навёлся на эту карточку
-func on_mouse_exited() -> void:
+func _on_mouse_exited() -> void:
 	EventBus.card_cursor_exited.emit(get_parent())
 
 
 ## Когда произошел левый клик по компоненту
-func on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
+func _on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
 	if not _is_source_parent_equels_self_parent(source):
 		return
 	
@@ -22,11 +22,12 @@ func on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
 
 
 ## Когда произошел правый клик по компоненту
-func on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
+func _on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
 	if not _is_source_parent_equels_self_parent(source):
 		return
 	
 	EventBus.card_cursor_right_button_clicked.emit(get_parent())
+	EventBus.player_cards_in_hand_count_changed.emit()
 
 
 ## Проверяет, является ли родительская нода источника этой карточкой
