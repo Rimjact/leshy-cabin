@@ -29,6 +29,7 @@ func _start_fill() -> void:
 func _give_card() -> void:
 	var card: CardBase = cards.pop_back()
 	EventBus.player_card_added.emit(card)
+	EventBus.deck_cards_count_updated.emit(self)
 	
 	if cards.size() == 0:
 		queue_free()

@@ -50,6 +50,7 @@ shape = SubResource("RectangleShape2D_xw2dn")
 
 [connection signal="ready" from="." to="." method="_start_fill"]
 [connection signal="ready" from="." to="." method="_connect_signals"]
+[connection signal="ready" from="DeckCounterComponent" to="DeckCounterComponent" method="_connect_signals"]
 [connection signal="ready" from="DeckSpawnComponent" to="DeckSpawnComponent" method="_connect_signals"]
 [connection signal="mouse_entered" from="ClickboxComponent" to="DeckInputComponent" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ClickboxComponent" to="DeckInputComponent" method="_on_mouse_exited"]

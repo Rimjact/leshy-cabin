@@ -22,6 +22,7 @@ func _fill_deck(deck: DeckBase) -> void:
 			_fill_squirrels_deck(deck)
 	
 	EventBus.deck_fill_completed.emit(deck)
+	EventBus.deck_cards_count_updated.emit(deck)
 
 
 ## Заполнет колоду животных
