@@ -2,6 +2,7 @@ extends Node
 ## Глобальный скрипт шины событий
 
 
+######## CARD ########
 ## Вызывается, когда курсор навёлся на карточку
 signal card_cursor_entered(card: CardBase)
 ## Вызывается, когда курсор ушёл с карточки
@@ -17,9 +18,11 @@ signal card_hover_stopped(card: CardBase)
 ## Вызывается, когда позиция карточки в руке игрока обновлена 
 signal card_in_player_deck_position_updated(card: CardBase, index: int, cards_count: int)
 
+######## PLAYER CARDS CONTROLLER ########
 ## Вызывается, когда количество карт в руке игрока обновлено
 signal player_cards_in_hand_count_changed(card: CardBase)
 
+######## DECK ########
 ## Вызывается, когда курсор наведён на колоду
 signal deck_cursor_entered(deck: DeckBase)
 ## Вызывается, когда курсор ушёл с колоды
@@ -28,3 +31,7 @@ signal deck_cursor_exited(deck: DeckBase)
 signal deck_cursor_left_button_clicked(deck: DeckBase)
 ## Вызывается, когда произошел правый клик по колоде
 signal deck_cursor_right_button_clicked(deck: DeckBase)
+## Вызывается, когда начато заполнение колоды карточками
+signal deck_fill_started(deck: DeckBase)
+## Вызывается, когда заполнение колоды карточками закончено
+signal deck_fill_completed(deck: DeckBase)

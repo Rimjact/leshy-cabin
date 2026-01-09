@@ -10,3 +10,7 @@ extends Node2D
 @export_group("Cards")
 ## Карточки в колоде
 @export var cards: Array[CardBase]
+
+
+func _start_fill() -> void:
+	EventBus.deck_fill_started.emit(self)
