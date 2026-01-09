@@ -19,3 +19,12 @@ signal card_in_player_deck_position_updated(card: CardBase, index: int, cards_co
 
 ## Вызывается, когда количество карт в руке игрока обновлено
 signal player_cards_in_hand_count_changed(card: CardBase)
+
+##
+signal deck_cursor_entered(deck: DeckBase)
+##
+signal deck_cursor_exited(deck: DeckBase)
+##
+signal deck_cursor_left_button_clicked(deck: DeckBase)
+##
+signal deck_cursor_right_button_clicked(deck: DeckBase)
