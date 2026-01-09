@@ -19,8 +19,12 @@ signal card_hover_stopped(card: CardBase)
 signal card_in_player_deck_position_updated(card: CardBase, index: int, cards_count: int)
 
 ######## PLAYER CARDS CONTROLLER ########
-## Вызывается, когда количество карт в руке игрока обновлено
-signal player_cards_in_hand_count_changed(card: CardBase)
+## Вызывается, когда количество карт игрока обновлено
+signal player_cards_count_changed(card: CardBase)
+## Вызывается, когда игроку добавлена карточка
+signal player_card_added(card: CardBase)
+## Вызывается, когда у игрока убарна карточка
+signal player_card_removed(card: CardBase)
 
 ######## DECK ########
 ## Вызывается, когда курсор наведён на колоду
@@ -35,3 +39,5 @@ signal deck_cursor_right_button_clicked(deck: DeckBase)
 signal deck_fill_started(deck: DeckBase)
 ## Вызывается, когда заполнение колоды карточками закончено
 signal deck_fill_completed(deck: DeckBase)
+## Вызывается, когда карточка выдана
+signal deck_card_given(deck: DeckBase, card: CardBase)

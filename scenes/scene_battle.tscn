@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccmxog728cmmn"]
+[gd_scene load_steps=10 format=3 uid="uid://ccmxog728cmmn"]
 
 [ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_idkgt"]
 [ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_1i8jf"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://chvyeytdgjlk0" path="res://objects/node_deck_animals.tscn" id="3_rum4d"]
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
-[ext_resource type="PackedScene" uid="uid://cj5sjrxje6ea" path="res://objects/node_card_ermine.tscn" id="5_is3ya"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 
 [node name="BattleScene" type="CanvasLayer"]
@@ -45,30 +44,9 @@ position = Vector2(28, 0)
 [node name="SquirrelsDeck" parent="Table/PlayerDecks" instance=ExtResource("4_3oc74")]
 position = Vector2(-28, 0)
 
-[node name="PlayerCardsController" type="Node2D" parent="Table" node_paths=PackedStringArray("cards")]
+[node name="PlayerCardsController" type="Node2D" parent="Table"]
 position = Vector2(180, 200)
 script = ExtResource("5_pxl38")
-cards = [NodePath("Card1"), NodePath("Card2"), NodePath("Card3"), NodePath("Card4")]
-
-[node name="Card1" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
-z_index = 2
-position = Vector2(-24, 0)
-state = 1
-
-[node name="Card2" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
-z_index = 2
-position = Vector2(-8, 0)
-state = 1
-
-[node name="Card3" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
-z_index = 2
-position = Vector2(8, 0)
-state = 1
-
-[node name="Card4" parent="Table/PlayerCardsController" instance=ExtResource("5_is3ya")]
-z_index = 2
-position = Vector2(24, 0)
-state = 1
 
 [node name="PlayerSlots" type="Node2D" parent="Table"]
 position = Vector2(180, 88)
@@ -106,5 +84,5 @@ position = Vector2(48, 88)
 [node name="HeartsBar" parent="Table" instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
 
-[connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
+[connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]

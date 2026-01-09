@@ -3,6 +3,10 @@ extends Node
 ## Класс карточки для обработки ввода
 
 
+## Компонент ввода карточки
+@export var clickbox_component: ClickboxComponent
+
+
 ## Курсор мыши навёлся на эту карточку
 func _on_mouse_entered() -> void:
 	EventBus.card_cursor_entered.emit(get_parent())
@@ -27,6 +31,22 @@ func _on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
 		return
 	
 	EventBus.card_cursor_right_button_clicked.emit(get_parent())
+
+
+## Включает возможность ввода
+func enable_input() -> void:
+	_set_input_disabled(false)
+
+
+## Выключает возможность ввода
+func disable_input() -> void:
+	_set_input_disabled(true)
+
+
+## Переключает возможност ввода
+func _set_input_disabled(disabled: bool) -> void:
+	var collider: CollisionShape2D = clickbox_component.get_child(0)
+	collider.disabled = disabled
 
 
 ## Проверяет, является ли родительская нода источника этой карточкой

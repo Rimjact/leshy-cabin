@@ -24,7 +24,7 @@ func _on_card_cursor_exited(card: CardBase) -> void:
 
 
 ## Когда количество карт в руке игрока обновлено
-func _on_player_cards_in_hand_count_changed() -> void:
+func _on_player_cards_count_changed() -> void:
 	var cards_count: int = cards.size()
 	var index: int = 0
 	for card: CardBase in cards:
@@ -32,11 +32,20 @@ func _on_player_cards_in_hand_count_changed() -> void:
 		index += 1
 
 
+## Когда карточка была добавлена игроку
+func _on_player_card_added(card: CardBase) -> void:
+	card.reparent(self)
+	cards.push_back(card)
+	
+	EventBus.player_cards_count_changed.emit()
+
+
 ## Присоединяет к сигналам Шины
 func _connect_to_signals() -> void:
 	EventBus.card_cursor_entered.connect(_on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(_on_card_cursor_exited)
-	EventBus.player_cards_in_hand_count_changed.connect(_on_player_cards_in_hand_count_changed)
+	EventBus.player_cards_count_changed.connect(_on_player_cards_count_changed)
+	EventBus.player_card_added.connect(_on_player_card_added)
 
 
 ## Включает правильную сортировку для выбора объектов

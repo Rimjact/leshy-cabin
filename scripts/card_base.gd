@@ -8,6 +8,11 @@ extends Node2D
 @export var state: Global.CardState = Global.CardState.IN_DECK
 
 
+@export_group("Components")
+## Компонент ввода карточки
+@export var card_input_component: CardInputComponent
+
+
 ## Когда курсор навёлся на эту карточку
 func _on_card_hover_started(card: CardBase) -> void:
 	if card != self:
@@ -35,6 +40,16 @@ func _on_card_in_player_deck_position_updated(card: CardBase, index: int, cards_
 	
 	var new_pos := Vector2(new_pos_x, new_pos_y)
 	_move_to_smoothly(new_pos)
+
+
+## Когда игроку добавлена карточка
+func _on_player_card_added(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	card_input_component.enable_input()
+	visible = true
+	state = Global.CardState.IN_HAND
 
 
 ## Выделяет карточку среди прочих
@@ -111,3 +126,4 @@ func _connect_to_signals() -> void:
 	EventBus.card_hover_started.connect(_on_card_hover_started)
 	EventBus.card_hover_stopped.connect(_on_card_hover_stopped)
 	EventBus.card_in_player_deck_position_updated.connect(_on_card_in_player_deck_position_updated)
+	EventBus.player_card_added.connect(_on_player_card_added)

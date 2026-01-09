@@ -1,20 +1,21 @@
 [gd_scene load_steps=8 format=3 uid="uid://cj5sjrxje6ea"]
 
-[ext_resource type="Script" uid="uid://blwuc0q5ksjvn" path="res://scripts/card_base.gd" id="1_51jb4"]
-[ext_resource type="Texture2D" uid="uid://derv8smv52rsi" path="res://assets/textures/texture_card.png" id="1_surbv"]
-[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="2_51jb4"]
-[ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="2_oljun"]
-[ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="2_u6p8m"]
-[ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="5_w15so"]
+[ext_resource type="Script" uid="uid://blwuc0q5ksjvn" path="res://scripts/card_base.gd" id="1_vaipe"]
+[ext_resource type="Texture2D" uid="uid://derv8smv52rsi" path="res://assets/textures/texture_card.png" id="2_nvit6"]
+[ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="3_l0by0"]
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="4_apeqe"]
+[ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="5_ds24u"]
+[ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="6_ydlij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
 
-[node name="Card" type="Node2D"]
-script = ExtResource("1_51jb4")
+[node name="Card" type="Node2D" node_paths=PackedStringArray("card_input_component")]
+script = ExtResource("1_vaipe")
+card_input_component = NodePath("CardInputComponent")
 
 [node name="CardBackground" type="Sprite2D" parent="."]
-texture = ExtResource("1_surbv")
+texture = ExtResource("2_nvit6")
 region_enabled = true
 region_rect = Rect2(0, 0, 49, 64)
 
@@ -25,22 +26,24 @@ offset_right = 227.0
 offset_bottom = 19.0
 scale = Vector2(0.175, 0.175)
 text = "Горностай"
-label_settings = ExtResource("2_oljun")
+label_settings = ExtResource("3_l0by0")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
 [node name="AnimalSprite" type="Sprite2D" parent="."]
 position = Vector2(0, -4.5)
-texture = ExtResource("2_51jb4")
+texture = ExtResource("4_apeqe")
 region_enabled = true
 region_rect = Rect2(1, 97, 43, 31)
 
-[node name="CardInputComponent" type="Node2D" parent="."]
-script = ExtResource("5_w15so")
+[node name="CardInputComponent" type="Node2D" parent="." node_paths=PackedStringArray("clickbox_component")]
+script = ExtResource("5_ds24u")
+clickbox_component = NodePath("../ClickboxComponent")
 
 [node name="ClickboxComponent" type="Area2D" parent="."]
-script = ExtResource("2_u6p8m")
+priority = 2
+script = ExtResource("6_ydlij")
 metadata/_custom_type_script = "uid://fil5s0axuw8o"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
