@@ -31,6 +31,8 @@ signal slot_cursor_exited(slot: SlotBase)
 signal slot_cursor_left_button_clicked(slot: SlotBase)
 ## Вызывается, когда произошел правый клик по слоту
 signal slot_cursor_right_button_clicked(slot: SlotBase)
+## Вызывается, когда карточка установлена на слот
+signal slot_card_placed(slot: SlotBase, card: CardBase)
 
 ######## PLAYER CARDS CONTROLLER ########
 ## Вызывается, когда количество карт игрока обновлено

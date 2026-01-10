@@ -22,6 +22,7 @@ script = ExtResource("3_40nil")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
 shape = SubResource("RectangleShape2D_8slmy")
 
+[connection signal="ready" from="." to="." method="_connect_signals"]
 [connection signal="mouse_entered" from="ClickboxComponent" to="SlotInputComponent" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ClickboxComponent" to="SlotInputComponent" method="_on_mouse_exited"]
 [connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="SlotInputComponent" method="_on_mouse_left_button_clicked"]

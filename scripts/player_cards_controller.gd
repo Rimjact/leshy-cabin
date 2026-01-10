@@ -42,6 +42,21 @@ func _on_card_cursor_left_button_clicked(card: CardBase) -> void:
 	EventBus.card_deselected.emit(card)
 
 
+## Когда произошел левый клик по слоту
+func _on_slot_cursor_left_button_clicked(slot: SlotBase) -> void:
+	if slot.card:
+		return
+	if not _card_selected:
+		return
+	
+	EventBus.slot_card_placed.emit(slot, _card_selected)
+	
+	cards.erase(_card_selected)
+	_card_selected = null
+	
+	EventBus.player_cards_count_changed.emit()
+
+
 ## Когда количество карт в руке игрока обновлено
 func _on_player_cards_count_changed() -> void:
 	var cards_count: int = cards.size()
@@ -64,6 +79,7 @@ func _connect_to_signals() -> void:
 	EventBus.card_cursor_entered.connect(_on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(_on_card_cursor_exited)
 	EventBus.card_cursor_left_button_clicked.connect(_on_card_cursor_left_button_clicked)
+	EventBus.slot_cursor_left_button_clicked.connect(_on_slot_cursor_left_button_clicked)
 	EventBus.player_cards_count_changed.connect(_on_player_cards_count_changed)
 	EventBus.player_card_added.connect(_on_player_card_added)
 

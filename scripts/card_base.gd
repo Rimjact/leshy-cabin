@@ -77,6 +77,16 @@ func _on_player_card_added(card: CardBase) -> void:
 	state = Global.CardState.IN_HAND
 
 
+## Когда карточка установлена на слот
+func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
+	if card != self:
+		return
+	
+	state = Global.CardState.ON_MOVE
+	
+	_change_pos_tween(slot.global_position, Global.CardState.IN_SLOT)
+
+
 ## Когда твин пермещения карточки завершён
 func _on_change_pos_tween_completed(target_state: Global.CardState) -> void:
 	state = target_state
@@ -166,3 +176,4 @@ func _connect_to_signals() -> void:
 	EventBus.card_deselected.connect(_on_card_deselected)
 	EventBus.card_in_player_deck_position_updated.connect(_on_card_in_player_deck_position_updated)
 	EventBus.player_card_added.connect(_on_player_card_added)
+	EventBus.slot_card_placed.connect(_on_slot_card_placed)
