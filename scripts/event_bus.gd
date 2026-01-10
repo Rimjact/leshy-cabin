@@ -18,6 +18,16 @@ signal card_hover_stopped(card: CardBase)
 ## Вызывается, когда позиция карточки в руке игрока обновлена 
 signal card_in_player_deck_position_updated(card: CardBase, index: int, cards_count: int)
 
+######## SLOTS ########
+## Вызывается, когда курсор навёлся на слот
+signal slot_cursor_entered(slot: SlotBase)
+## Вызывается, когда курсор ушёл со слота 
+signal slot_cursor_exited(slot: SlotBase)
+## Вызывается, когда произошел левый клик по слоту
+signal slot_cursor_left_button_clicked(slot: SlotBase)
+## Вызывается, когда произошел правый клик по слоту
+signal slot_cursor_right_button_clicked(slot: SlotBase)
+
 ######## PLAYER CARDS CONTROLLER ########
 ## Вызывается, когда количество карт игрока обновлено
 signal player_cards_count_changed(card: CardBase)
