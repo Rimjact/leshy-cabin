@@ -44,11 +44,12 @@ func _on_card_deselected(card: CardBase) -> void:
 	card.state = Global.CardState.IN_HAND_HOVERED
 
 
-
 ## Когда позиция карточки в руке игрока обновлена 
 func _on_card_in_player_deck_position_updated(card: CardBase, index: int, cards_count: int) -> void: 
 	if card != self:
 		return
+	
+	var is_selected: bool = state == Global.CardState.IN_HAND_SELECTED
 	
 	state = Global.CardState.ON_MOVE
 	
@@ -57,6 +58,12 @@ func _on_card_in_player_deck_position_updated(card: CardBase, index: int, cards_
 	var new_pos_x: float = _calc_new_pos_x(index, cards_count)
 	
 	var new_pos := Vector2(new_pos_x, new_pos_y)
+	
+	if is_selected:
+		new_pos.y -= 3.0
+		_change_pos_tween(new_pos, Global.CardState.IN_HAND_SELECTED)
+		return
+	
 	_change_pos_tween(new_pos, Global.CardState.IN_HAND)
 
 
