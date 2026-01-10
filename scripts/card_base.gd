@@ -28,6 +28,23 @@ func _on_card_hover_stopped(card: CardBase) -> void:
 	_remove_hover()
 
 
+## Когда карточка выбрана
+func _on_card_selected(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	card.state = Global.CardState.IN_HAND_SELECTED
+
+
+## Когда выбор карточки снят
+func _on_card_deselected(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	card.state = Global.CardState.IN_HAND_HOVERED
+
+
+
 ## Когда позиция карточки в руке игрока обновлена 
 func _on_card_in_player_deck_position_updated(card: CardBase, index: int, cards_count: int) -> void: 
 	if card != self:
@@ -138,5 +155,7 @@ func _change_pos_tween(target_pos: Vector2, target_state: Global.CardState) -> v
 func _connect_to_signals() -> void:
 	EventBus.card_hover_started.connect(_on_card_hover_started)
 	EventBus.card_hover_stopped.connect(_on_card_hover_stopped)
+	EventBus.card_selected.connect(_on_card_selected)
+	EventBus.card_deselected.connect(_on_card_deselected)
 	EventBus.card_in_player_deck_position_updated.connect(_on_card_in_player_deck_position_updated)
 	EventBus.player_card_added.connect(_on_player_card_added)

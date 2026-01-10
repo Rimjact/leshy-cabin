@@ -4,7 +4,9 @@ extends Node2D
 
 
 ## Карточки у игрока
-@export var cards: Array[CardBase] 
+@export var cards: Array[CardBase]
+
+var _card_selected: CardBase = null
 
 
 ## Когда на карточку навёлся курсор
@@ -21,6 +23,23 @@ func _on_card_cursor_exited(card: CardBase) -> void:
 		return
 	
 	EventBus.card_hover_stopped.emit(card)
+
+
+## Когда произошел левый клик по карточке
+func _on_card_cursor_left_button_clicked(card: CardBase) -> void:
+	if not _card_selected and card.state == Global.CardState.IN_HAND_HOVERED:
+		_card_selected = card
+		EventBus.card_selected.emit(card)
+		return
+	
+	if card.state != Global.CardState.IN_HAND_SELECTED:
+		return
+	
+	if _card_selected and _card_selected != card:
+		return
+	
+	_card_selected = null
+	EventBus.card_deselected.emit(card)
 
 
 ## Когда количество карт в руке игрока обновлено
@@ -44,6 +63,7 @@ func _on_player_card_added(card: CardBase) -> void:
 func _connect_to_signals() -> void:
 	EventBus.card_cursor_entered.connect(_on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(_on_card_cursor_exited)
+	EventBus.card_cursor_left_button_clicked.connect(_on_card_cursor_left_button_clicked)
 	EventBus.player_cards_count_changed.connect(_on_player_cards_count_changed)
 	EventBus.player_card_added.connect(_on_player_card_added)
 
