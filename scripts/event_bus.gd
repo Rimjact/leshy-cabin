@@ -67,3 +67,9 @@ signal player_card_removed(card: CardBase)
 ######## GAME STATE CONTROLLER ########
 ## Вызывается, когда состояние игры изменено
 signal game_state_chanded(state: Global.GameState)
+
+######## BATTLE CONTROLLER ########
+## Вызывается, когда атака карточек игрока закончена
+signal battle_player_cards_attack_ended()
+## Вызывается, когда атака карточек оппонента закончена
+signal battle_opponent_cards_attack_ended()
