@@ -2,7 +2,7 @@ extends Node
 ## Скрипт для глобального доступа
 
 
-## Типы состояний карточки
+## Типы состояния карточки
 enum CardState {
 	IN_DECK,
 	IN_HAND,
@@ -15,6 +15,16 @@ enum CardState {
 enum DeckType {
 	ANIMALS,
 	SQUIRRELS,
+}
+## Типы состояния игры
+enum GameState {
+	PLAYER_PICK_CARD,
+	PLAYER_TURN,
+	PLAYER_CARDS_ATTACK,
+	SHOW_HEARTS_BAR,
+	OPPONENT_PICK_CARD,
+	OPPONENT_TURN,
+	OPPONENT_CARDS_ATTACK,
 }
 
 ## (Константа) Максимальная ширина колоды карточек в руке (пикселей)
