@@ -29,3 +29,4 @@ func _change_game_state(new_state: Global.GameState) -> void:
 ## Подключает сигналы Шины
 func _connect_signals() -> void:
 	EventBus.deck_card_given.connect(_to_next_game_state)
+	EventBus.bell_move_passed.connect(_to_next_game_state)

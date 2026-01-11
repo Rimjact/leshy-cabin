@@ -52,6 +52,10 @@ signal deck_cards_count_updated(deck: DeckBase)
 ## Вызывается, когда карточка из колоды была выдана
 signal deck_card_given()
 
+######## BELL ########
+## Вызывается, когда ход был сдан через звоночек
+signal bell_move_passed()
+
 ######## PLAYER CARDS CONTROLLER ########
 ## Вызывается, когда количество карт игрока обновлено
 signal player_cards_count_changed(card: CardBase)
