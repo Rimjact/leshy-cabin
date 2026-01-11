@@ -49,6 +49,8 @@ signal deck_fill_started(deck: DeckBase)
 signal deck_fill_completed(deck: DeckBase)
 ## Вызывается, когда количество карточек в колоде обновлено
 signal deck_cards_count_updated(deck: DeckBase)
+## Вызывается, когда карточка из колоды была выдана
+signal deck_card_given()
 
 ######## PLAYER CARDS CONTROLLER ########
 ## Вызывается, когда количество карт игрока обновлено

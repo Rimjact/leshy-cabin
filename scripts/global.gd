@@ -18,13 +18,15 @@ enum DeckType {
 }
 ## Типы состояния игры
 enum GameState {
-	PLAYER_PICK_CARD,
-	PLAYER_TURN,
-	PLAYER_CARDS_ATTACK,
-	SHOW_HEARTS_BAR,
-	OPPONENT_PICK_CARD,
-	OPPONENT_TURN,
-	OPPONENT_CARDS_ATTACK,
+	GAME_INIT = 0,
+	PLAYER_PICK_CARD = 1,
+	PLAYER_TURN = 2,
+	PLAYER_CARDS_ATTACK = 3,
+	PLAYER_SHOW_HEARTS_BAR = 4,
+	OPPONENT_PICK_CARD = 5,
+	OPPONENT_TURN = 6,
+	OPPONENT_CARDS_ATTACK = 7,
+	OPPONENT_SHOW_HEARTS_BAR = 8,
 }
 
 ## (Константа) Максимальная ширина колоды карточек в руке (пикселей)

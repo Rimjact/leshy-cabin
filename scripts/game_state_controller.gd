@@ -4,7 +4,7 @@ extends Node2D
 
 
 ## Исходное состояние игры
-@export var initial_state: Global.GameState
+@export var initial_state: Global.GameState = Global.GameState.GAME_INIT
 
 ## Текущее состояние игры
 var state: Global.GameState
@@ -12,14 +12,24 @@ var state: Global.GameState
 
 ## Преключает состояние игры на следующее
 func _to_next_game_state() -> void:
-	pass
+	match state:
+		Global.GameState.GAME_INIT:
+			_change_game_state(Global.GameState.PLAYER_PICK_CARD)
+			return
+		Global.GameState.OPPONENT_SHOW_HEARTS_BAR:
+			_change_game_state(Global.GameState.PLAYER_PICK_CARD)
+			return
+	
+	var new_state: Global.GameState = state + 1 as Global.GameState
+	_change_game_state(new_state)
 
 
 ## Переключает состояние игры
 func _change_game_state(new_state: Global.GameState) -> void:
-	pass
+	state = new_state
+	EventBus.game_state_chanded.emit(new_state)
 
 
 ## Подключает сигналы Шины
 func _connect_signals() -> void:
-	pass
+	EventBus.deck_card_given.connect(_to_next_game_state)
