@@ -34,14 +34,6 @@ signal slot_cursor_right_button_clicked(slot: SlotBase)
 ## Вызывается, когда карточка установлена на слот
 signal slot_card_placed(slot: SlotBase, card: CardBase)
 
-######## PLAYER CARDS CONTROLLER ########
-## Вызывается, когда количество карт игрока обновлено
-signal player_cards_count_changed(card: CardBase)
-## Вызывается, когда игроку добавлена карточка
-signal player_card_added(card: CardBase)
-## Вызывается, когда у игрока убарна карточка
-signal player_card_removed(card: CardBase)
-
 ######## DECK ########
 ## Вызывается, когда курсор наведён на колоду
 signal deck_cursor_entered(deck: DeckBase)
@@ -57,3 +49,15 @@ signal deck_fill_started(deck: DeckBase)
 signal deck_fill_completed(deck: DeckBase)
 ## Вызывается, когда количество карточек в колоде обновлено
 signal deck_cards_count_updated(deck: DeckBase)
+
+######## PLAYER CARDS CONTROLLER ########
+## Вызывается, когда количество карт игрока обновлено
+signal player_cards_count_changed(card: CardBase)
+## Вызывается, когда игроку добавлена карточка
+signal player_card_added(card: CardBase)
+## Вызывается, когда у игрока убарна карточка
+signal player_card_removed(card: CardBase)
+
+######## GAME STATE CONTROLLER ########
+## Вызывается, когда состояние игры изменено
+signal game_state_chanded(state: Global.GameState)
