@@ -12,13 +12,9 @@ var state: Global.GameState
 
 ## Преключает состояние игры на следующее
 func _to_next_game_state() -> void:
-	match state:
-		Global.GameState.GAME_INIT:
-			_change_game_state(Global.GameState.PLAYER_PICK_CARD)
-			return
-		Global.GameState.OPPONENT_SHOW_HEARTS_BAR:
-			_change_game_state(Global.GameState.PLAYER_PICK_CARD)
-			return
+	if state in [Global.GameState.GAME_INIT, Global.GameState.OPPONENT_PICK_CARD]:
+		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
+		return
 	
 	var new_state: Global.GameState = state + 1 as Global.GameState
 	_change_game_state(new_state)
