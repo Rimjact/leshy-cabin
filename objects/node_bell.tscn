@@ -38,6 +38,7 @@ energy = 1.25
 texture = SubResource("GradientTexture2D_1bdcg")
 height = 25.0
 script = ExtResource("3_qj2gq")
+_eyes_light_colors = Array[Color]([Color(0, 0.6901961, 0.33333334, 1), Color(1, 0, 0, 1)])
 
 [node name="BellInputComponent" type="Node" parent="."]
 script = ExtResource("3_wtld6")

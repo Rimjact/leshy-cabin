@@ -27,6 +27,7 @@ func _on_deck_cursor_left_button_clicked(deck: DeckBase) -> void:
 
 ## Когда состояние игры изменено
 func _on_game_state_changed(state: Global.GameState) -> void:
+	print("DeckBase: _on_game_state_changed to " + var_to_str(state))
 	match state:
 		Global.GameState.PLAYER_PICK_CARD:
 			_unblock_card_issuance()

@@ -3,11 +3,8 @@ extends Node2D
 ## Класс контроллера состояния игры
 
 
-## Исходное состояние игры
-@export var initial_state: Global.GameState = Global.GameState.GAME_INIT
-
 ## Текущее состояние игры
-var state: Global.GameState
+@export var state: Global.GameState = Global.GameState.GAME_INIT
 
 
 ## Преключает состояние игры на следующее
@@ -24,7 +21,7 @@ func _to_next_game_state() -> void:
 func _change_game_state(new_state: Global.GameState) -> void:
 	state = new_state
 	EventBus.game_state_changed.emit(new_state)
-	print("GameStateController: game state changed")
+	print("GameStateController: game state changed to " + var_to_str(new_state))
 
 
 ## Подключает сигналы Шины

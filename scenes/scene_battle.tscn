@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccmxog728cmmn"]
+[gd_scene load_steps=11 format=3 uid="uid://ccmxog728cmmn"]
 
 [ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_idkgt"]
 [ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_1i8jf"]
 [ext_resource type="PackedScene" uid="uid://bcbo78gp7j7gp" path="res://objects/node_player_slot.tscn" id="2_kinr6"]
 [ext_resource type="PackedScene" uid="uid://bosn66xrsn0p7" path="res://objects/node_bell.tscn" id="3_8qdv8"]
+[ext_resource type="Script" uid="uid://dmvaui56waeip" path="res://scripts/game_state_controller.gd" id="3_pxl38"]
 [ext_resource type="PackedScene" uid="uid://hs4askqo6lfg" path="res://objects/node_opponent_slot.tscn" id="3_pxwbd"]
 [ext_resource type="PackedScene" uid="uid://chvyeytdgjlk0" path="res://objects/node_deck_animals.tscn" id="3_rum4d"]
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
@@ -84,5 +85,10 @@ position = Vector2(48, 88)
 [node name="HeartsBar" parent="Table" instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
 
+[node name="GameStateConroller" type="Node2D" parent="."]
+script = ExtResource("3_pxl38")
+
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
+[connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_connect_signals"]
+[connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_to_next_game_state"]
