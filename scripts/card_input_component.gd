@@ -12,7 +12,7 @@ func _on_mouse_entered() -> void:
 	EventBus.card_cursor_entered.emit(get_parent())
 
 
-## Курсор мыши навёлся на эту карточку
+## Курсор мыши ушёл с этой карточки
 func _on_mouse_exited() -> void:
 	EventBus.card_cursor_exited.emit(get_parent())
 
