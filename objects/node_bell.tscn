@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bosn66xrsn0p7"]
+[gd_scene load_steps=10 format=3 uid="uid://bosn66xrsn0p7"]
 
 [ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="1_7ijnq"]
 [ext_resource type="Script" uid="uid://duh6kj7jpnnu7" path="res://scripts/bell_base.gd" id="1_u2efn"]
 [ext_resource type="PackedScene" uid="uid://752707y07m4d" path="res://objects/node_clickbox_component.tscn" id="2_halhd"]
+[ext_resource type="Script" uid="uid://dl0nt6o55rgme" path="res://scripts/bell_sprite_component.gd" id="3_htc22"]
+[ext_resource type="Script" uid="uid://cj25q0ov0r7te" path="res://scripts/bell_eyes_light_component.gd" id="3_qj2gq"]
 [ext_resource type="Script" uid="uid://d3hpipe1sbbkt" path="res://scripts/bell_input_component.gd" id="3_wtld6"]
 
 [sub_resource type="Gradient" id="Gradient_7ijnq"]
@@ -22,17 +24,20 @@ size = Vector2(28, 32)
 [node name="Bell" type="Node2D"]
 script = ExtResource("1_u2efn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BellSpriteComponent" type="Sprite2D" parent="."]
 texture = ExtResource("1_7ijnq")
 region_enabled = true
 region_rect = Rect2(34, 0, 28, 32)
+script = ExtResource("3_htc22")
+_bell_sprite_regions = Array[Rect2]([Rect2(2, 0, 28, 32), Rect2(34, 0, 28, 32)])
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="BellEyesLightComponent" type="PointLight2D" parent="."]
 position = Vector2(0, 11)
 color = Color(1, 0, 0, 1)
 energy = 1.25
 texture = SubResource("GradientTexture2D_1bdcg")
 height = 25.0
+script = ExtResource("3_qj2gq")
 
 [node name="BellInputComponent" type="Node" parent="."]
 script = ExtResource("3_wtld6")
@@ -44,6 +49,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_halhd")
 
 [connection signal="ready" from="." to="." method="_connect_signals"]
+[connection signal="ready" from="BellSpriteComponent" to="BellSpriteComponent" method="_connect_signals"]
 [connection signal="mouse_entered" from="ClickboxComponent" to="BellInputComponent" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="ClickboxComponent" to="BellInputComponent" method="_on_mouse_exited"]
 [connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="BellInputComponent" method="_on_mouse_left_button_clicked"]

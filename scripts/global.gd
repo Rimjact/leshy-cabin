@@ -18,8 +18,8 @@ enum DeckType {
 }
 ## Типы состояний звоночка
 enum BellState {
-	RELEASED,
-	PRESSED,
+	RELEASED = 0,
+	PRESSED = 1,
 }
 ## Типы состояния игры
 enum GameState {

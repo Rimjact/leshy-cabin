@@ -23,7 +23,8 @@ func _to_next_game_state() -> void:
 ## Переключает состояние игры
 func _change_game_state(new_state: Global.GameState) -> void:
 	state = new_state
-	EventBus.game_state_chanded.emit(new_state)
+	EventBus.game_state_changed.emit(new_state)
+	print("GameStateController: game state changed")
 
 
 ## Подключает сигналы Шины
