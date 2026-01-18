@@ -63,4 +63,4 @@ func _give_card() -> void:
 ## Подключает к сигналам Шины
 func _connect_signals() -> void:
 	EventBus.deck_cursor_left_button_clicked.connect(_on_deck_cursor_left_button_clicked)
-	EventBus.game_state_chanded.connect(_on_game_state_changed)
+	EventBus.game_state_changed.connect(_on_game_state_changed)

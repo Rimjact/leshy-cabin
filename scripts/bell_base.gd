@@ -31,4 +31,4 @@ func _chagne_bell_state(new_state: Global.BellState) -> void:
 
 ## Присоединяет сигналы Шины
 func _connect_signals() -> void:
-	EventBus.game_state_chanded.connect(_on_game_state_changed)
+	EventBus.game_state_changed.connect(_on_game_state_changed)
