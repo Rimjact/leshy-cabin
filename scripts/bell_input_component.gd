@@ -5,12 +5,12 @@ extends Node
 
 ## Курсор мыши навёлся на этот звоночек
 func _on_mouse_entered() -> void:
-	EventBus.card_cursor_entered.emit(get_parent())
+	EventBus.bell_cursor_entered.emit(get_parent())
 
 
 ## Курсор мыши ушёл от этого звоночка
 func _on_mouse_exited() -> void:
-	EventBus.card_cursor_exited.emit(get_parent())
+	EventBus.bell_cursor_exited.emit(get_parent())
 
 
 ## Когда произошел левый клик по компоненту
@@ -18,7 +18,7 @@ func _on_mouse_left_button_clicked(source: ClickboxComponent) -> void:
 	if not _is_that_bell(source):
 		return
 	
-	EventBus.card_cursor_left_button_clicked.emit(get_parent())
+	EventBus.bell_cursor_left_button_clicked.emit(get_parent())
 
 
 ## Когда произошел правый клик по компоненту
@@ -26,7 +26,7 @@ func _on_mouse_right_button_clicked(source: ClickboxComponent) -> void:
 	if not _is_that_bell(source):
 		return
 	
-	EventBus.card_cursor_right_button_clicked.emit(get_parent())
+	EventBus.bell_cursor_right_button_clicked.emit(get_parent())
 	
 
 ## Проверяет, является ли родительская нода источника этого звоночка

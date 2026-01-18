@@ -53,8 +53,14 @@ signal deck_cards_count_updated(deck: DeckBase)
 signal deck_card_given()
 
 ######## BELL ########
+## Вызывается, когда курсор навёлся на звоночек
+signal bell_cursor_entered(bell: BellBase)
+## Вызывается, когда курсор ушёл с колоды
+signal bell_cursor_exited(bell: BellBase)
 ## Вызывается, когда произошел левый клик по звоночку
-signal bell_cursor_left_button_clicked()
+signal bell_cursor_left_button_clicked(bell: BellBase)
+## Вызывается, когда произошел правый клик по звоночку
+signal bell_cursor_right_button_clicked(bell: BellBase)
 ## Вызывается, когда ход был сдан через звоночек
 signal bell_move_passed()
 ## Вызывается, когда состояние звоночка изменено
