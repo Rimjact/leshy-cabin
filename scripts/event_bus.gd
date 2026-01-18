@@ -35,7 +35,7 @@ signal slot_cursor_right_button_clicked(slot: SlotBase)
 signal slot_card_placed(slot: SlotBase, card: CardBase)
 
 ######## DECK ########
-## Вызывается, когда курсор наведён на колоду
+## Вызывается, когда курсор навёлся на колоду
 signal deck_cursor_entered(deck: DeckBase)
 ## Вызывается, когда курсор ушёл с колоды
 signal deck_cursor_exited(deck: DeckBase)
