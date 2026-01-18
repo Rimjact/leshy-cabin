@@ -3,7 +3,7 @@ extends Sprite2D
 ## Класс компонента спрайта звоночка
 
 
-@export_group("Параметры")
+@export_group("Params")
 ## Regions спрайта звоночка
 @export var _bell_sprite_regions: Array[Rect2]
 
