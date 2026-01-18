@@ -8,7 +8,9 @@ var state: Global.BellState = Global.BellState.PRESSED
 
 
 ## Когда произошел левый клик по звоночку
-func _on_bell_cursor_left_button_clicked() -> void:
+func _on_bell_cursor_left_button_clicked(bell: BellBase) -> void:
+	if bell != self:
+		return
 	if state != Global.BellState.RELEASED:
 		return
 	
@@ -26,6 +28,8 @@ func _on_game_state_changed(new_state: Global.GameState) -> void:
 
 ## Изменяет текущее состояние звоночка
 func _chagne_bell_state(new_state: Global.BellState) -> void:
+	state = new_state
+	
 	EventBus.bell_state_changed.emit(new_state)
 
 
