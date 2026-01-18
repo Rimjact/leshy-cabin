@@ -16,6 +16,11 @@ enum DeckType {
 	ANIMALS,
 	SQUIRRELS,
 }
+## Типы состояний звоночка
+enum BellState {
+	RELEASED,
+	PRESSED,
+}
 ## Типы состояния игры
 enum GameState {
 	GAME_INIT = 0,

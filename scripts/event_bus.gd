@@ -53,8 +53,12 @@ signal deck_cards_count_updated(deck: DeckBase)
 signal deck_card_given()
 
 ######## BELL ########
+## Вызывается, когда произошел левый клик по звоночку
+signal bell_cursor_left_button_clicked()
 ## Вызывается, когда ход был сдан через звоночек
 signal bell_move_passed()
+## Вызывается, когда состояние звоночка изменено
+signal bell_state_changed(state: Global.BellState)
 
 ######## PLAYER CARDS CONTROLLER ########
 ## Вызывается, когда количество карт игрока обновлено
