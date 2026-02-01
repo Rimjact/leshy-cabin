@@ -12,5 +12,6 @@ extends Node2D
 
 
 ## Выполняет атаку
-func attack() -> void:
-	pass
+func attack(target: CardBase) -> void:
+	var attack_info := AttackInfo.new(damage, get_parent(), target)
+	EventBus.card_attack.emit(attack_info)
