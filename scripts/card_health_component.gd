@@ -34,6 +34,7 @@ func _on_card_health_changed(card: CardBase, _old_value: int, new_value: int) ->
 	
 	if new_value <= 0:
 		EventBus.card_destroyed.emit(get_parent())
+		return
 	
 	_update_counter(new_value)
 
