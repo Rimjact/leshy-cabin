@@ -17,7 +17,7 @@ func _on_card_healed(card: CardBase, heal_info: HealInfo) -> void:
 	heal(heal_info.value)
 
 
-##
+## Когда карточке нанесён урон
 func _on_card_damaged(card: CardBase, damage_info: DamageInfo) -> void:
 	if card != self:
 		return
