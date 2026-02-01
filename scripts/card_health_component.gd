@@ -11,7 +11,7 @@ extends Node2D
 
 ## Когда карточка была вылечена
 func _on_card_healed(card: CardBase, heal_info: HealInfo) -> void:
-	if card != self:
+	if card != get_parent():
 		return
 	
 	heal(heal_info.value)
@@ -19,7 +19,7 @@ func _on_card_healed(card: CardBase, heal_info: HealInfo) -> void:
 
 ## Когда карточке нанесён урон
 func _on_card_damaged(card: CardBase, damage_info: DamageInfo) -> void:
-	if card != self:
+	if card != get_parent():
 		return
 	
 	damage(damage_info.value)
