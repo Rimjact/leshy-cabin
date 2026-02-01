@@ -17,9 +17,22 @@ func _on_card_healed(card: CardBase, heal_info: HealInfo) -> void:
 	heal(heal_info.value)
 
 
+##
+func _on_card_damaged(card: CardBase, damage_info: DamageInfo) -> void:
+	if card != self:
+		return
+	
+	damage(damage_info.value)
+
+
 ## Добавляет очки здоровья
 func heal(value: int) -> void:
 	health += value
+
+
+## Отнимает очки здоровья
+func damage(value: int) -> void:
+	health -= value
 
 
 ## Подключает к сигналам Шины
