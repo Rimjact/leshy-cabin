@@ -21,6 +21,8 @@ signal card_selected(card: CardBase)
 signal card_deselected(card: CardBase)
 ## Вызывается, когда позиция карточки в руке игрока обновлена 
 signal card_in_player_deck_position_updated(card: CardBase, index: int, cards_count: int)
+## Вызывается, когда карточка была вылечена
+signal card_healed(card: CardBase, heal_info: HealInfo)
 
 ######## SLOTS ########
 ## Вызывается, когда курсор навёлся на слот
