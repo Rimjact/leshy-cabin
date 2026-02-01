@@ -25,6 +25,14 @@ func _on_card_damaged(card: CardBase, damage_info: DamageInfo) -> void:
 	damage(damage_info.value)
 
 
+## Когда здоровье карточки изменено
+func _on_card_health_changed(card: CardBase, _old_value: int, new_value: int) -> void:
+	if card != get_parent():
+		return
+	
+	_update_counter(new_value)
+
+
 ## Добавляет очки здоровья
 func heal(value: int) -> void:
 	health += value
@@ -33,6 +41,11 @@ func heal(value: int) -> void:
 ## Отнимает очки здоровья
 func damage(value: int) -> void:
 	health -= value
+
+
+## Обновляет текст лэйбла счётчика
+func _update_counter(new_value: int) -> void:
+	counter_label.text = var_to_str(new_value)
 
 
 ## Подключает к сигналам Шины

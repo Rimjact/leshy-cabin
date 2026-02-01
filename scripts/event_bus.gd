@@ -25,6 +25,8 @@ signal card_in_player_deck_position_updated(card: CardBase, index: int, cards_co
 signal card_healed(card: CardBase, heal_info: HealInfo)
 ## Вызывается, когда карточке нанесён урон
 signal card_damaged(card: CardBase, damage_info: DamageInfo)
+## Вызывается, когда здоровье карточки изменено
+signal card_health_changed(card: CardBase, old_health: int, new_health: int)
 
 ######## SLOTS ########
 ## Вызывается, когда курсор навёлся на слот
