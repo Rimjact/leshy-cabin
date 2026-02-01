@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj5sjrxje6ea"]
+[gd_scene load_steps=10 format=3 uid="uid://cj5sjrxje6ea"]
 
 [ext_resource type="Script" uid="uid://blwuc0q5ksjvn" path="res://scripts/card_base.gd" id="1_vaipe"]
 [ext_resource type="Texture2D" uid="uid://derv8smv52rsi" path="res://assets/textures/texture_card.png" id="2_nvit6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="4_apeqe"]
 [ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="5_ds24u"]
 [ext_resource type="PackedScene" uid="uid://dxtlkutkybasp" path="res://objects/node_card_health_component.tscn" id="5_nvit6"]
+[ext_resource type="PackedScene" uid="uid://d3ubjmfba2lhe" path="res://objects/node_card_attack_component.tscn" id="6_l0by0"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="6_ydlij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
@@ -42,6 +43,9 @@ region_rect = Rect2(1, 97, 43, 31)
 [node name="CardHealthComponent" parent="." instance=ExtResource("5_nvit6")]
 position = Vector2(-17, 19)
 health = 6
+
+[node name="CardAttackComponent" parent="." instance=ExtResource("6_l0by0")]
+position = Vector2(17, 19)
 
 [node name="CardInputComponent" type="Node2D" parent="." node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("5_ds24u")
