@@ -5,6 +5,8 @@ extends Node2D
 
 ## Очки здоровья
 @export var health: int
+
+@export_group("Components")
 ## Счётчик очков здоровья на карточке
 @export var counter_label: Label
 
