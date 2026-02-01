@@ -27,6 +27,8 @@ signal card_healed(card: CardBase, heal_info: HealInfo)
 signal card_damaged(card: CardBase, damage_info: DamageInfo)
 ## Вызывается, когда здоровье карточки изменено
 signal card_health_changed(card: CardBase, old_health: int, new_health: int)
+## Вызывается, когда карточка уничтожена
+signal card_destroyed(card: CardBase)
 
 ######## SLOTS ########
 ## Вызывается, когда курсор навёлся на слот

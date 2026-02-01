@@ -67,6 +67,14 @@ func _on_card_in_player_deck_position_updated(card: CardBase, index: int, cards_
 	_change_pos_tween(new_pos, Global.CardState.IN_HAND)
 
 
+## Когда карточка была уничтожена
+func _on_card_destroyed(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	queue_free()
+
+
 ## Когда игроку добавлена карточка
 func _on_player_card_added(card: CardBase) -> void:
 	if card != self:
@@ -175,5 +183,6 @@ func _connect_to_signals() -> void:
 	EventBus.card_selected.connect(_on_card_selected)
 	EventBus.card_deselected.connect(_on_card_deselected)
 	EventBus.card_in_player_deck_position_updated.connect(_on_card_in_player_deck_position_updated)
+	EventBus.card_destroyed.connect(_on_card_destroyed)
 	EventBus.player_card_added.connect(_on_player_card_added)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
