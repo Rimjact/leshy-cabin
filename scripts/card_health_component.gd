@@ -37,12 +37,18 @@ func _on_card_health_changed(card: CardBase, _old_value: int, new_value: int) ->
 
 ## Добавляет очки здоровья
 func heal(value: int) -> void:
+	var old_health: int = health
 	health += value
+	
+	EventBus.card_health_changed.emit(get_parent(), old_health, health)
 
 
 ## Отнимает очки здоровья
 func damage(value: int) -> void:
+	var old_health: int = health
 	health -= value
+	
+	EventBus.card_health_changed.emit(get_parent(), old_health, health)
 
 
 ## Обновляет текст лэйбла счётчика
