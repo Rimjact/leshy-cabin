@@ -8,10 +8,15 @@ extends Node2D
 
 @export_group("Components")
 ## Лэйбл счётчика
-@export var label_counter: Label
+@export var counter_label: Label
 
 
 ## Выполняет атаку
 func attack(target: CardBase) -> void:
 	var attack_info := AttackInfo.new(damage, get_parent(), target)
 	EventBus.card_attack.emit(attack_info)
+
+
+## Обновляет текст лэйбла счётчика
+func _update_counter(new_value: int) -> void:
+	counter_label.text = var_to_str(new_value)
