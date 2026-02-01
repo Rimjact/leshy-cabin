@@ -62,3 +62,5 @@ func _update_counter(new_value: int) -> void:
 ## Подключает к сигналам Шины
 func _connect_signals() -> void:
 	EventBus.card_healed.connect(_on_card_healed)
+	EventBus.card_damaged.connect(_on_card_damaged)
+	EventBus.card_health_changed.connect(_on_card_health_changed)
