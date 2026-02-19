@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccmxog728cmmn"]
+[gd_scene format=3 uid="uid://ccmxog728cmmn"]
 
 [ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_idkgt"]
 [ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_1i8jf"]
@@ -11,10 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 
-[node name="BattleScene" type="CanvasLayer"]
+[node name="BattleScene" type="CanvasLayer" unique_id=1252692285]
 layer = 0
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1473880473]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,69 +23,69 @@ grow_vertical = 2
 texture = ExtResource("1_idkgt")
 stretch_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1079478341]
 position = Vector2(213, 120)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1096187331]
 color = Color(0.15294118, 0.15294118, 0.15294118, 1)
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1677803358]
 position = Vector2(213, 120)
 texture = ExtResource("2_1i8jf")
 height = 125.0
 
-[node name="Table" type="Node2D" parent="."]
+[node name="Table" type="Node2D" parent="." unique_id=739183446]
 
-[node name="PlayerDecks" type="Node2D" parent="Table"]
+[node name="PlayerDecks" type="Node2D" parent="Table" unique_id=2084934750]
 position = Vector2(364, 200)
 
-[node name="AnimalsDeck" parent="Table/PlayerDecks" instance=ExtResource("3_rum4d")]
+[node name="AnimalsDeck" parent="Table/PlayerDecks" unique_id=994887963 instance=ExtResource("3_rum4d")]
 position = Vector2(28, 0)
 
-[node name="SquirrelsDeck" parent="Table/PlayerDecks" instance=ExtResource("4_3oc74")]
+[node name="SquirrelsDeck" parent="Table/PlayerDecks" unique_id=595082322 instance=ExtResource("4_3oc74")]
 position = Vector2(-28, 0)
 
-[node name="PlayerCardsController" type="Node2D" parent="Table"]
+[node name="PlayerCardsController" type="Node2D" parent="Table" unique_id=2000464908]
 position = Vector2(180, 200)
 script = ExtResource("5_pxl38")
 
-[node name="PlayerSlots" type="Node2D" parent="Table"]
+[node name="PlayerSlots" type="Node2D" parent="Table" unique_id=1483248437]
 position = Vector2(180, 88)
 
-[node name="PlayerSlot1" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot1" parent="Table/PlayerSlots" unique_id=1836092980 instance=ExtResource("2_kinr6")]
 position = Vector2(-84, 35)
 
-[node name="PlayerSlot2" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot2" parent="Table/PlayerSlots" unique_id=1400558143 instance=ExtResource("2_kinr6")]
 position = Vector2(-28, 35)
 
-[node name="PlayerSlot3" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot3" parent="Table/PlayerSlots" unique_id=471393863 instance=ExtResource("2_kinr6")]
 position = Vector2(28, 35)
 
-[node name="PlayerSlot4" parent="Table/PlayerSlots" instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot4" parent="Table/PlayerSlots" unique_id=1066289291 instance=ExtResource("2_kinr6")]
 position = Vector2(84, 35)
 
-[node name="OpponentSlots" type="Node2D" parent="Table"]
+[node name="OpponentSlots" type="Node2D" parent="Table" unique_id=1621853922]
 position = Vector2(180, 88)
 
-[node name="OpponentSlot1" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+[node name="OpponentSlot1" parent="Table/OpponentSlots" unique_id=2003118212 instance=ExtResource("3_pxwbd")]
 position = Vector2(-84, -35)
 
-[node name="OpponentSlot2" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+[node name="OpponentSlot2" parent="Table/OpponentSlots" unique_id=1429249207 instance=ExtResource("3_pxwbd")]
 position = Vector2(-28, -35)
 
-[node name="OpponentSlot3" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+[node name="OpponentSlot3" parent="Table/OpponentSlots" unique_id=629963732 instance=ExtResource("3_pxwbd")]
 position = Vector2(28, -35)
 
-[node name="OpponentSlot4" parent="Table/OpponentSlots" instance=ExtResource("3_pxwbd")]
+[node name="OpponentSlot4" parent="Table/OpponentSlots" unique_id=720983023 instance=ExtResource("3_pxwbd")]
 position = Vector2(84, -35)
 
-[node name="Bell" parent="Table" instance=ExtResource("3_8qdv8")]
+[node name="Bell" parent="Table" unique_id=1555250619 instance=ExtResource("3_8qdv8")]
 position = Vector2(48, 88)
 
-[node name="HeartsBar" parent="Table" instance=ExtResource("4_pxwbd")]
+[node name="HeartsBar" parent="Table" unique_id=1289744523 instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
 
-[node name="GameStateConroller" type="Node2D" parent="."]
+[node name="GameStateConroller" type="Node2D" parent="." unique_id=1327787416]
 script = ExtResource("3_pxl38")
 
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
