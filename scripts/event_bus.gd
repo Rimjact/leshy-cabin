@@ -32,7 +32,9 @@ signal card_health_changed(card: CardBase, old_health: int, new_health: int)
 ## Вызывается, когда карточка уничтожена
 signal card_destroyed(card: CardBase)
 ## Вызывается, когда карточка атакует
-signal card_attack(attack_info: CardBase)
+signal card_attack(attack_info: AttackInfo)
+## Вызывается, когда карточка атакована
+signal card_attacked(attack_info: AttackInfo)
 
 ######## SLOTS ########
 ## Вызывается, когда курсор навёлся на слот
