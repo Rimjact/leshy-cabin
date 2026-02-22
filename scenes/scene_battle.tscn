@@ -49,19 +49,19 @@ position = Vector2(-28, 0)
 position = Vector2(180, 200)
 script = ExtResource("5_pxl38")
 
-[node name="PlayerSlots" type="Node2D" parent="Table" unique_id=1483248437]
+[node name="PlayerSlotsManager" type="Node2D" parent="Table" unique_id=1483248437]
 position = Vector2(180, 88)
 
-[node name="PlayerSlot1" parent="Table/PlayerSlots" unique_id=1836092980 instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot1" parent="Table/PlayerSlotsManager" unique_id=1836092980 instance=ExtResource("2_kinr6")]
 position = Vector2(-84, 35)
 
-[node name="PlayerSlot2" parent="Table/PlayerSlots" unique_id=1400558143 instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot2" parent="Table/PlayerSlotsManager" unique_id=1400558143 instance=ExtResource("2_kinr6")]
 position = Vector2(-28, 35)
 
-[node name="PlayerSlot3" parent="Table/PlayerSlots" unique_id=471393863 instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot3" parent="Table/PlayerSlotsManager" unique_id=471393863 instance=ExtResource("2_kinr6")]
 position = Vector2(28, 35)
 
-[node name="PlayerSlot4" parent="Table/PlayerSlots" unique_id=1066289291 instance=ExtResource("2_kinr6")]
+[node name="PlayerSlot4" parent="Table/PlayerSlotsManager" unique_id=1066289291 instance=ExtResource("2_kinr6")]
 position = Vector2(84, 35)
 
 [node name="OpponentSlots" type="Node2D" parent="Table" unique_id=1621853922]
