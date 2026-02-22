@@ -11,6 +11,10 @@ extends Node2D
 @export var counter_label: Label
 
 
+func _ready() -> void:
+	_update_counter(damage)
+
+
 ## Выполняет атаку
 func attack(target: CardBase) -> void:
 	var attack_info := AttackInfo.new(damage, get_parent(), target)

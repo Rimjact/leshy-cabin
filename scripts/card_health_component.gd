@@ -11,6 +11,10 @@ extends Node2D
 @export var counter_label: Label
 
 
+func _ready() -> void:
+	_update_counter(health)
+
+
 ## Когда карточка была вылечена
 func _on_card_healed(card: CardBase, heal_info: HealInfo) -> void:
 	if card != get_parent():
