@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxtlkutkybasp" path="res://objects/node_card_health_component.tscn" id="5_nvit6"]
 [ext_resource type="PackedScene" uid="uid://d3ubjmfba2lhe" path="res://objects/node_card_attack_component.tscn" id="6_l0by0"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="6_ydlij"]
+[ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_ability_component.tscn" id="7_apeqe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
@@ -46,6 +47,8 @@ health = 6
 
 [node name="CardAttackComponent" parent="." unique_id=1304590650 instance=ExtResource("6_l0by0")]
 position = Vector2(17, 19)
+
+[node name="CardAbilityComponent" parent="." unique_id=2128617329 instance=ExtResource("7_apeqe")]
 
 [node name="CardInputComponent" type="Node2D" parent="." unique_id=959203989 node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("5_ds24u")
