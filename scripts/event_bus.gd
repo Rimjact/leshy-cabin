@@ -2,6 +2,8 @@ extends Node
 ## Глобальный скрипт шины событий
 
 
+@warning_ignore_start("unused_signal")
+
 ######## CARD ########
 ## Вызывается, когда курсор навёлся на карточку
 signal card_cursor_entered(card: CardBase)
@@ -93,3 +95,5 @@ signal game_state_changed(state: Global.GameState)
 signal battle_player_cards_attack_ended()
 ## Вызывается, когда атака карточек оппонента закончена
 signal battle_opponent_cards_attack_ended()
+
+@warning_ignore_restore("unused_signal")
