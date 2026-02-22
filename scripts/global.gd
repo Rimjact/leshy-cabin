@@ -11,6 +11,11 @@ enum CardState {
 	IN_SLOT,
 	ON_MOVE,
 }
+## Типы способностей карточки
+enum AbilityType {
+	ATTACK,
+	DEFENCE,
+}
 ## Типы колод карточек
 enum DeckType {
 	ANIMALS,
