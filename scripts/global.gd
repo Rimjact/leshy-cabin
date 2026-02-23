@@ -16,6 +16,11 @@ enum AbilityType {
 	ATTACK,
 	DEFENCE,
 }
+## Типы слотов для карточек
+enum SlotType {
+	PLAYER,
+	OPPONENT,
+}
 ## Типы колод карточек
 enum DeckType {
 	ANIMALS,
