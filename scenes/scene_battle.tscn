@@ -88,7 +88,9 @@ position = Vector2(24, 88)
 [node name="GameStateConroller" type="Node2D" parent="." unique_id=1327787416]
 script = ExtResource("3_pxl38")
 
+[node name="SlotsManager" type="Node2D" parent="." unique_id=1520993201]
+
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
-[connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_connect_signals"]
 [connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_to_next_game_state"]
+[connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_connect_signals"]
