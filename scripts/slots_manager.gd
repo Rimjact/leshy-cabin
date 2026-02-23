@@ -17,9 +17,6 @@ static var opponent_slots: Array[SlotBase]
 func _ready() -> void:
 	_add_player_slots_to_array()
 	_add_opponent_slots_to_array()
-	
-	print(player_slots)
-	print(opponent_slots)
 
 
 ## Возвращает слот игрока по ID

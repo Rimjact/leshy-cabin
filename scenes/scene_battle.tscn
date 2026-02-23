@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
-[ext_resource type="Script" uid="uid://gj6oyoroanel" path="res://scripts/slot_base.gd" id="8_tfcxk"]
 [ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
 
 [node name="BattleScene" type="CanvasLayer" unique_id=1252692285]
@@ -71,23 +70,15 @@ position = Vector2(180, 88)
 
 [node name="OpponentSlot1" parent="Table/OpponentSlots" unique_id=2003118212 instance=ExtResource("3_pxwbd")]
 position = Vector2(-84, -35)
-script = ExtResource("8_tfcxk")
-type = 1
 
 [node name="OpponentSlot2" parent="Table/OpponentSlots" unique_id=1429249207 instance=ExtResource("3_pxwbd")]
 position = Vector2(-28, -35)
-script = ExtResource("8_tfcxk")
-type = 1
 
 [node name="OpponentSlot3" parent="Table/OpponentSlots" unique_id=629963732 instance=ExtResource("3_pxwbd")]
 position = Vector2(28, -35)
-script = ExtResource("8_tfcxk")
-type = 1
 
 [node name="OpponentSlot4" parent="Table/OpponentSlots" unique_id=720983023 instance=ExtResource("3_pxwbd")]
 position = Vector2(84, -35)
-script = ExtResource("8_tfcxk")
-type = 1
 
 [node name="Bell" parent="Table" unique_id=1555250619 instance=ExtResource("3_8qdv8")]
 position = Vector2(48, 88)
