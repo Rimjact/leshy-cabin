@@ -86,15 +86,15 @@ position = Vector2(48, 88)
 [node name="HeartsBar" parent="Table" unique_id=1289744523 instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
 
-[node name="GameStateConroller" type="Node2D" parent="." unique_id=1327787416]
-script = ExtResource("3_pxl38")
-
 [node name="SlotsManager" type="Node2D" parent="." unique_id=1520993201 node_paths=PackedStringArray("player_slots_node", "opponent_slots_node")]
 script = ExtResource("11_qga8c")
 player_slots_node = NodePath("../Table/PlayerSlots")
 opponent_slots_node = NodePath("../Table/OpponentSlots")
 
+[node name="GameStateController" type="Node2D" parent="." unique_id=1327787416]
+script = ExtResource("3_pxl38")
+
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
-[connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_to_next_game_state"]
-[connection signal="ready" from="GameStateConroller" to="GameStateConroller" method="_connect_signals"]
+[connection signal="ready" from="GameStateController" to="GameStateController" method="_to_next_game_state"]
+[connection signal="ready" from="GameStateController" to="GameStateController" method="_connect_signals"]
