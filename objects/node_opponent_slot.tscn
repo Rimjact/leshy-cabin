@@ -1,18 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://hs4askqo6lfg"]
+[gd_scene format=3 uid="uid://hs4askqo6lfg"]
 
+[ext_resource type="Script" uid="uid://gj6oyoroanel" path="res://scripts/slot_base.gd" id="1_u2v87"]
 [ext_resource type="Texture2D" uid="uid://cqxif0sgyiwru" path="res://assets/textures/canvas_texture_card_slot.tres" id="1_vfp35"]
 [ext_resource type="PackedScene" uid="uid://752707y07m4d" path="res://objects/node_clickbox_component.tscn" id="2_oso2h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dasvr"]
 size = Vector2(48, 64)
 
-[node name="OpponentSlot" type="Node2D"]
+[node name="OpponentSlot" type="Node2D" unique_id=1832918785]
+script = ExtResource("1_u2v87")
+type = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=979894489]
 texture = ExtResource("1_vfp35")
 flip_v = true
 
-[node name="ClickboxComponent" parent="." instance=ExtResource("2_oso2h")]
+[node name="ClickboxComponent" parent="." unique_id=2138503341 instance=ExtResource("2_oso2h")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent" unique_id=824895645]
 shape = SubResource("RectangleShape2D_dasvr")
+
+[connection signal="ready" from="." to="." method="_connect_signals"]
