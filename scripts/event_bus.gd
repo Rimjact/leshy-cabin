@@ -97,7 +97,7 @@ signal game_state_changed(state: Global.GameState)
 signal battle_player_cards_attack_ended()
 ## Вызывается, когда атака карточек оппонента закончена
 signal battle_opponent_cards_attack_ended()
-## Вызывается, когда отсылается команда на атаку для карточки
-signal battle_card_attack_command(card: CardBase)
+## Вызывается, когда ход в битве перешёл карточке 
+signal battle_card_turn(card: CardBase)
 
 @warning_ignore_restore("unused_signal")
