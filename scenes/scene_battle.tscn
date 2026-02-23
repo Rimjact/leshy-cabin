@@ -93,6 +93,10 @@ opponent_slots_node = NodePath("../Table/OpponentSlots")
 
 [node name="BattleController" type="Node2D" parent="." unique_id=444450124]
 
+[node name="CardAttackTimer" type="Timer" parent="BattleController" unique_id=506672764]
+wait_time = 0.4
+one_shot = true
+
 [node name="GameStateController" type="Node2D" parent="." unique_id=1327787416]
 script = ExtResource("3_pxl38")
 
