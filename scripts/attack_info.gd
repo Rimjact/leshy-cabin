@@ -7,11 +7,11 @@ extends Node
 var damage: int
 ## Атакующая карточка
 var attacker: CardBase
-## Атакованная карточка
-var victime: CardBase
+## Атакованный слот
+var victime_slot: SlotBase
 
 
-func _init(dmg: int, atck: CardBase, vict: CardBase) -> void:
+func _init(dmg: int, atck: CardBase, vict_slot: SlotBase) -> void:
 	self.damage = dmg
 	self.attacker = atck
-	self.victime = vict
+	self.victime_slot = vict_slot
