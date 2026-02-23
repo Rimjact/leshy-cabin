@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
+[ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
 
 [node name="BattleScene" type="CanvasLayer" unique_id=1252692285]
 layer = 0
@@ -88,7 +89,10 @@ position = Vector2(24, 88)
 [node name="GameStateConroller" type="Node2D" parent="." unique_id=1327787416]
 script = ExtResource("3_pxl38")
 
-[node name="SlotsManager" type="Node2D" parent="." unique_id=1520993201]
+[node name="SlotsManager" type="Node2D" parent="." unique_id=1520993201 node_paths=PackedStringArray("player_slots_node", "opponent_slots_node")]
+script = ExtResource("11_qga8c")
+player_slots_node = NodePath("../Table/PlayerSlots")
+opponent_slots_node = NodePath("../Table/OpponentSlots")
 
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
