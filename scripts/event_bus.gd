@@ -31,10 +31,10 @@ signal card_damaged(card: CardBase, damage_info: DamageInfo)
 signal card_health_changed(card: CardBase, old_health: int, new_health: int)
 ## Вызывается, когда карточка уничтожена
 signal card_destroyed(card: CardBase)
-## Вызывается, когда карточка атакует
-signal card_attack(attack_info: AttackInfo)
+## Вызывается, когда карточка атакует слот
+signal card_attack_slot(attack_info: AttackSlotInfo)
 ## Вызывается, когда карточка атакована
-signal card_attacked(attack_info: AttackInfo)
+signal card_attacked(attack_info: AttackCardInfo)
 
 ######## SLOTS ########
 ## Вызывается, когда курсор навёлся на слот
@@ -47,6 +47,8 @@ signal slot_cursor_left_button_clicked(slot: SlotBase)
 signal slot_cursor_right_button_clicked(slot: SlotBase)
 ## Вызывается, когда карточка установлена на слот
 signal slot_card_placed(slot: SlotBase, card: CardBase)
+## Вызывается, когда слот атакован
+signal slot_attacked(attack_info: AttackSlotInfo)
 
 ######## DECK ########
 ## Вызывается, когда курсор навёлся на колоду

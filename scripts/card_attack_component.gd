@@ -17,8 +17,8 @@ func _ready() -> void:
 
 ## Выполняет атаку
 func attack(target_slot: SlotBase) -> void:
-	var attack_info := AttackInfo.new(damage, get_parent(), target_slot)
-	EventBus.card_attack.emit(attack_info)
+	var attack_info := AttackSlotInfo.new(damage, get_parent(), target_slot)
+	EventBus.card_attack_slot.emit(attack_info)
 
 
 ## Обновляет текст лэйбла счётчика
