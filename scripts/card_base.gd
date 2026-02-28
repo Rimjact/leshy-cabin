@@ -10,10 +10,12 @@ extends Node2D
 @export var side: Global.BattleSide = Global.BattleSide.PLAYER
 
 @export_group("Components")
-## Компонент ввода карточки
-@export var card_input_component: CardInputComponent
+## Компонент здоровья карточки
+@export var health_component: CardHealthComponent
 ## Компонент атаки карточки
 @export var attack_component: CardAttackComponent
+## Компонент ввода карточки
+@export var card_input_component: CardInputComponent
 
 
 ## Когда курсор навёлся на эту карточку
@@ -127,7 +129,7 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 	if attack_info.victime_card != self:
 		return
 	
-	pass
+	health_component.damage(attack_info.damage)
 
 
 ## Выделяет карточку среди прочих
