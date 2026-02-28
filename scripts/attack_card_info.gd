@@ -6,11 +6,11 @@ class_name AttackCardInfo
 var damage: int
 ## Атакующая карточка
 var attacker: CardBase
-## Атакованный слот
+## Атакованная карточка
 var victime_card: CardBase
 
 
-func _init(dmg: int, atck: CardBase, vict_slot: CardBase) -> void:
+func _init(dmg: int, atck: CardBase, vict_card: CardBase) -> void:
 	self.damage = dmg
 	self.attacker = atck
-	self.victime_slot = vict_slot
+	self.victime_card = vict_card
