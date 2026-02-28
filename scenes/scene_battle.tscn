@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 [ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
+[ext_resource type="Script" uid="uid://bs0vq34qscr50" path="res://scripts/battle_controller.gd" id="11_tfcxk"]
 
 [node name="BattleScene" type="CanvasLayer" unique_id=1252692285]
 layer = 0
@@ -91,7 +92,9 @@ script = ExtResource("11_qga8c")
 player_slots_node = NodePath("../Table/PlayerSlots")
 opponent_slots_node = NodePath("../Table/OpponentSlots")
 
-[node name="BattleController" type="Node2D" parent="." unique_id=444450124]
+[node name="BattleController" type="Node2D" parent="." unique_id=444450124 node_paths=PackedStringArray("_card_attack_timer")]
+script = ExtResource("11_tfcxk")
+_card_attack_timer = NodePath("CardAttackTimer")
 
 [node name="CardAttackTimer" type="Timer" parent="BattleController" unique_id=506672764]
 wait_time = 0.4
