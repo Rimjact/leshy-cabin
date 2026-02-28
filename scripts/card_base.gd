@@ -12,6 +12,8 @@ extends Node2D
 @export_group("Components")
 ## Компонент ввода карточки
 @export var card_input_component: CardInputComponent
+## Компонент атаки карточки
+@export var attack_component: CardAttackComponent
 
 
 ## Когда курсор навёлся на эту карточку
@@ -100,6 +102,30 @@ func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
 ## Когда твин пермещения карточки завершён
 func _on_change_pos_tween_completed(target_state: Global.CardState) -> void:
 	state = target_state
+
+
+## Когда ход в битве перешёл карточке игрока
+func _on_battle_player_card_turn(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	pass
+
+
+## Когда ход в битве перешёл карточке оппонента
+func _on_battle_opponent_card_turn(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	pass
+
+
+## Когда карточка атакована
+func _on_card_attacked(attack_info: AttackCardInfo) -> void:
+	if attack_info.victime_card != self:
+		return
+	
+	pass
 
 
 ## Выделяет карточку среди прочих
