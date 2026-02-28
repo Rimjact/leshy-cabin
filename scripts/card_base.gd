@@ -216,3 +216,5 @@ func _connect_to_signals() -> void:
 	EventBus.card_destroyed.connect(_on_card_destroyed)
 	EventBus.player_card_added.connect(_on_player_card_added)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
+	EventBus.battle_player_card_turn.connect(_on_battle_player_card_turn)
+	EventBus.battle_opponent_card_turn.connect(_on_battle_opponent_card_turn)
