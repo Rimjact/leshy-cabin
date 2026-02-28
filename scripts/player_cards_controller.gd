@@ -46,7 +46,7 @@ func _on_card_cursor_left_button_clicked(card: CardBase) -> void:
 func _on_slot_cursor_left_button_clicked(slot: SlotBase) -> void:
 	if slot.card:
 		return
-	if slot.type != Global.SlotType.PLAYER:
+	if slot.side != Global.BattleSide.PLAYER:
 		return
 	if not _card_selected:
 		return

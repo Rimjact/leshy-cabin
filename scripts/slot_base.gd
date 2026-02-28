@@ -2,8 +2,8 @@ class_name SlotBase
 extends Node2D
 ## Класс слота для карточек
 
-## Тип слота
-@export var type: Global.SlotType = Global.SlotType.PLAYER
+## Сторона слота
+@export var side: Global.BattleSide = Global.BattleSide.PLAYER
 
 ## Карточка на слоте
 var card: CardBase = null

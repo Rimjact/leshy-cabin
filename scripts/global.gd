@@ -16,8 +16,8 @@ enum AbilityType {
 	ATTACK,
 	DEFENCE,
 }
-## Типы слотов для карточек
-enum SlotType {
+## Типы сторон в битве
+enum BattleSide {
 	PLAYER,
 	OPPONENT,
 }

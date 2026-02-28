@@ -6,6 +6,8 @@ extends Node2D
 @export_group("Card Properties")
 ## Состояние карточки
 @export var state: Global.CardState = Global.CardState.IN_DECK
+## Сторона карточки
+@export var side: Global.BattleSide = Global.BattleSide.PLAYER
 
 @export_group("Components")
 ## Компонент ввода карточки
