@@ -105,19 +105,21 @@ func _on_change_pos_tween_completed(target_state: Global.CardState) -> void:
 
 
 ## Когда ход в битве перешёл карточке игрока
-func _on_battle_player_card_turn(card: CardBase) -> void:
+func _on_battle_player_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
 	
-	pass
+	var opponent_target_slot: SlotBase = SlotsManager.get_opponent_slot(slot_id) 
+	attack_component.attack(opponent_target_slot)
 
 
 ## Когда ход в битве перешёл карточке оппонента
-func _on_battle_opponent_card_turn(card: CardBase) -> void:
+func _on_battle_opponent_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
 	
-	pass
+	var player_target_slot: SlotBase = SlotsManager.get_player_slot(slot_id)
+	attack_component.attack(player_target_slot)
 
 
 ## Когда карточка атакована

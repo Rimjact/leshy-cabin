@@ -100,9 +100,9 @@ signal battle_player_cards_attack_ended()
 ## Вызывается, когда атака карточек оппонента закончена
 signal battle_opponent_cards_attack_ended()
 ## Вызывается, когда ход в битве перешёл карточке игрока
-signal battle_player_card_turn(card: CardBase)
+signal battle_player_card_turn(card: CardBase, slot_id: int)
 ## Вызывается, когда ход в битве перешёл карточке оппонента
-signal battle_opponent_card_turn(card: CardBase)
+signal battle_opponent_card_turn(card: CardBase, slot_id: int)
 ## Вызывается, когда атакован игрок
 signal battle_player_attacked(damage: int)
 ## Вызывается, когда атакован оппонент
