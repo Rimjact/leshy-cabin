@@ -103,5 +103,9 @@ signal battle_opponent_cards_attack_ended()
 signal battle_player_card_turn(card: CardBase)
 ## Вызывается, когда ход в битве перешёл карточке оппонента
 signal battle_opponent_card_turn(card: CardBase)
+## Вызывается, когда атакован игрок
+signal battle_player_attacked(damage: int)
+## Вызывается, когда атакован оппонент
+signal battle_opponent_attacked(damage: int)
 
 @warning_ignore_restore("unused_signal")
