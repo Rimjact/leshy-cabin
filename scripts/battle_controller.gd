@@ -54,3 +54,8 @@ func force_opponent_cards_attack() -> void:
 		cur_slot_id += 1
 	
 	EventBus.battle_opponent_cards_attack_ended.emit()
+
+
+## Соединяет сигналы Шины
+func _connect_signals() -> void:
+	EventBus.game_state_changed.connect(_on_game_state_changed)
