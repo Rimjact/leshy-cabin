@@ -41,8 +41,10 @@ func _redirect_attack_to_owner(damage: int) -> void:
 	match side:
 		Global.BattleSide.PLAYER:
 			EventBus.battle_player_attacked.emit(damage)
+			print("Игрок атакован: " + var_to_str(damage))
 		Global.BattleSide.OPPONENT:
 			EventBus.battle_opponent_attacked.emit(damage)
+			print("Оппонент атакован: " + var_to_str(damage))
 
 
 ## Перенаправляет атаку на находящуюся в слоте карточку
@@ -53,6 +55,7 @@ func _redirect_attack_to_card(attack_info: AttackSlotInfo) -> void:
 	var attack_card_info := AttackCardInfo.new(damage, attacker, victime)
 	
 	EventBus.card_attacked.emit(attack_card_info)
+	print("Атака перенаправлена на карточку: " + var_to_str(victime))
 
 
 ## Соединяет сигналы Шины

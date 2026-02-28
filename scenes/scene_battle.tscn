@@ -97,7 +97,6 @@ script = ExtResource("11_tfcxk")
 _card_attack_timer = NodePath("CardAttackTimer")
 
 [node name="CardAttackTimer" type="Timer" parent="BattleController" unique_id=506672764]
-wait_time = 0.4
 one_shot = true
 
 [node name="GameStateController" type="Node2D" parent="." unique_id=1327787416]

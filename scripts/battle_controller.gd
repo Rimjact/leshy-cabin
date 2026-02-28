@@ -27,9 +27,9 @@ func force_player_cards_attack() -> void:
 			cur_slot_id += 1
 			continue
 		
+		EventBus.battle_player_card_turn.emit(card, cur_slot_id)
 		_card_attack_timer.start()
 		await _card_attack_timer.timeout
-		EventBus.battle_player_card_turn.emit(card, cur_slot_id)
 		
 		cur_slot_id += 1
 	
