@@ -6,7 +6,7 @@ extends CardAbility
 
 @abstract
 ## Выполняет атаку по целевым слотам
-func attack(target_slots: Array[SlotBase], damage: int) -> void
+func attack(card: CardBase, target_slots: Array[SlotBase]) -> void
 
 
 ## Регистрирует способность карточки в компонент
