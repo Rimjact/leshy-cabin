@@ -14,6 +14,8 @@ extends Node2D
 @export var health_component: CardHealthComponent
 ## Компонент атаки карточки
 @export var attack_component: CardAttackComponent
+## Компонент способностей карточки
+@export var abilities_component: CardAbilitiesComponent
 ## Компонент ввода карточки
 @export var card_input_component: CardInputComponent
 
