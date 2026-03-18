@@ -15,6 +15,10 @@ extends Node2D
 @export var _icon_sprite: Sprite2D
 
 
+func _enter_tree() -> void:
+	assert(owner is CardAbilitiesComponent)
+
+
 func _ready() -> void:
 	_update_icon(_icon_region_rect)
 
