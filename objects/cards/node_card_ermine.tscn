@@ -14,11 +14,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
 
-[node name="Card" type="Node2D" unique_id=621617987 node_paths=PackedStringArray("health_component", "attack_component", "card_input_component")]
+[node name="Card" type="Node2D" unique_id=621617987 node_paths=PackedStringArray("health_component", "damage_component", "card_input_component")]
 z_index = 2
 script = ExtResource("1_vaipe")
 health_component = NodePath("CardHealthComponent")
-attack_component = NodePath("CardDamageComponent")
+damage_component = NodePath("CardDamageComponent")
 card_input_component = NodePath("CardInputComponent")
 
 [node name="CardBackground" type="Sprite2D" parent="." unique_id=1291212304]

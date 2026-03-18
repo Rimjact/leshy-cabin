@@ -12,8 +12,8 @@ extends Node2D
 @export_group("Components")
 ## Компонент здоровья карточки
 @export var health_component: CardHealthComponent
-## Компонент атаки карточки
-@export var attack_component: CardAttackComponent
+## Компонент урона карточки
+@export var damage_component: CardDamageComponent
 ## Компонент способностей карточки
 @export var abilities_component: CardAbilitiesComponent
 ## Компонент ввода карточки
@@ -113,8 +113,7 @@ func _on_battle_player_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
 	
-	var opponent_target_slot: SlotBase = SlotsManager.get_opponent_slot(slot_id) 
-	attack_component.attack(opponent_target_slot)
+	pass
 
 
 ## Когда ход в битве перешёл карточке оппонента
@@ -122,8 +121,7 @@ func _on_battle_opponent_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
 	
-	var player_target_slot: SlotBase = SlotsManager.get_player_slot(slot_id)
-	attack_component.attack(player_target_slot)
+	pass
 
 
 ## Когда карточка атакована
