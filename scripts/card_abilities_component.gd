@@ -3,6 +3,15 @@ extends Node2D
 ## Класс компонента способностей карточки
 
 
+## Возвращает способность карточки выбирать цели
+func get_targeting_ability() -> CardAbilityTargeting:
+	var ability: CardAbility = get_ability(&"CardAbilityTargeting")
+	if ability is CardAbilityTargeting:
+		return ability
+	
+	return null
+
+
 ## Возвращает способность по её уникальному имени
 func get_ability(ability_name: StringName) -> CardAbility:
 	return get_meta(ability_name, null)
