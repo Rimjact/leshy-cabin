@@ -1,4 +1,4 @@
-class_name CardAttackComponent
+class_name CardDamageComponent
 extends Node2D
 ## Класс компонента атаки карточки
 

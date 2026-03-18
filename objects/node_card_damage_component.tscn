@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d3ubjmfba2lhe"]
 
-[ext_resource type="Script" uid="uid://hecjcobg6614" path="res://scripts/card_attack_component.gd" id="1_c6lac"]
+[ext_resource type="Script" uid="uid://hecjcobg6614" path="res://scripts/card_damage_component.gd" id="1_c6lac"]
 [ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_88uu2"]
 [ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="3_icf5g"]
 
-[node name="CardAttackComponent" type="Node2D" unique_id=1766879586 node_paths=PackedStringArray("counter_label")]
+[node name="CardDamageComponent" type="Node2D" unique_id=1766879586 node_paths=PackedStringArray("counter_label")]
 script = ExtResource("1_c6lac")
 damage = 2
 counter_label = NodePath("Label")
