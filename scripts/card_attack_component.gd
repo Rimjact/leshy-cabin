@@ -15,12 +15,6 @@ func _ready() -> void:
 	_update_counter(damage)
 
 
-## Выполняет атаку
-func attack(target_slot: SlotBase) -> void:
-	var attack_info := AttackSlotInfo.new(damage, get_parent(), target_slot)
-	EventBus.slot_attacked.emit(attack_info)
-
-
 ## Обновляет текст лэйбла счётчика
 func _update_counter(new_value: int) -> void:
 	counter_label.text = var_to_str(new_value)
