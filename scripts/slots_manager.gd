@@ -19,6 +19,17 @@ func _ready() -> void:
 	_add_opponent_slots_to_array()
 
 
+## Возвращает слот напротив указанных карточки и идентификтора слота
+static func get_card_opposite_slot(card: CardBase, id: int) -> SlotBase:
+	match card.side:
+		Global.BattleSide.PLAYER:
+			return get_opponent_slot(id)
+		Global.BattleSide.OPPONENT:
+			return get_player_slot(id)
+		_:
+			return null
+
+
 ## Возвращает слот игрока по ID
 static func get_player_slot(id: int) -> SlotBase:
 	if not _is_valid_slot_id(id):
