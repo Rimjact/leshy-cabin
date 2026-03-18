@@ -12,6 +12,15 @@ func get_targeting_ability() -> CardAbilityTargeting:
 	return null
 
 
+## Возвращает способность карточки атаковать
+func get_attack_ability() -> CardAbilityAttack:
+	var ability: CardAbility = get_ability(&"CardAbilityAttack")
+	if ability is CardAbilityAttack:
+		return ability
+	
+	return null
+
+
 ## Возвращает способность по её уникальному имени
 func get_ability(ability_name: StringName) -> CardAbility:
 	return get_meta(ability_name, null)
