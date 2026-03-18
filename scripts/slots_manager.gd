@@ -54,7 +54,7 @@ static func get_card_on_opponent_slot(id: int) -> CardBase:
 
 
 ## Возвращает слоты слева и справа относительно слота с указанным ID
-static func get_player_left_and_right_slots_relative_to(id: int) -> Array[SlotBase]:
+static func get_player_side_slots_relative_to(id: int) -> Array[SlotBase]:
 	if not _is_valid_slot_id(id):
 		return [null, null]
 	
