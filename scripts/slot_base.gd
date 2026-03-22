@@ -59,7 +59,7 @@ func _redirect_attack_to_card(attack_info: AttackSlotInfo) -> void:
 	var attack_card_info := AttackCardInfo.new(damage, attacker, victime)
 	
 	EventBus.card_attacked.emit(attack_card_info)
-	print("Атака перенаправлена на карточку: " + var_to_str(victime))
+	print("Атака перенаправлена на карточку: ", victime)
 
 
 ## Соединяет сигналы Шины
