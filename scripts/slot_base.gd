@@ -6,7 +6,7 @@ extends Node2D
 @export var side: Global.BattleSide = Global.BattleSide.PLAYER
 
 ## Карточка на слоте
-var card: CardBase = null
+@export var card: CardBase = null
 
 
 ## Когда произошел левый клик по слоту
@@ -30,6 +30,10 @@ func _on_slot_attacked(attack_info: AttackSlotInfo) -> void:
 		return
 	
 	if not card:
+		_redirect_attack_to_owner(attack_info.damage)
+		return
+	
+	if attack_info.ignore_card:
 		_redirect_attack_to_owner(attack_info.damage)
 		return
 	
