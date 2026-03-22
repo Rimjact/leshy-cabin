@@ -36,11 +36,10 @@ func _on_card_health_changed(card: CardBase, _old_value: int, new_value: int) ->
 	if card != get_parent():
 		return
 	
+	_update_counter(new_value)
+	
 	if new_value <= 0:
 		EventBus.card_destroyed.emit(get_parent())
-		return
-	
-	_update_counter(new_value)
 
 
 ## Добавляет очки здоровья
@@ -56,12 +55,14 @@ func damage(value: int) -> void:
 	var old_health: int = health
 	health -= value
 	
+	print("Card attacked: ", get_parent(), " with dmg ", value)
 	EventBus.card_health_changed.emit(get_parent(), old_health, health)
 
 
 ## Обновляет текст лэйбла счётчика
 func _update_counter(new_value: int) -> void:
-	counter_label.text = var_to_str(new_value)
+	var value: int = max(new_value, 0)
+	counter_label.text = var_to_str(value)
 
 
 ## Подключает к сигналам Шины
