@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://du1hqn088sbbl"]
+
+[ext_resource type="Script" uid="uid://n8ljcxveg35k" path="res://scripts/card_ability_attack_default.gd" id="1_mowrg"]
+
+[node name="AbilityAttack" type="Node2D" unique_id=732636901]
+script = ExtResource("1_mowrg")

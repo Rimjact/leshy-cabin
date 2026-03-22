@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dpff76jl0imco"]
+
+[ext_resource type="Script" uid="uid://bvuymbx8lih0x" path="res://scripts/card_ability_targeting_default.gd" id="1_jrcxv"]
+
+[node name="AbilityTargeting" type="Node2D" unique_id=972111916]
+script = ExtResource("1_jrcxv")
