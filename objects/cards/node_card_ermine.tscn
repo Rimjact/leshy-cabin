@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dxtlkutkybasp" path="res://objects/node_card_health_component.tscn" id="5_nvit6"]
 [ext_resource type="PackedScene" uid="uid://d3ubjmfba2lhe" path="res://objects/node_card_damage_component.tscn" id="6_l0by0"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="6_ydlij"]
-[ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_ability_component.tscn" id="7_apeqe"]
+[ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_abilities_component.tscn" id="7_apeqe"]
 [ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/card_ability_targeting_default.tscn" id="8_ydlij"]
 [ext_resource type="PackedScene" uid="uid://bjylicnhwkgog" path="res://objects/abilities/card_ability_attack_airborne.tscn" id="9_ydlij"]
 
