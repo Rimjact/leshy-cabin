@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://b4al5utek8tlo"]
 
-[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="1_ulvjx"]
+[ext_resource type="Script" uid="uid://bjckvdx2bb5wf" path="res://scripts/card_abilities_component.gd" id="1_ulvjx"]
 
-[node name="CardAbilityComponent" type="Node2D" unique_id=2128617329]
-
-[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=1544432764]
-position = Vector2(0, 20.5)
-texture = ExtResource("1_ulvjx")
-region_enabled = true
-region_rect = Rect2(16, 33, 16, 15)
+[node name="CardAbilitiesComponent" type="Node2D" unique_id=2128617329]
+script = ExtResource("1_ulvjx")
