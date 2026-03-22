@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://d3ubjmfba2lhe" path="res://objects/node_card_damage_component.tscn" id="6_l0by0"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="6_ydlij"]
 [ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_ability_component.tscn" id="7_apeqe"]
-[ext_resource type="Script" uid="uid://bvuymbx8lih0x" path="res://scripts/card_ability_targeting_default.gd" id="9_6u543"]
-[ext_resource type="Script" uid="uid://n8ljcxveg35k" path="res://scripts/card_ability_attack_default.gd" id="10_obn6f"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/card_ability_targeting_default.tscn" id="8_ydlij"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/card_ability_attack_default.tscn" id="9_6u543"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
@@ -55,11 +55,9 @@ position = Vector2(17, 19)
 
 [node name="CardAbilitiesComponent" parent="." unique_id=2128617329 instance=ExtResource("7_apeqe")]
 
-[node name="AbilityTargeting" type="Node2D" parent="CardAbilitiesComponent" unique_id=751196002]
-script = ExtResource("9_6u543")
+[node name="AbilityTargeting" parent="CardAbilitiesComponent" unique_id=972111916 instance=ExtResource("8_ydlij")]
 
-[node name="AbilityAttack" type="Node2D" parent="CardAbilitiesComponent" unique_id=1559911066]
-script = ExtResource("10_obn6f")
+[node name="AbilityAttack" parent="CardAbilitiesComponent" unique_id=732636901 instance=ExtResource("9_6u543")]
 
 [node name="CardInputComponent" type="Node2D" parent="." unique_id=959203989 node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("5_ds24u")

@@ -11,9 +11,15 @@ func get_target_slots(card: CardBase, slot_id: int) -> Array[SlotBase]
 
 ## Регистрирует способность карточки в компонент
 func _enter_tree() -> void:
-	owner.set_meta(&"CardAbilityTargeting", self)
+	assert(owner is CardBase)
+	
+	if owner is CardBase:
+		var card: CardBase = owner
+		card.abilities_component.set_meta(&"CardAbilityTargeting", self)
 
 
 ## Убирает регистрацию способности карточки из компонента
 func _exit_tree() -> void:
-	owner.remove_meta(&"CardAbilityTargeting")
+	if owner is CardBase:
+		var card: CardBase = owner
+		card.remove_meta(&"CardAbilityTargeting")

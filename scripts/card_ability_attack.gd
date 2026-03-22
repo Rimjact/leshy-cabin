@@ -11,9 +11,15 @@ func attack(card: CardBase, target_slots: Array[SlotBase]) -> void
 
 ## Регистрирует способность карточки в компонент
 func _enter_tree() -> void:
-	owner.set_meta(&"CardAbilityAttack", self)
+	assert(owner is CardBase)
+	
+	if owner is CardBase:
+		var card: CardBase = owner
+		card.abilities_component.set_meta(&"CardAbilityAttack", self)
 
 
 ## Убирает регистрацию способности карточки из компонента
 func _exit_tree() -> void:
-	owner.remove_meta(&"CardAbilityAttack")
+	if owner is CardBase:
+		var card: CardBase = owner
+		card.remove_meta(&"CardAbilityAttack")
