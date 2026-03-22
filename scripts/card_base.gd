@@ -128,9 +128,11 @@ func _on_battle_opponent_card_turn(card: CardBase, slot_id: int) -> void:
 func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 	if attack_info.victime_card != self:
 		return
+	if not abilities_component.has_defence_ability():
+		return
 	
-	var damage_info := DamageInfo.new(attack_info.damage)
-	EventBus.card_damaged.emit(attack_info.victime_card, damage_info)
+	var card_defence_ability := abilities_component.get_defence_ability()
+	card_defence_ability.defence(self, attack_info)
 
 
 ## Карточка выполняет свой ход
