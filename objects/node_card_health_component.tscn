@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxtlkutkybasp"]
+[gd_scene format=3 uid="uid://dxtlkutkybasp"]
 
 [ext_resource type="Script" uid="uid://bdye2p60eemjv" path="res://scripts/card_health_component.gd" id="1_hn662"]
 [ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_u4851"]
 [ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="3_6ygpn"]
 
-[node name="CardHealthComponent" type="Node2D" node_paths=PackedStringArray("counter_label")]
+[node name="CardHealthComponent" type="Node2D" unique_id=374057816 node_paths=PackedStringArray("counter_label")]
 script = ExtResource("1_hn662")
 counter_label = NodePath("Label")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1200027593]
 position = Vector2(-0.25, 6)
 texture = ExtResource("2_u4851")
 region_enabled = true
 region_rect = Rect2(21, 20, 7, 7)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=198883311]
 offset_left = -5.0
 offset_top = -9.0
 offset_right = 31.0
@@ -24,3 +24,5 @@ text = "0"
 label_settings = ExtResource("3_6ygpn")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="ready" from="." to="." method="_connect_signals"]
