@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://d3ubjmfba2lhe" path="res://objects/node_card_damage_component.tscn" id="6_l0by0"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="6_ydlij"]
 [ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_ability_component.tscn" id="7_apeqe"]
-[ext_resource type="Script" uid="uid://bjckvdx2bb5wf" path="res://scripts/card_abilities_component.gd" id="8_ds24u"]
 [ext_resource type="Script" uid="uid://bvuymbx8lih0x" path="res://scripts/card_ability_targeting_default.gd" id="9_6u543"]
 [ext_resource type="Script" uid="uid://n8ljcxveg35k" path="res://scripts/card_ability_attack_default.gd" id="10_obn6f"]
 
@@ -55,7 +54,6 @@ health = 6
 position = Vector2(17, 19)
 
 [node name="CardAbilitiesComponent" parent="." unique_id=2128617329 instance=ExtResource("7_apeqe")]
-script = ExtResource("8_ds24u")
 
 [node name="AbilityTargeting" type="Node2D" parent="CardAbilitiesComponent" unique_id=751196002]
 script = ExtResource("9_6u543")
