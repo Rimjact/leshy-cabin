@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_abilities_component.tscn" id="7_apeqe"]
 [ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="8_ydlij"]
 [ext_resource type="PackedScene" uid="uid://bjylicnhwkgog" path="res://objects/abilities/node_card_ability_attack_airborne.tscn" id="9_ydlij"]
-[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="10_6u543"]
+[ext_resource type="PackedScene" uid="uid://1aunetenmfeh" path="res://objects/abilities/node_card_ability_defence_mighty_leap.tscn" id="10_6u543"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
@@ -63,7 +63,7 @@ position = Vector2(0, 20)
 
 [node name="AbilityAttack" parent="CardAbilitiesComponent" unique_id=1838784370 instance=ExtResource("9_ydlij")]
 
-[node name="AbilityDefence" parent="CardAbilitiesComponent" unique_id=1725289156 instance=ExtResource("10_6u543")]
+[node name="AbilityDefence" parent="CardAbilitiesComponent" unique_id=64316009 instance=ExtResource("10_6u543")]
 
 [node name="CardInputComponent" type="Node2D" parent="." unique_id=959203989 node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("5_ds24u")

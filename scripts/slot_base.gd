@@ -34,6 +34,11 @@ func _on_slot_attacked(attack_info: AttackSlotInfo) -> void:
 		return
 	
 	if attack_info.ignore_card:
+		var card_defence_ability := card.abilities_component.get_defence_ability()
+		if card_defence_ability is CardAbilityDefenceMightyLeap:
+			_redirect_attack_to_card(attack_info)
+			return
+		
 		_redirect_attack_to_owner(attack_info.damage)
 		return
 	
