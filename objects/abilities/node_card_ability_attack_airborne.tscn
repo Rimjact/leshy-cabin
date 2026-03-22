@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bjylicnhwkgog"]
+
+[ext_resource type="Script" uid="uid://cq8wj2in26tkn" path="res://scripts/card_ability_attack_airborne.gd" id="1_j2qc1"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_2dn5w"]
+
+[node name="AbilityAttack" type="Node2D" unique_id=1838784370]
+script = ExtResource("1_j2qc1")
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=46905215]
+texture = ExtResource("2_2dn5w")
+region_enabled = true
+region_rect = Rect2(16, 48, 16, 16)
