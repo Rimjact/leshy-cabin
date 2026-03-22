@@ -5,6 +5,7 @@
 
 [node name="AbilityAttack" type="Node2D" unique_id=1838784370]
 script = ExtResource("1_j2qc1")
+is_unique = true
 
 [node name="AbilityIcon" type="Sprite2D" parent="." unique_id=46905215]
 texture = ExtResource("2_2dn5w")
