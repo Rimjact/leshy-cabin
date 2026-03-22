@@ -129,7 +129,8 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 	if attack_info.victime_card != self:
 		return
 	
-	health_component.damage(attack_info.damage)
+	var damage_info := DamageInfo.new(attack_info.damage)
+	EventBus.card_damaged.emit(attack_info.victime_card, damage_info)
 
 
 ## Карточка выполняет свой ход
