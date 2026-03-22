@@ -26,6 +26,15 @@ func get_attack_ability() -> CardAbilityAttack:
 	return null
 
 
+## Возвращает способность карточки защищаться
+func get_defence_ability() -> CardAbilityDefence:
+	var ability: CardAbility = get_ability(&"CardAbilityDefence")
+	if ability is CardAbilityDefence:
+		return ability
+	
+	return null
+
+
 ## Проверяет, имеет ли карточка способность по её уникальному имени
 func has_ability(ability_name: StringName) -> bool:
 	return has_meta(ability_name)
@@ -39,3 +48,8 @@ func has_targeting_ability() -> bool:
 ## Проверяет, имеет ли карточка способность атаковать
 func has_attack_ability() -> bool:
 	return has_ability(&"CardAbilityAttack")
+
+
+## Проверяет, имеет ли карточка способность защищаться
+func has_defence_ability() -> bool:
+	return has_ability(&"CardAbilityDefence")
