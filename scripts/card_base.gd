@@ -113,7 +113,7 @@ func _on_battle_player_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
 	
-	pass
+	_do_turn(slot_id)
 
 
 ## Когда ход в битве перешёл карточке оппонента
@@ -121,7 +121,7 @@ func _on_battle_opponent_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
 	
-	pass
+	_do_turn(slot_id)
 
 
 ## Когда карточка атакована
@@ -130,6 +130,19 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 		return
 	
 	health_component.damage(attack_info.damage)
+
+
+## Карточка выполняет свой ход
+func _do_turn(slot_id: int) -> void:
+	var target_slots: Array[SlotBase]
+	
+	if abilities_component.has_targeting_ability():
+		var card_targeting_ability := abilities_component.get_targeting_ability()
+		target_slots = card_targeting_ability.get_target_slots(self, slot_id)
+	
+	if abilities_component.has_attack_ability() and target_slots.size() > 0:
+		var card_attack_ability := abilities_component.get_attack_ability()
+		card_attack_ability.attack(self, target_slots)
 
 
 ## Выделяет карточку среди прочих
