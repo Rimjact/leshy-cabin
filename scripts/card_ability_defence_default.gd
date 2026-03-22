@@ -4,7 +4,6 @@ extends CardAbilityDefence
 
 
 ## Выполняет обычную способность защиты карточки
-func defence(card: CardBase, attack_info: AttackCardInfo) -> void:
-	var damage: int = attack_info.damage
-	var damage_info := DamageInfo.new(damage)
-	EventBus.card_damaged.emit(card, damage_info)
+func defence(attack_info: AttackCardInfo) -> void:
+	var damage_info := DamageInfo.new(attack_info.damage)
+	EventBus.card_damaged.emit(attack_info.victime_card, damage_info)

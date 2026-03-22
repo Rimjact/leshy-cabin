@@ -132,7 +132,7 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 		return
 	
 	var card_defence_ability := abilities_component.get_defence_ability()
-	card_defence_ability.defence(self, attack_info)
+	card_defence_ability.defence(attack_info)
 
 
 ## Карточка выполняет свой ход
