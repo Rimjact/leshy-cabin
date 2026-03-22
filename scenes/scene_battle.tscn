@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
+[ext_resource type="PackedScene" uid="uid://cj5sjrxje6ea" path="res://objects/cards/node_card_ermine.tscn" id="8_jmar4"]
 [ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
 [ext_resource type="Script" uid="uid://bs0vq34qscr50" path="res://scripts/battle_controller.gd" id="11_tfcxk"]
 
@@ -69,17 +70,26 @@ position = Vector2(84, 35)
 [node name="OpponentSlots" type="Node2D" parent="Table" unique_id=1621853922]
 position = Vector2(180, 88)
 
-[node name="OpponentSlot1" parent="Table/OpponentSlots" unique_id=2003118212 instance=ExtResource("3_pxwbd")]
+[node name="OpponentSlot1" parent="Table/OpponentSlots" unique_id=2003118212 node_paths=PackedStringArray("card") instance=ExtResource("3_pxwbd")]
 position = Vector2(-84, -35)
+side = 1
+card = NodePath("Card")
+
+[node name="Card" parent="Table/OpponentSlots/OpponentSlot1" unique_id=621617987 instance=ExtResource("8_jmar4")]
+state = 4
+side = 1
 
 [node name="OpponentSlot2" parent="Table/OpponentSlots" unique_id=1429249207 instance=ExtResource("3_pxwbd")]
 position = Vector2(-28, -35)
+side = 1
 
 [node name="OpponentSlot3" parent="Table/OpponentSlots" unique_id=629963732 instance=ExtResource("3_pxwbd")]
 position = Vector2(28, -35)
+side = 1
 
 [node name="OpponentSlot4" parent="Table/OpponentSlots" unique_id=720983023 instance=ExtResource("3_pxwbd")]
 position = Vector2(84, -35)
+side = 1
 
 [node name="Bell" parent="Table" unique_id=1555250619 instance=ExtResource("3_8qdv8")]
 position = Vector2(48, 88)
