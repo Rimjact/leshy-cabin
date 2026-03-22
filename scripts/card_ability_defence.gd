@@ -6,7 +6,7 @@ extends CardAbility
 
 @abstract
 ## Выполняет способность защиты карточки
-func defence() -> void
+func defence(card: CardBase, attack_info: AttackCardInfo) -> void
 
 
 ## Регистрирует способность карточки в компонент
