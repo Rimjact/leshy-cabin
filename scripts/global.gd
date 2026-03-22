@@ -11,11 +11,6 @@ enum CardState {
 	IN_SLOT,
 	ON_MOVE,
 }
-## Типы способностей карточки
-enum AbilityType {
-	ATTACK,
-	DEFENCE,
-}
 ## Типы сторон в битве
 enum BattleSide {
 	PLAYER,

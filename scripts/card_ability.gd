@@ -5,8 +5,6 @@ extends Node2D
 
 
 @export_category("Parameters")
-## Тип способности
-@export var type: Global.AbilityType
 ## Область иконки способности
 @export var _icon_region_rect: Rect2
 
