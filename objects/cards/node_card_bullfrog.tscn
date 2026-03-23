@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://c65omevhbekm4"]
+
+[ext_resource type="Script" uid="uid://blwuc0q5ksjvn" path="res://scripts/card_base.gd" id="1_1jvgl"]
+[ext_resource type="Texture2D" uid="uid://derv8smv52rsi" path="res://assets/textures/texture_card.png" id="2_frpw6"]
+[ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="3_pyjdp"]
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="4_or41t"]
+[ext_resource type="PackedScene" uid="uid://dxtlkutkybasp" path="res://objects/node_card_health_component.tscn" id="5_x2oxp"]
+[ext_resource type="PackedScene" uid="uid://d3ubjmfba2lhe" path="res://objects/node_card_damage_component.tscn" id="6_dttvd"]
+[ext_resource type="PackedScene" uid="uid://b4al5utek8tlo" path="res://objects/node_card_abilities_component.tscn" id="7_2gpym"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="8_piwvq"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="9_eo5uo"]
+[ext_resource type="PackedScene" uid="uid://1aunetenmfeh" path="res://objects/abilities/node_card_ability_defence_mighty_leap.tscn" id="10_1jvgl"]
+[ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="11_85xsx"]
+[ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="12_43vdd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
+size = Vector2(48, 64)
+
+[node name="Card" type="Node2D" unique_id=621617987 node_paths=PackedStringArray("health_component", "damage_component", "abilities_component", "card_input_component")]
+z_index = 2
+script = ExtResource("1_1jvgl")
+state = null
+side = null
+health_component = NodePath("CardHealthComponent")
+damage_component = NodePath("CardDamageComponent")
+abilities_component = NodePath("CardAbilitiesComponent")
+card_input_component = NodePath("CardInputComponent")
+
+[node name="CardBackground" type="Sprite2D" parent="." unique_id=1291212304]
+texture = ExtResource("2_frpw6")
+region_enabled = true
+region_rect = Rect2(0, 0, 49, 64)
+
+[node name="CardNameLabel" type="Label" parent="." unique_id=995150972]
+offset_left = -22.0
+offset_top = -29.0
+offset_right = 227.0
+offset_bottom = 19.0
+scale = Vector2(0.175, 0.175)
+text = "Жаба"
+label_settings = ExtResource("3_pyjdp")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="AnimalSprite" type="Sprite2D" parent="." unique_id=1303251550]
+position = Vector2(0, -4.5)
+texture = ExtResource("4_or41t")
+region_enabled = true
+region_rect = Rect2(133, 33, 43, 31)
+
+[node name="CardHealthComponent" parent="." unique_id=794816392 instance=ExtResource("5_x2oxp")]
+position = Vector2(-17, 19)
+health = 2
+
+[node name="CardDamageComponent" parent="." unique_id=1304590650 instance=ExtResource("6_dttvd")]
+position = Vector2(17, 19)
+damage = 1
+
+[node name="CardAbilitiesComponent" parent="." unique_id=2128617329 instance=ExtResource("7_2gpym")]
+position = Vector2(0, 20)
+
+[node name="AbilityTargeting" parent="CardAbilitiesComponent" unique_id=972111916 instance=ExtResource("8_piwvq")]
+
+[node name="AbilityAttack" parent="CardAbilitiesComponent" unique_id=732636901 instance=ExtResource("9_eo5uo")]
+
+[node name="AbilityDefence" parent="CardAbilitiesComponent" unique_id=64316009 instance=ExtResource("10_1jvgl")]
+
+[node name="CardInputComponent" type="Node2D" parent="." unique_id=959203989 node_paths=PackedStringArray("clickbox_component")]
+script = ExtResource("11_85xsx")
+clickbox_component = NodePath("../ClickboxComponent")
+
+[node name="ClickboxComponent" type="Area2D" parent="." unique_id=120995646]
+priority = 2
+script = ExtResource("12_43vdd")
+metadata/_custom_type_script = "uid://fil5s0axuw8o"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent" unique_id=1532575760]
+shape = SubResource("RectangleShape2D_oljun")
+
+[connection signal="ready" from="." to="." method="_update_clickbox_component_handle_priority"]
+[connection signal="ready" from="." to="." method="_connect_to_signals"]
+[connection signal="mouse_entered" from="ClickboxComponent" to="CardInputComponent" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="ClickboxComponent" to="CardInputComponent" method="_on_mouse_exited"]
+[connection signal="mouse_left_button_clicked" from="ClickboxComponent" to="CardInputComponent" method="_on_mouse_left_button_clicked"]
+[connection signal="mouse_right_button_clicked" from="ClickboxComponent" to="CardInputComponent" method="_on_mouse_right_button_clicked"]
