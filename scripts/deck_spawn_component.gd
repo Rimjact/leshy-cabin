@@ -34,7 +34,7 @@ func _fill_animals_deck(deck: DeckBase) -> void:
 ## Заполняет колоду белок
 func _fill_squirrels_deck(deck: DeckBase) -> void:
 	for i in range(0, Global.DECK_SQUIRRELS_SIZE_COUNT):
-		_create_card_instance(deck, "ermine")
+		_create_card_instance(deck, "squirrel")
 
 
 ## Создаёт карточку по её имени и добавляет к колоде
