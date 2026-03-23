@@ -28,13 +28,16 @@ func _fill_deck(deck: DeckBase) -> void:
 ## Заполнет колоду животных
 func _fill_animals_deck(deck: DeckBase) -> void:
 	for i in range(0, Global.DECK_ANIMALS_SIZE_COUNT):
-		_create_card_instance(deck, "ermine")
+		var cards_pull_count: int = Global.CARDS_NAMES_PULL.size()
+		var random_card_id: int = randi_range(1, cards_pull_count - 1)
+		
+		_create_card_instance(deck, Global.CARDS_NAMES_PULL[random_card_id])
 
 
 ## Заполняет колоду белок
 func _fill_squirrels_deck(deck: DeckBase) -> void:
 	for i in range(0, Global.DECK_SQUIRRELS_SIZE_COUNT):
-		_create_card_instance(deck, "squirrel")
+		_create_card_instance(deck, Global.CARDS_NAMES_PULL[0])
 
 
 ## Создаёт карточку по её имени и добавляет к колоде
