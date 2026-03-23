@@ -49,3 +49,14 @@ const CARD_ATTACK_ANIM_SPEED: float = 0.1
 const DECK_ANIMALS_SIZE_COUNT: int = 8
 ## (Константа) Количество карт в колоде белок
 const DECK_SQUIRRELS_SIZE_COUNT: int = 11
+
+## (Константа) Пул имён существующих карточек
+const CARDS_NAMES_PULL: Array[String] = [
+	"squirrel",
+	"ermine",
+	"wolf",
+	"coyote",
+	"sparrow",
+	"grizzly",
+	"bullfrog"
+]
