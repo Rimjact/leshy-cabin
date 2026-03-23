@@ -115,5 +115,5 @@ script = ExtResource("3_pxl38")
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
 [connection signal="ready" from="BattleController" to="BattleController" method="_connect_signals"]
-[connection signal="ready" from="GameStateController" to="GameStateController" method="_connect_signals"]
 [connection signal="ready" from="GameStateController" to="GameStateController" method="_to_next_game_state"]
+[connection signal="ready" from="GameStateController" to="GameStateController" method="_connect_signals"]
