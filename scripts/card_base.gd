@@ -20,6 +20,15 @@ extends Node2D
 @export var card_input_component: CardInputComponent
 
 
+var _logger: GameLogger
+
+
+func _ready() -> void:
+	_logger = Logging.create_logger(self.name)
+	_logger.add_handler(Logging.create_console_handler())
+	_logger.add_handler(Logging.create_file_handler())
+
+
 ## Когда курсор навёлся на эту карточку
 func _on_card_hover_started(card: CardBase) -> void:
 	if card != self:
@@ -42,6 +51,7 @@ func _on_card_selected(card: CardBase) -> void:
 		return
 	
 	card.state = Global.CardState.IN_HAND_SELECTED
+	_logger.info("Игрок выбрал эту карту в руке")
 
 
 ## Когда выбор карточки снят
@@ -50,6 +60,7 @@ func _on_card_deselected(card: CardBase) -> void:
 		return
 	
 	card.state = Global.CardState.IN_HAND_HOVERED
+	_logger.info("Игрок снял выбор с этой карты в руке")
 
 
 ## Когда позиция карточки в руке игрока обновлена 
@@ -80,6 +91,7 @@ func _on_card_destroyed(card: CardBase) -> void:
 	if card != self:
 		return
 	
+	_logger.info("Карточка была уничтожена")
 	queue_free()
 
 
@@ -91,6 +103,7 @@ func _on_player_card_added(card: CardBase) -> void:
 	card_input_component.enable_input()
 	visible = true
 	state = Global.CardState.IN_HAND
+	_logger.info("Карточка добавлена игроку в руки")
 
 
 ## Когда карточка установлена на слот
@@ -99,8 +112,9 @@ func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
 		return
 	
 	state = Global.CardState.ON_MOVE
-	
 	_change_pos_tween(slot.global_position, Global.CardState.IN_SLOT)
+	
+	_logger.info("Карточка помещена на слот " + slot.name)
 
 
 ## Когда твин пермещения карточки завершён
@@ -137,13 +151,17 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 
 ## Карточка выполняет свой ход
 func _do_turn(slot_id: int) -> void:
+	_logger.info("Карточка начала свой ход")
+	
 	var target_slots: Array[SlotBase]
 	
 	if abilities_component.has_targeting_ability():
 		var card_targeting_ability := abilities_component.get_targeting_ability()
 		target_slots = card_targeting_ability.get_target_slots(self, slot_id)
+		_logger.info("Карточка выбрала целей: " + var_to_str(target_slots.size()))
 	
 	if abilities_component.has_attack_ability() and target_slots.size() > 0:
+		_logger.info("Карточка атакует выбранные цели")
 		var card_attack_ability := abilities_component.get_attack_ability()
 		card_attack_ability.attack(self, target_slots)
 

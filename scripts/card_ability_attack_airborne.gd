@@ -9,5 +9,4 @@ func attack(card: CardBase, target_slots: Array[SlotBase]) -> void:
 	
 	for slot: SlotBase in target_slots:
 		var attack_info := AttackSlotInfo.new(damage, card, slot, true)
-		print("Airborne attack: ", attack_info)
 		EventBus.slot_attacked.emit(attack_info)

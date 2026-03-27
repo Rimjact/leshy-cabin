@@ -15,6 +15,15 @@ extends Node2D
 var _can_issue_card: bool = false
 
 
+var _logger: GameLogger
+
+
+func _ready() -> void:
+	_logger = Logging.create_logger(self.name)
+	_logger.add_handler(Logging.create_console_handler())
+	_logger.add_handler(Logging.create_file_handler())
+
+
 ## Когда произошел левый клик по колоде
 func _on_deck_cursor_left_button_clicked(deck: DeckBase) -> void:
 	if deck != self:
@@ -57,6 +66,7 @@ func _give_card() -> void:
 	EventBus.deck_card_given.emit()
 	
 	if cards.size() == 0:
+		_logger.info("Колода пуста. Начат процесс удаления")
 		queue_free()
 
 

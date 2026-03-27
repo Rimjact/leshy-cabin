@@ -55,7 +55,6 @@ func damage(value: int) -> void:
 	var old_health: int = health
 	health -= value
 	
-	print("Card attacked: ", get_parent(), " with dmg ", value)
 	EventBus.card_health_changed.emit(get_parent(), old_health, health)
 
 

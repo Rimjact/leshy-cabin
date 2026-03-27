@@ -9,6 +9,15 @@ extends Node2D
 @export var card: CardBase = null
 
 
+var _logger: GameLogger
+
+
+func _ready() -> void:
+	_logger = Logging.create_logger(self.name)
+	_logger.add_handler(Logging.create_console_handler())
+	_logger.add_handler(Logging.create_file_handler())
+
+
 ## Когда произошел левый клик по слоту
 func _on_slot_cursor_left_button_clicked(slot: SlotBase) -> void:
 	if slot != self:
@@ -22,6 +31,7 @@ func _on_slot_card_placed(slot: SlotBase, new_card: CardBase) -> void:
 		return
 	
 	card = new_card
+	_logger.info("Новая карточка установлена: " + new_card.name)
 
 
 ## Когда слот атакован
@@ -49,11 +59,11 @@ func _on_slot_attacked(attack_info: AttackSlotInfo) -> void:
 func _redirect_attack_to_owner(damage: int) -> void:
 	match side:
 		Global.BattleSide.PLAYER:
+			_logger.info("Игроку нанесено {0} едениц урона".format([damage]))
 			EventBus.battle_player_attacked.emit(damage)
-			print("Игрок атакован: " + var_to_str(damage))
 		Global.BattleSide.OPPONENT:
+			_logger.info("Оппоненту нанесено {0} едениц урона".format([damage]))
 			EventBus.battle_opponent_attacked.emit(damage)
-			print("Оппонент атакован: " + var_to_str(damage))
 
 
 ## Перенаправляет атаку на находящуюся в слоте карточку
@@ -63,8 +73,8 @@ func _redirect_attack_to_card(attack_info: AttackSlotInfo) -> void:
 	var victime: CardBase = card
 	var attack_card_info := AttackCardInfo.new(damage, attacker, victime)
 	
+	_logger.info("Перенаправление атаки на карточку {0}".format([card.name]))
 	EventBus.card_attacked.emit(attack_card_info)
-	print("Атака перенаправлена на карточку: ", victime)
 
 
 ## Соединяет сигналы Шины
