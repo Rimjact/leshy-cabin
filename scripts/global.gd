@@ -39,6 +39,9 @@ enum GameState {
 	OPPONENT_SHOW_HEARTS_BAR = 8,
 }
 
+## (Константа) Путь к фалу логов
+const LOG_FILE_PATH: String = "user://logs/game_logs.log"
+
 ## (Константа) Максимальная ширина колоды карточек в руке (пикселей)
 const MAX_HAND_DECK_WIDTH_PIX: float = 224
 ## (Константа) Ширина карточки + правый отступ
