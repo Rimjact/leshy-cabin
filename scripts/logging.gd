@@ -12,3 +12,9 @@ static func create_logger(name: String) -> GameLogger:
 static func create_console_handler() -> GameLoggerHandlerConsole:
 	var handler := GameLoggerHandlerConsole.new()
 	return handler
+
+
+## Возвращяет новый GameLoggerHandlerFile
+static func create_file_handler() -> GameLoggerHandlerFile:
+	var handler := GameLoggerHandlerFile.new()
+	return handler
