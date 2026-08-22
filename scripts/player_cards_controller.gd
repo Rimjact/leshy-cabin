@@ -11,18 +11,12 @@ var _card_selected: CardBase = null
 
 ## Когда на карточку навёлся курсор
 func _on_card_cursor_entered(card: CardBase) -> void:
-	if card.state != Global.CardState.IN_HAND:
-		return
-	
-	EventBus.card_hover_started.emit(card)
+	_start_hover_card(card)
 
 
 ## Когда курсор ушёл с карточки
 func _on_card_cursor_exited(card: CardBase) -> void:
-	if card.state != Global.CardState.IN_HAND_HOVERED:
-		return
-	
-	EventBus.card_hover_stopped.emit(card)
+	_stop_hover_card(card)
 
 
 ## Когда произошел левый клик по карточке
@@ -74,6 +68,22 @@ func _on_player_card_added(card: CardBase) -> void:
 	cards.push_back(card)
 	
 	EventBus.player_cards_count_changed.emit()
+
+
+## Запускает выделения карточки, если она в руке
+func _start_hover_card(card: CardBase) -> void:  
+	if card.state != Global.CardState.IN_HAND:
+		return
+	
+	EventBus.card_hover_started.emit(card)
+
+
+## Останавливает выделение карточки, если она была выделена
+func _stop_hover_card(card: CardBase) -> void:
+	if card.state != Global.CardState.IN_HAND_HOVERED:
+		return
+	
+	EventBus.card_hover_stopped.emit(card)
 
 
 ## Присоединяет к сигналам Шины
