@@ -34,19 +34,9 @@ func _on_card_cursor_left_button_clicked(card: CardBase) -> void:
 
 ## Когда произошел левый клик по слоту
 func _on_slot_cursor_left_button_clicked(slot: SlotBase) -> void:
-	if slot.card:
+	if _is_card_can_be_placed(slot, _card_selected):
+		_place_card_to_slot(slot, _card_selected)
 		return
-	if slot.side != Global.BattleSide.PLAYER:
-		return
-	if not _card_selected:
-		return
-	
-	EventBus.slot_card_placed.emit(slot, _card_selected)
-	
-	cards.erase(_card_selected)
-	_card_selected = null
-	
-	EventBus.player_cards_count_changed.emit()
 
 
 ## Когда количество карт в руке игрока обновлено
@@ -124,6 +114,28 @@ func _select_card(card: CardBase) -> void:
 func _deselect_card(card: CardBase) -> void:
 	_card_selected = null
 	EventBus.card_deselected.emit(card)
+
+
+## Вернёт true если карточку можно разместить на слоте
+func _is_card_can_be_placed(slot: SlotBase, card: CardBase) -> bool:
+	if not card:
+		return false
+	if slot.side != Global.BattleSide.PLAYER:
+		return false
+	if slot.card:
+		return false
+	
+	return true
+
+
+## Помещает карточку на слот
+func _place_card_to_slot(slot: SlotBase, card: CardBase) -> void:
+	EventBus.slot_card_placed.emit(slot, card)
+	
+	cards.erase(card)
+	_card_selected = null
+	
+	EventBus.player_cards_count_changed.emit()
 
 
 ## Присоединяет к сигналам Шины
