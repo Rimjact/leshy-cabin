@@ -21,19 +21,13 @@ func _on_card_cursor_exited(card: CardBase) -> void:
 
 ## Когда произошел левый клик по карточке
 func _on_card_cursor_left_button_clicked(card: CardBase) -> void:
-	if not _card_selected and card.state == Global.CardState.IN_HAND_HOVERED:
-		_card_selected = card
-		EventBus.card_selected.emit(card)
+	if _is_can_selected(card):
+		_select_card(card)
 		return
 	
-	if card.state != Global.CardState.IN_HAND_SELECTED:
+	if _is_can_deselected(card):
+		_deselect_card(card)
 		return
-	
-	if _card_selected and _card_selected != card:
-		return
-	
-	_card_selected = null
-	EventBus.card_deselected.emit(card)
 
 
 ## Когда произошел левый клик по слоту
@@ -84,6 +78,40 @@ func _stop_hover_card(card: CardBase) -> void:
 		return
 	
 	EventBus.card_hover_stopped.emit(card)
+
+
+## Вернёт true если карточка может быть выбрана
+func _is_can_selected(card: CardBase) -> bool:
+	if _card_selected:
+		return false
+	if card.state != Global.CardState.IN_HAND_HOVERED:
+		return false
+	
+	return true
+
+
+## Вернёт true если можно снять выделение с карточки
+func _is_can_deselected(card: CardBase) -> bool:
+	if not _card_selected:
+		return false
+	if _card_selected != card:
+		return false
+	if card.state != Global.CardState.IN_HAND_SELECTED:
+		return false
+	
+	return true
+
+
+## Выбирает карточку
+func _select_card(card: CardBase) -> void:
+	_card_selected = card
+	EventBus.card_selected.emit(card)
+
+
+## Снимает выдиление с карточки
+func _deselect_card(card: CardBase) -> void:
+	_card_selected = null
+	EventBus.card_deselected.emit(card)
 
 
 ## Присоединяет к сигналам Шины
