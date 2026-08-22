@@ -11,12 +11,14 @@ var _card_selected: CardBase = null
 
 ## Когда на карточку навёлся курсор
 func _on_card_cursor_entered(card: CardBase) -> void:
-	_start_hover_card(card)
+	if _is_can_hovered(card):
+		_start_hover_card(card)
 
 
 ## Когда курсор ушёл с карточки
 func _on_card_cursor_exited(card: CardBase) -> void:
-	_stop_hover_card(card)
+	if _is_can_unhovered(card):
+		_stop_hover_card(card)
 
 
 ## Когда произошел левый клик по карточке
@@ -64,19 +66,29 @@ func _on_player_card_added(card: CardBase) -> void:
 	EventBus.player_cards_count_changed.emit()
 
 
+## Возвращает true если карточка может быть выделена
+func _is_can_hovered(card: CardBase) -> bool:
+	if card.state != Global.CardState.IN_HAND:
+		return false
+	
+	return true
+
+
+## Возвращает true если можно снять выделение с карточки
+func _is_can_unhovered(card: CardBase) -> bool:
+	if card.state != Global.CardState.IN_HAND_HOVERED:
+		return false
+	
+	return true
+
+
 ## Запускает выделения карточки, если она в руке
 func _start_hover_card(card: CardBase) -> void:  
-	if card.state != Global.CardState.IN_HAND:
-		return
-	
 	EventBus.card_hover_started.emit(card)
 
 
 ## Останавливает выделение карточки, если она была выделена
 func _stop_hover_card(card: CardBase) -> void:
-	if card.state != Global.CardState.IN_HAND_HOVERED:
-		return
-	
 	EventBus.card_hover_stopped.emit(card)
 
 
