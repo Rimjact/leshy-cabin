@@ -12,8 +12,11 @@
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 [ext_resource type="PackedScene" uid="uid://cj5sjrxje6ea" path="res://objects/cards/node_card_ermine.tscn" id="8_jmar4"]
 [ext_resource type="Script" uid="uid://sn3dgyckpo4a" path="res://scripts/barter_controller.gd" id="9_xn66u"]
+[ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="10_tmjjs"]
+[ext_resource type="LabelSettings" uid="uid://0e6xjv3na50m" path="res://assets/labels/ls_barter_bones_value.tres" id="11_pr842"]
 [ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
 [ext_resource type="Script" uid="uid://bs0vq34qscr50" path="res://scripts/battle_controller.gd" id="11_tfcxk"]
+[ext_resource type="LabelSettings" uid="uid://c5hg4bphx82l4" path="res://assets/labels/ls_barter_bones_substruct_value.tres" id="12_y12tl"]
 
 [node name="BattleScene" type="CanvasLayer" unique_id=1252692285]
 layer = 0
@@ -92,8 +95,72 @@ side = 1
 position = Vector2(84, -35)
 side = 1
 
-[node name="BarterController" type="Node2D" parent="Table" unique_id=270600747]
+[node name="BarterController" type="Node2D" parent="Table" unique_id=270600747 node_paths=PackedStringArray("_victims_counter_sprites", "_bones_counter_lable", "_bones_substruct_lable")]
 script = ExtResource("9_xn66u")
+_victims_counter_sprites = [NodePath("BarterVictimsCounter/VictimSprite1"), NodePath("BarterVictimsCounter/VictimSprite2"), NodePath("BarterVictimsCounter/VictimSprite3"), NodePath("BarterVictimsCounter/VictimSprite4")]
+_bones_counter_lable = NodePath("BarterBonesCounter/BonesCounterLabel")
+_bones_substruct_lable = NodePath("BarterBonesCounter/BonesSubstructLabel")
+
+[node name="BarterVictimsCounter" type="Node2D" parent="Table/BarterController" unique_id=35127727]
+position = Vector2(51, 51)
+
+[node name="VictimSprite1" type="Sprite2D" parent="Table/BarterController/BarterVictimsCounter" unique_id=844655704]
+visible = false
+position = Vector2(-9, -10)
+texture = ExtResource("10_tmjjs")
+region_enabled = true
+region_rect = Rect2(17, 32, 17, 18)
+
+[node name="VictimSprite2" type="Sprite2D" parent="Table/BarterController/BarterVictimsCounter" unique_id=1332323606]
+visible = false
+position = Vector2(9, -10)
+texture = ExtResource("10_tmjjs")
+region_enabled = true
+region_rect = Rect2(17, 32, 17, 18)
+
+[node name="VictimSprite3" type="Sprite2D" parent="Table/BarterController/BarterVictimsCounter" unique_id=1393638985]
+visible = false
+position = Vector2(-9, 9)
+texture = ExtResource("10_tmjjs")
+region_enabled = true
+region_rect = Rect2(17, 32, 17, 18)
+
+[node name="VictimSprite4" type="Sprite2D" parent="Table/BarterController/BarterVictimsCounter" unique_id=1536433929]
+visible = false
+position = Vector2(9, 9)
+texture = ExtResource("10_tmjjs")
+region_enabled = true
+region_rect = Rect2(17, 32, 17, 18)
+
+[node name="BarterBonesCounter" type="Node2D" parent="Table/BarterController" unique_id=493035321]
+position = Vector2(40, 144)
+
+[node name="BonesCounterLabel" type="Label" parent="Table/BarterController/BarterBonesCounter" unique_id=2145751781]
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 34.0
+offset_bottom = 15.0
+scale = Vector2(0.85, 0.85)
+text = "2"
+label_settings = ExtResource("11_pr842")
+vertical_alignment = 1
+
+[node name="BonesSubstructLabel" type="Label" parent="Table/BarterController/BarterBonesCounter" unique_id=1887205257]
+visible = false
+offset_left = -6.0
+offset_top = 6.0
+offset_right = 34.0
+offset_bottom = 33.0
+scale = Vector2(0.5, 0.5)
+text = "-2"
+label_settings = ExtResource("12_y12tl")
+vertical_alignment = 1
+
+[node name="BonesCounterSprite" type="Sprite2D" parent="Table/BarterController/BarterBonesCounter" unique_id=111402628]
+position = Vector2(-16, 0)
+texture = ExtResource("10_tmjjs")
+region_enabled = true
+region_rect = Rect2(0, 32, 17, 18)
 
 [node name="Bell" parent="Table" unique_id=1555250619 instance=ExtResource("3_8qdv8")]
 position = Vector2(48, 88)

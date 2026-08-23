@@ -3,6 +3,15 @@ extends Node2D
 ## Класс контроллера обмена карточек
 
 
+@export_group("Components")
+## Спрайты счётчика жертв
+@export var _victims_counter_sprites: Array[Sprite2D]
+## Лэйбл счётчика косточек
+@export var _bones_counter_lable: Label
+## Лэйбл превью вычета косточек
+@export var _bones_substruct_lable: Label
+
+
 var _logger: GameLogger
 
 
@@ -41,12 +50,12 @@ func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
 
 ## Когда игрок вошел в режим жертваприношения
 func _on_barter_sacriface_mode_entered(card: CardBase) -> void:
-	pass
+	_show_victims_cost_counter(card.barter_component.cost)
 
 
 ## Когда игрок вышел из режима жертваприношения
 func _on_barter_sacriface_mode_exited() -> void:
-	pass
+	_hide_victims_cost_counter()
 
 
 ## Когда обмен карточки завершён
@@ -71,6 +80,18 @@ func _is_can_sacrifaced(card: CardBase) -> bool:
 	return true 
 
 
+## Показывает указанное количество спрайтов счётчика жертв
+func _show_victims_cost_counter(count: int) -> void:
+	for i in range(0, count):
+		_victims_counter_sprites[i].show()
+
+
+## Скрывает все спрайты счётчика жертв
+func _hide_victims_cost_counter() -> void:
+	for sprite: Sprite2D in _victims_counter_sprites:
+		sprite.hide()
+
+
 ## Входит в режим жертваприношения
 func _enter_to_sacriface_mode(card: CardBase) -> void:
 	_logger.info("Игрок вошел в режим жертваприношения")
@@ -86,6 +107,7 @@ func _exit_from_sacriface_mode() -> void:
 ## Соединяет сигналы Шины
 func _connect_signals() -> void:
 	EventBus.card_selected.connect(_on_card_selected)
+	EventBus.card_deselected.connect(_on_card_deselected)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
 	EventBus.barter_sacriface_mode_entered.connect(_on_barter_sacriface_mode_entered)
 	EventBus.barter_sacriface_mode_exited.connect(_on_barter_sacriface_mode_exited)
