@@ -3,6 +3,9 @@ extends Node2D
 ## Класс контроллера обмена карточек
 
 
+## Количество косточек у игрока
+@export var bones: int = 0
+
 @export_group("Components")
 ## Спрайты счётчика жертв
 @export var _victims_counter_sprites: Array[Sprite2D]
@@ -21,6 +24,7 @@ func _ready() -> void:
 	_logger.add_handler(Logging.create_file_handler())
 	
 	_connect_signals()
+	_update_bones_counter_text()
 
 
 ## Когда карточка выбрана
@@ -90,6 +94,11 @@ func _show_victims_cost_counter(count: int) -> void:
 func _hide_victims_cost_counter() -> void:
 	for sprite: Sprite2D in _victims_counter_sprites:
 		sprite.hide()
+
+
+## Обновляет текст счётчика косточек у игрока
+func _update_bones_counter_text() -> void:
+	_bones_counter_lable.text = var_to_str(bones)
 
 
 ## Входит в режим жертваприношения
