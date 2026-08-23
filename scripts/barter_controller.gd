@@ -10,6 +10,8 @@ func _ready() -> void:
 	_logger = Logging.create_logger(self.name)
 	_logger.add_handler(Logging.create_console_handler())
 	_logger.add_handler(Logging.create_file_handler())
+	
+	_connect_signals()
 
 
 ## Когда карточка выбрана
