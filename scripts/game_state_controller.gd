@@ -4,7 +4,7 @@ extends Node2D
 
 
 ## Текущее состояние игры
-@export var state: Global.GameState = Global.GameState.GAME_INIT
+static var state: Global.GameState = Global.GameState.GAME_INIT
 
 var _logger: GameLogger
 
@@ -15,6 +15,11 @@ func _ready() -> void:
 	_logger.add_handler(Logging.create_file_handler())
 	
 	_logger.info("Готов")
+
+
+## Возвращяет текущее состояние игры
+static func get_current_state() -> Global.GameState:
+	return state
 
 
 ## Преключает состояние игры на следующее
@@ -34,6 +39,9 @@ func _change_game_state(new_state: Global.GameState) -> void:
 	_logger.info("== Состояние игры изменено на {0} ==".format([new_state]))
 	
 	EventBus.game_state_changed.emit(new_state)
+
+
+
 
 
 ## Подключает сигналы Шины
