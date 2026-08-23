@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 [ext_resource type="PackedScene" uid="uid://cj5sjrxje6ea" path="res://objects/cards/node_card_ermine.tscn" id="8_jmar4"]
+[ext_resource type="Script" uid="uid://sn3dgyckpo4a" path="res://scripts/barter_controller.gd" id="9_xn66u"]
 [ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
 [ext_resource type="Script" uid="uid://bs0vq34qscr50" path="res://scripts/battle_controller.gd" id="11_tfcxk"]
 
@@ -90,6 +91,9 @@ side = 1
 [node name="OpponentSlot4" parent="Table/OpponentSlots" unique_id=720983023 instance=ExtResource("3_pxwbd")]
 position = Vector2(84, -35)
 side = 1
+
+[node name="BarterController" type="Node2D" parent="Table" unique_id=270600747]
+script = ExtResource("9_xn66u")
 
 [node name="Bell" parent="Table" unique_id=1555250619 instance=ExtResource("3_8qdv8")]
 position = Vector2(48, 88)
