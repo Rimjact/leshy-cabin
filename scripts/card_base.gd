@@ -16,6 +16,8 @@ extends Node2D
 @export var damage_component: CardDamageComponent
 ## Компонент способностей карточки
 @export var abilities_component: CardAbilitiesComponent
+## Компонент обмена карточки
+@export var barter_component: CardBarterComponent
 ## Компонент ввода карточки
 @export var card_input_component: CardInputComponent
 

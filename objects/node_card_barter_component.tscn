@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bdamp3rl2jd64"]
+
+[ext_resource type="Script" uid="uid://dv8hj6tm2r2r4" path="res://scripts/card_barter_component.gd" id="1_4j2bc"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_yfyfu"]
+[ext_resource type="LabelSettings" uid="uid://t37my4ff1rdu" path="res://assets/labels/ls_card_bones_cost.tres" id="3_bigk6"]
+
+[node name="CardBarterComponent" type="Node2D" unique_id=568678405 node_paths=PackedStringArray("_bones_cost_node", "_bones_cost_lable", "_victims_cost_node", "_victims_cost_sprites")]
+script = ExtResource("1_4j2bc")
+_bones_cost_node = NodePath("BonesCost")
+_bones_cost_lable = NodePath("BonesCost/BonesCostLabel")
+_victims_cost_node = NodePath("VictimsCost")
+_victims_cost_sprites = [NodePath("VictimsCost/VictimsCostSprite1"), NodePath("VictimsCost/VictimsCostSprite2"), NodePath("VictimsCost/VictimsCostSprite3"), NodePath("VictimsCost/VictimsCostSprite4")]
+
+[node name="BonesCost" type="Node2D" parent="." unique_id=1788194438]
+visible = false
+
+[node name="BonesCostSprite" type="Sprite2D" parent="BonesCost" unique_id=1264727987]
+position = Vector2(-18, -15.5)
+texture = ExtResource("2_yfyfu")
+region_enabled = true
+region_rect = Rect2(22, 5, 5, 7)
+
+[node name="BonesCostLabel" type="Label" parent="BonesCost" unique_id=1929277920]
+offset_left = -14.999999
+offset_top = -21.000002
+offset_right = 25.0
+offset_bottom = 7.999998
+scale = Vector2(0.35, 0.35)
+text = "0"
+label_settings = ExtResource("3_bigk6")
+vertical_alignment = 1
+
+[node name="VictimsCost" type="Node2D" parent="." unique_id=292517520]
+visible = false
+
+[node name="VictimsCostSprite1" type="Sprite2D" parent="VictimsCost" unique_id=1982672186]
+visible = false
+position = Vector2(18, -15.5)
+texture = ExtResource("2_yfyfu")
+region_enabled = true
+region_rect = Rect2(5, 4, 5, 7)
+
+[node name="VictimsCostSprite2" type="Sprite2D" parent="VictimsCost" unique_id=286668481]
+visible = false
+position = Vector2(14, -15.5)
+texture = ExtResource("2_yfyfu")
+region_enabled = true
+region_rect = Rect2(5, 4, 5, 7)
+
+[node name="VictimsCostSprite3" type="Sprite2D" parent="VictimsCost" unique_id=1528726901]
+visible = false
+position = Vector2(10, -15.5)
+texture = ExtResource("2_yfyfu")
+region_enabled = true
+region_rect = Rect2(5, 4, 5, 7)
+
+[node name="VictimsCostSprite4" type="Sprite2D" parent="VictimsCost" unique_id=1969416998]
+visible = false
+position = Vector2(6, -15.5)
+texture = ExtResource("2_yfyfu")
+region_enabled = true
+region_rect = Rect2(5, 4, 5, 7)

@@ -38,6 +38,18 @@ enum GameState {
 	OPPONENT_CARDS_ATTACK = 7,
 	OPPONENT_SHOW_HEARTS_BAR = 8,
 }
+## Типы стостояния руки
+enum HandState {
+	IDLE,
+	SACRIFACE,
+	PICKED_UP_CARD,
+}
+## Типы валют обмена карточек
+enum BarterCurrency {
+	FREE,
+	VICTIMS,
+	BONES,
+}
 
 ## (Константа) Путь к фалу логов
 const LOG_FILE_PATH: String = "user://logs/game_logs.log"

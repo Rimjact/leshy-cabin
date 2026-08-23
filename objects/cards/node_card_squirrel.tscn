@@ -10,13 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="8_vsbhv"]
 [ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="9_5irtf"]
 [ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="9_wn6xp"]
+[ext_resource type="PackedScene" uid="uid://bdamp3rl2jd64" path="res://objects/node_card_barter_component.tscn" id="11_5gyht"]
 [ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="11_kcf24"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="12_j5vvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
 
-[node name="Card" type="Node2D" unique_id=621617987 node_paths=PackedStringArray("health_component", "damage_component", "abilities_component", "card_input_component")]
+[node name="Card" type="Node2D" unique_id=621617987 node_paths=PackedStringArray("health_component", "damage_component", "abilities_component", "barter_component", "card_input_component")]
 z_index = 2
 script = ExtResource("1_5irtf")
 state = null
@@ -24,6 +25,7 @@ side = null
 health_component = NodePath("CardHealthComponent")
 damage_component = NodePath("CardDamageComponent")
 abilities_component = NodePath("CardAbilitiesComponent")
+barter_component = NodePath("CardBarterComponent")
 card_input_component = NodePath("CardInputComponent")
 
 [node name="CardBackground" type="Sprite2D" parent="." unique_id=1291212304]
@@ -65,6 +67,8 @@ position = Vector2(0, 20)
 [node name="AbilityAttack" parent="CardAbilitiesComponent" unique_id=732636901 instance=ExtResource("9_5irtf")]
 
 [node name="AbilityDefence" parent="CardAbilitiesComponent" unique_id=1725289156 instance=ExtResource("9_wn6xp")]
+
+[node name="CardBarterComponent" parent="." unique_id=568678405 instance=ExtResource("11_5gyht")]
 
 [node name="CardInputComponent" type="Node2D" parent="." unique_id=959203989 node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("11_kcf24")
