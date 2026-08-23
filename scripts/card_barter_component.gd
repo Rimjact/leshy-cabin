@@ -43,7 +43,7 @@ func _show_bones_cost() -> void:
 func _show_victims_cost() -> void:
 	_victims_cost_node.show()
 	for i in range(0, cost):
-		_victims_cost_sprites[i - 1].show()
+		_victims_cost_sprites[i].show()
 
 
 ## Удаляет родительскую ноду карточки

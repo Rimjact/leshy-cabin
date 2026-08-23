@@ -9,7 +9,7 @@ script = ExtResource("1_4j2bc")
 _bones_cost_node = NodePath("BonesCost")
 _bones_cost_lable = NodePath("BonesCost/BonesCostLabel")
 _victims_cost_node = NodePath("VictimsCost")
-_victims_cost_sprites = [NodePath("VictimsCost/VictimsCostSprite4"), NodePath("VictimsCost/VictimsCostSprite3"), NodePath("VictimsCost/VictimsCostSprite2"), NodePath("VictimsCost/VictimsCostSprite1")]
+_victims_cost_sprites = [NodePath("VictimsCost/VictimsCostSprite1"), NodePath("VictimsCost/VictimsCostSprite2"), NodePath("VictimsCost/VictimsCostSprite3"), NodePath("VictimsCost/VictimsCostSprite4")]
 
 [node name="BonesCost" type="Node2D" parent="." unique_id=1788194438]
 visible = false
