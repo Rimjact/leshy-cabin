@@ -141,6 +141,8 @@ func _deselect_card(card: CardBase) -> void:
 func _is_card_can_be_placed(slot: SlotBase, card: CardBase) -> bool:
 	if not card:
 		return false
+	if hand_state != Global.HandState.PICKED_UP_CARD:
+		return false
 	if slot.side != Global.BattleSide.PLAYER:
 		return false
 	if slot.card:
