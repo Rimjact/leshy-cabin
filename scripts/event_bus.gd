@@ -106,4 +106,14 @@ signal battle_player_attacked(damage: int)
 ## Вызывается, когда атакован оппонент
 signal battle_opponent_attacked(damage: int)
 
+######## BARTER CONTROLLER ########
+## Вызвывается, когда игрок вошел в режим бартера за жертвы
+signal barter_sacriface_mode_entered(card: CardBase)
+## Вызывается, когда игрок вышел из режима бартера за жертвы
+signal barter_sacriface_mode_exited()
+## Вызывается, когда игрок принёс в жертву карточку
+signal barter_card_sacrifaced(card: CardBase)
+## Вызывается, когда игрок завершил обмен карточки
+signal barter_card_completed(card: CardBase)
+
 @warning_ignore_restore("unused_signal")

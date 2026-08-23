@@ -3,6 +3,7 @@ extends Node2D
 ## Класс для управленя карточками игрока
 
 
+@export var hand_state: Global.HandState = Global.HandState.IDLE
 ## Карточки у игрока
 @export var cards: Array[CardBase]
 
@@ -23,6 +24,10 @@ func _on_card_cursor_exited(card: CardBase) -> void:
 
 ## Когда произошел левый клик по карточке
 func _on_card_cursor_left_button_clicked(card: CardBase) -> void:
+	if _is_can_sacrifaced(card):
+		_sacriface_card(card)
+		return
+	
 	if _is_can_selected(card):
 		_select_card(card)
 		return
@@ -56,8 +61,20 @@ func _on_player_card_added(card: CardBase) -> void:
 	EventBus.player_cards_count_changed.emit()
 
 
+##
+func _on_barter_sacriface_mode_entered(_card: CardBase) -> void:
+	hand_state = Global.HandState.SACRIFACE
+
+
+##
+func _on_barter_sacriface_mode_exited() -> void:
+	hand_state = Global.HandState.IDLE
+
+
 ## Возвращает true если карточка может быть выделена
 func _is_can_hovered(card: CardBase) -> bool:
+	if hand_state != Global.HandState.IDLE:
+		return false
 	if card.state != Global.CardState.IN_HAND:
 		return false
 	
@@ -86,6 +103,8 @@ func _stop_hover_card(card: CardBase) -> void:
 func _is_can_selected(card: CardBase) -> bool:
 	if _card_selected:
 		return false
+	if hand_state != Global.HandState.IDLE:
+		return false
 	if card.state != Global.CardState.IN_HAND_HOVERED:
 		return false
 	
@@ -95,6 +114,8 @@ func _is_can_selected(card: CardBase) -> bool:
 ## Вернёт true если можно снять выделение с карточки
 func _is_can_deselected(card: CardBase) -> bool:
 	if not _card_selected:
+		return false
+	if hand_state != Global.HandState.IDLE:
 		return false
 	if _card_selected != card:
 		return false
@@ -136,6 +157,23 @@ func _place_card_to_slot(slot: SlotBase, card: CardBase) -> void:
 	_card_selected = null
 	
 	EventBus.player_cards_count_changed.emit()
+
+
+##
+func _is_can_sacrifaced(card: CardBase) -> bool:
+	if hand_state != Global.HandState.SACRIFACE:
+		return false
+	if not _card_selected:
+		return false
+	if card.state != Global.CardState.IN_SLOT:
+		return false
+	
+	return true
+
+
+##
+func _sacriface_card(card: CardBase) -> void:
+	EventBus.barter_card_sacrifaced.emit(card)
 
 
 ## Присоединяет к сигналам Шины
