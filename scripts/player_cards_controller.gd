@@ -71,6 +71,14 @@ func _on_barter_sacriface_mode_exited() -> void:
 	hand_state = Global.HandState.IDLE
 
 
+##
+func _on_barter_card_sacrifaced(card: CardBase) -> void:
+	if hand_state == Global.HandState.SACRIFACE:
+		return
+	
+	hand_state = Global.HandState.SACRIFACE
+
+
 ## Возвращает true если карточка может быть выделена
 func _is_can_hovered(card: CardBase) -> bool:
 	if hand_state != Global.HandState.IDLE:
@@ -186,6 +194,7 @@ func _connect_to_signals() -> void:
 	EventBus.slot_cursor_left_button_clicked.connect(_on_slot_cursor_left_button_clicked)
 	EventBus.player_cards_count_changed.connect(_on_player_cards_count_changed)
 	EventBus.player_card_added.connect(_on_player_card_added)
+	EventBus.barter_card_sacrifaced.connect(_on_barter_card_sacrifaced)
 
 
 ## Включает правильную сортировку для выбора объектов

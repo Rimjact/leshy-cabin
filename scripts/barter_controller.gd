@@ -5,6 +5,8 @@ extends Node2D
 
 ## Количество косточек у игрока
 @export var bones: int = 0
+## Количество принесённых в жертв карточек
+@export var sacriface_count: int = 0
 
 @export_group("Components")
 ## Спрайты счётчика жертв
@@ -62,9 +64,26 @@ func _on_barter_sacriface_mode_exited() -> void:
 	_hide_victims_cost_counter()
 
 
+## Когда карточка принесена в жертву
+func _on_barter_card_sacrifaced(card: CardBase) -> void:
+	var card_cost: int = card.barter_component.cost
+	sacriface_count += 1
+	bones += 2
+	_update_bones_counter_text()
+	
+	if sacriface_count == card_cost:
+		EventBus.barter_card_completed.emit(card)
+		return
+	
+	_hide_victims_cost_counter()
+	_show_victims_cost_counter(card_cost - sacriface_count)
+
+
 ## Когда обмен карточки завершён
 func _on_barter_card_completed(card: CardBase) -> void:
-	return
+	_logger.info("Игрок завершил обмен карточки")
+	sacriface_count = 0
+	_hide_victims_cost_counter()
 
 
 ## Вернёт true, если валюта обмена у карточку равна жертвам
@@ -120,3 +139,5 @@ func _connect_signals() -> void:
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
 	EventBus.barter_sacriface_mode_entered.connect(_on_barter_sacriface_mode_entered)
 	EventBus.barter_sacriface_mode_exited.connect(_on_barter_sacriface_mode_exited)
+	EventBus.barter_card_sacrifaced.connect(_on_barter_card_sacrifaced)
+	EventBus.barter_card_completed.connect(_on_barter_card_completed)
