@@ -113,7 +113,13 @@ signal barter_sacriface_mode_entered(card: CardBase)
 signal barter_sacriface_mode_exited()
 ## Вызывается, когда игрок принёс в жертву карточку
 signal barter_card_sacrifaced(card: CardBase)
-## Вызывается, когда игрок завершил обмен карточки
+## Вызывается, когда игрок завершил обмен карточки за жертвы
+signal barter_card_victims_completed(card: CardBase)
+## Вызывается, когда игрок завершил обмен карточки за кости или бесплатно
 signal barter_card_completed(card: CardBase)
+## Вызывается, когда карточка готова к обмену за косточки
+signal barter_card_bones_prepare(card: CardBase)
+## Вызывается, когда карточка готовка к обмену бесплатно
+signal barter_card_free_prepare(card: CardBase)
 
 @warning_ignore_restore("unused_signal")

@@ -43,7 +43,9 @@ enum HandState {
 	IDLE,
 	SACRIFACE,
 	SACRIFACE_LOCK,
-	PICKED_UP_CARD,
+	CARD_PREPARE,
+	CARD_PICKED_UP,
+	LOCK,
 }
 ## Типы валют обмена карточек
 enum BarterCurrency {

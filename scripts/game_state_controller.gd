@@ -28,6 +28,10 @@ func _to_next_game_state() -> void:
 		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
 		return
 	
+	if state in [Global.GameState.PLAYER_CARDS_ATTACK]:
+		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
+		return
+	
 	var new_state: Global.GameState = state + 1 as Global.GameState
 	_change_game_state(new_state)
 
@@ -39,9 +43,6 @@ func _change_game_state(new_state: Global.GameState) -> void:
 	_logger.info("== Состояние игры изменено на {0} ==".format([new_state]))
 	
 	EventBus.game_state_changed.emit(new_state)
-
-
-
 
 
 ## Подключает сигналы Шины

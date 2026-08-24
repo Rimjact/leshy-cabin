@@ -61,17 +61,17 @@ func _on_player_card_added(card: CardBase) -> void:
 	EventBus.player_cards_count_changed.emit()
 
 
-##
+## Когда игрок вошел в режим жертваприношения
 func _on_barter_sacriface_mode_entered(_card: CardBase) -> void:
 	hand_state = Global.HandState.SACRIFACE
 
 
-##
+## Когда игрок вышел из режима жертваприношения
 func _on_barter_sacriface_mode_exited() -> void:
 	hand_state = Global.HandState.IDLE
 
 
-##
+## Когда игрок принёс в жертву карточку
 func _on_barter_card_sacrifaced(_card: CardBase) -> void:
 	if hand_state == Global.HandState.SACRIFACE_LOCK:
 		return
@@ -79,9 +79,39 @@ func _on_barter_card_sacrifaced(_card: CardBase) -> void:
 	hand_state = Global.HandState.SACRIFACE_LOCK
 
 
-##
-func _on_barter_card_completed(_card: CardBase) -> void:
-	hand_state = Global.HandState.PICKED_UP_CARD
+## Когда игрок готов обменять кости на карточку
+func _on_barter_card_bones_prepare(_card: CardBase) -> void:
+	hand_state = Global.HandState.CARD_PREPARE
+
+
+## Когда игрок готов бесплатно обменять карточку
+func _on_barter_card_free_prepare(_card: CardBase) -> void:
+	hand_state = Global.HandState.CARD_PREPARE
+
+
+## Когда игрок завершил обмен карточки
+func _on_barter_victims_completed(_card: CardBase) -> void:
+	hand_state = Global.HandState.CARD_PICKED_UP
+
+
+## Когда состояние игры изменено
+func _on_game_state_changed(new_state: Global.GameState) -> void:	
+	if new_state == Global.GameState.PLAYER_TURN:
+		hand_state = Global.HandState.IDLE
+		return
+	
+	hand_state = Global.HandState.LOCK
+
+
+## Когда карточка выбрана
+func _on_card_selected(card: CardBase) -> void:
+	_card_selected = card
+
+
+## Когда с карточки снят выбор
+func _on_card_deselected(_card: CardBase) -> void:
+	hand_state = Global.HandState.IDLE
+	_card_selected = null
 
 
 ## Возвращает true если карточка может быть выделена
@@ -128,7 +158,7 @@ func _is_can_selected(card: CardBase) -> bool:
 func _is_can_deselected(card: CardBase) -> bool:
 	if not _card_selected:
 		return false
-	if hand_state != Global.HandState.IDLE:
+	if hand_state not in [Global.HandState.SACRIFACE, Global.HandState.CARD_PREPARE]:
 		return false
 	if _card_selected != card:
 		return false
@@ -140,13 +170,11 @@ func _is_can_deselected(card: CardBase) -> bool:
 
 ## Выбирает карточку
 func _select_card(card: CardBase) -> void:
-	_card_selected = card
 	EventBus.card_selected.emit(card)
 
 
 ## Снимает выдиление с карточки
 func _deselect_card(card: CardBase) -> void:
-	_card_selected = null
 	EventBus.card_deselected.emit(card)
 
 
@@ -154,7 +182,7 @@ func _deselect_card(card: CardBase) -> void:
 func _is_card_can_be_placed(slot: SlotBase, card: CardBase) -> bool:
 	if not card:
 		return false
-	if hand_state != Global.HandState.PICKED_UP_CARD:
+	if hand_state not in [Global.HandState.CARD_PREPARE, Global.HandState.CARD_PICKED_UP]:
 		return false
 	if slot.side != Global.BattleSide.PLAYER:
 		return false
@@ -170,11 +198,12 @@ func _place_card_to_slot(slot: SlotBase, card: CardBase) -> void:
 	
 	cards.erase(card)
 	_card_selected = null
+	hand_state = Global.HandState.IDLE
 	
 	EventBus.player_cards_count_changed.emit()
 
 
-##
+## Вернёт true, если карточку можно принять в жертву сейчас
 func _is_can_sacrifaced(card: CardBase) -> bool:
 	if not hand_state in [Global.HandState.SACRIFACE, Global.HandState.SACRIFACE_LOCK]:
 		return false
@@ -182,25 +211,36 @@ func _is_can_sacrifaced(card: CardBase) -> bool:
 		return false
 	if card.state != Global.CardState.IN_SLOT:
 		return false
+	if card.side != Global.BattleSide.PLAYER:
+		return false
+	if GameStateController.get_current_state() != Global.GameState.PLAYER_TURN:
+		return false
 	
 	return true
 
 
-##
+## Приносит карточку в жертву
 func _sacriface_card(card: CardBase) -> void:
 	EventBus.barter_card_sacrifaced.emit(card)
 
 
 ## Присоединяет к сигналам Шины
 func _connect_to_signals() -> void:
+	EventBus.card_selected.connect(_on_card_selected)
+	EventBus.card_deselected.connect(_on_card_deselected)
 	EventBus.card_cursor_entered.connect(_on_card_cursor_entered)
 	EventBus.card_cursor_exited.connect(_on_card_cursor_exited)
 	EventBus.card_cursor_left_button_clicked.connect(_on_card_cursor_left_button_clicked)
 	EventBus.slot_cursor_left_button_clicked.connect(_on_slot_cursor_left_button_clicked)
 	EventBus.player_cards_count_changed.connect(_on_player_cards_count_changed)
 	EventBus.player_card_added.connect(_on_player_card_added)
+	EventBus.barter_sacriface_mode_entered.connect(_on_barter_sacriface_mode_entered)
+	EventBus.barter_sacriface_mode_exited.connect(_on_barter_sacriface_mode_exited)
 	EventBus.barter_card_sacrifaced.connect(_on_barter_card_sacrifaced)
-	EventBus.barter_card_completed.connect(_on_barter_card_completed)
+	EventBus.barter_card_bones_prepare.connect(_on_barter_card_bones_prepare)
+	EventBus.barter_card_free_prepare.connect(_on_barter_card_free_prepare)
+	EventBus.barter_card_victims_completed.connect(_on_barter_victims_completed)
+	EventBus.game_state_changed.connect(_on_game_state_changed)
 
 
 ## Включает правильную сортировку для выбора объектов

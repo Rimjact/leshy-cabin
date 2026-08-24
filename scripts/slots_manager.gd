@@ -79,6 +79,23 @@ static func get_player_side_slots_relative_to(id: int) -> Array[SlotBase]:
 	return slots
 
 
+## Возвращает миссив слотов, которые содержат карточки со стороны игрока
+static func get_player_side_slots_with_card() -> Array[SlotBase]:
+	var slots: Array[SlotBase] = []
+	
+	for i in range(0, 4):
+		var player_slot: SlotBase = get_player_slot(i)
+		if player_slot.card:
+			slots.append(player_slot)
+	
+	return slots
+
+
+## Возвращает количество слотов, содержащие карточки со стороны игрока
+static func get_player_side_slots_with_card_count() -> int:
+	return get_player_side_slots_with_card().size()
+
+
 ## Проверяет валидность указанного ID слота
 static func _is_valid_slot_id(id: int) -> bool:
 	if id < 0 or id > 3:
