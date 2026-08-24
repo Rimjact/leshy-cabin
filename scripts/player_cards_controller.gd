@@ -72,11 +72,11 @@ func _on_barter_sacriface_mode_exited() -> void:
 
 
 ##
-func _on_barter_card_sacrifaced(card: CardBase) -> void:
-	if hand_state == Global.HandState.SACRIFACE:
+func _on_barter_card_sacrifaced(_card: CardBase) -> void:
+	if hand_state == Global.HandState.SACRIFACE_LOCK:
 		return
 	
-	hand_state = Global.HandState.SACRIFACE
+	hand_state = Global.HandState.SACRIFACE_LOCK
 
 
 ## Возвращает true если карточка может быть выделена

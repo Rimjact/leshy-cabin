@@ -42,6 +42,7 @@ enum GameState {
 enum HandState {
 	IDLE,
 	SACRIFACE,
+	SACRIFACE_LOCK,
 	PICKED_UP_CARD,
 }
 ## Типы валют обмена карточек
