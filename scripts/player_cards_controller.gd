@@ -79,6 +79,11 @@ func _on_barter_card_sacrifaced(_card: CardBase) -> void:
 	hand_state = Global.HandState.SACRIFACE_LOCK
 
 
+##
+func _on_barter_card_completed(_card: CardBase) -> void:
+	hand_state = Global.HandState.PICKED_UP_CARD
+
+
 ## Возвращает true если карточка может быть выделена
 func _is_can_hovered(card: CardBase) -> bool:
 	if hand_state != Global.HandState.IDLE:
@@ -171,7 +176,7 @@ func _place_card_to_slot(slot: SlotBase, card: CardBase) -> void:
 
 ##
 func _is_can_sacrifaced(card: CardBase) -> bool:
-	if hand_state != Global.HandState.SACRIFACE:
+	if not hand_state in [Global.HandState.SACRIFACE, Global.HandState.SACRIFACE_LOCK]:
 		return false
 	if not _card_selected:
 		return false
@@ -195,6 +200,7 @@ func _connect_to_signals() -> void:
 	EventBus.player_cards_count_changed.connect(_on_player_cards_count_changed)
 	EventBus.player_card_added.connect(_on_player_card_added)
 	EventBus.barter_card_sacrifaced.connect(_on_barter_card_sacrifaced)
+	EventBus.barter_card_completed.connect(_on_barter_card_completed)
 
 
 ## Включает правильную сортировку для выбора объектов
