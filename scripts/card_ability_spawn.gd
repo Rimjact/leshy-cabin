@@ -5,7 +5,7 @@ extends CardAbility
 
 
 @abstract
-## Выполняет перемещение на слот
+## Спавнит карточки на указаных слотах
 func spawn_cards_at(summoner: CardBase, slots: Array[SlotBase]) -> void
 
 
