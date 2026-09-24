@@ -44,6 +44,33 @@ func get_defence_ability() -> CardAbilityDefence:
 	return null
 
 
+## Возвращает способность карточки перемещатся
+func get_movement_ability() -> CardAbilityMovement:
+	var ability: CardAbility = get_ability(&"CardAbilityMovement")
+	if ability is CardAbilityMovement:
+		return ability
+	
+	return null
+
+
+## Возвращает способность карточки спавнить другие карточки
+func get_spawn_ability() -> CardAbilitySpawn:
+	var ability: CardAbility = get_ability(&"CardAbilitySpawn")
+	if ability is CardAbilitySpawn:
+		return ability
+	
+	return null
+
+
+## Возвращает способность карточки приношения в жертву
+func get_sacriface_ability() -> CardAbilitySacriface:
+	var ability: CardAbility = get_ability(&"CardAbilitySacriface")
+	if ability is CardAbilitySacriface:
+		return ability
+	
+	return null
+
+
 ## Проверяет, имеет ли карточка способность по её уникальному имени
 func has_ability(ability_name: StringName) -> bool:
 	return has_meta(ability_name)
@@ -62,6 +89,21 @@ func has_attack_ability() -> bool:
 ## Проверяет, имеет ли карточка способность защищаться
 func has_defence_ability() -> bool:
 	return has_ability(&"CardAbilityDefence")
+
+
+## Проверяет, имеет ли карточка способность перемещатся
+func has_movement_ability() -> bool:
+	return has_ability(&"CardAbilityMovement")
+
+
+## Проверяет, имеет ли карточка способность спавнить другие краточки
+func has_spawn_ability() -> bool:
+	return has_ability(&"CardAbilitySpawn")
+
+
+## Проверяет, имеет ли карточка способность приношения в жертву
+func has_sacriface_ability() -> bool:
+	return has_ability(&"CardAbilitySacriface")
 
 
 ## Обновляет массив уникальных способностей из дочерних нод
