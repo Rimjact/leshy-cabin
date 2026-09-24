@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dw83nm6joofs7"]
+
+[ext_resource type="Script" uid="uid://n33kx3bhkwlp" path="res://scripts/card_ability_sacriface_many_lives.gd" id="1_lntl0"]
+
+[node name="AbilitySacriface" type="Node2D" unique_id=972111916]
+script = ExtResource("1_lntl0")
+is_unique = true
