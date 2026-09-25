@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cu18bj03uft45"]
+
+[ext_resource type="Script" uid="uid://d7i0pjdeam3u" path="res://scripts/card_ability_movement_sprinter.gd" id="1_pyj5y"]
+
+[node name="AbilityMovement" type="Node2D" unique_id=972111916]
+script = ExtResource("1_pyj5y")
+is_unique = true
