@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cyfk5u7cy4mq4"]
+
+[ext_resource type="Script" uid="uid://crtu2cchaltio" path="res://scripts/card_ability_movement_stay.gd" id="1_vgiuc"]
+
+[node name="AbilityMovement" type="Node2D" unique_id=972111916]
+script = ExtResource("1_vgiuc")
