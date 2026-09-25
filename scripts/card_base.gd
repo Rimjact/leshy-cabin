@@ -151,6 +151,15 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 	card_defence_ability.defence(attack_info)
 
 
+## Когда карточка переместилась
+func _on_card_moved(card: CardBase, from_slot: SlotBase, to_slot: SlotBase) -> void:
+	if card != self:
+		return
+	
+	state = Global.CardState.ON_MOVE
+	_change_pos_tween(to_slot.global_position, Global.CardState.IN_SLOT)
+
+
 ## Карточка выполняет свой ход
 func _do_turn(slot_id: int) -> void:
 	_logger.info("Карточка начала свой ход")
@@ -262,3 +271,4 @@ func _connect_to_signals() -> void:
 	EventBus.battle_player_card_turn.connect(_on_battle_player_card_turn)
 	EventBus.battle_opponent_card_turn.connect(_on_battle_opponent_card_turn)
 	EventBus.card_attacked.connect(_on_card_attacked)
+	EventBus.card_moved.connect(_on_card_moved)
