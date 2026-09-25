@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="10_obn6f"]
 [ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="11_2l21t"]
 [ext_resource type="PackedScene" uid="uid://bdamp3rl2jd64" path="res://objects/node_card_barter_component.tscn" id="11_obn6f"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="12_4xslu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
@@ -70,6 +71,8 @@ position = Vector2(0, 20)
 [node name="AbilityDefence" parent="CardAbilitiesComponent" unique_id=1725289156 instance=ExtResource("10_obn6f")]
 
 [node name="AbilitySacriface" parent="CardAbilitiesComponent" unique_id=1063334536 instance=ExtResource("11_2l21t")]
+
+[node name="AbilityMovement" parent="CardAbilitiesComponent" unique_id=78045985 instance=ExtResource("12_4xslu")]
 
 [node name="CardBarterComponent" parent="." unique_id=568678405 instance=ExtResource("11_obn6f")]
 currency = 1
