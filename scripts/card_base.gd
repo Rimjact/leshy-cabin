@@ -166,6 +166,11 @@ func _do_turn(slot_id: int) -> void:
 		_logger.info("Карточка атакует выбранные цели")
 		var card_attack_ability := abilities_component.get_attack_ability()
 		card_attack_ability.attack(self, target_slots)
+	
+	if abilities_component.has_movement_ability():
+		_logger.info("Карточка выполняет перемещение")
+		var card_movement_ability := abilities_component.get_movement_ability()
+		card_movement_ability.move_to(self, slot_id)
 
 
 ## Выделяет карточку среди прочих
