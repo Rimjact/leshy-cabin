@@ -96,6 +96,17 @@ static func get_player_side_slots_with_card_count() -> int:
 	return get_player_side_slots_with_card().size()
 
 
+## Возвращает слот основываясь на стороне карточки
+static func get_slot_by_card_side(slot_id: int, card_side: Global.BattleSide) -> SlotBase:
+	match card_side:
+		Global.BattleSide.PLAYER:
+			return get_player_slot(slot_id)
+		Global.BattleSide.OPPONENT:
+			return get_opponent_slot(slot_id)
+		_:
+			return null
+
+
 ## Проверяет валидность указанного ID слота
 static func _is_valid_slot_id(id: int) -> bool:
 	if id < 0 or id > 3:
