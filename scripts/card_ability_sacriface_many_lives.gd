@@ -3,5 +3,5 @@ extends CardAbilitySacriface
 ## Класс способности приношения в жертву краточки с множеством жизней 
 
 
-func sacriface(card: CardBase) -> void:
+func sacriface(_card: CardBase) -> void:
 	pass
