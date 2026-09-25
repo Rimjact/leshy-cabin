@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c7853wlvgarx6"]
+
+[ext_resource type="Script" uid="uid://to7ie8n0pi3e" path="res://scripts/card_ability_movement_hefty.gd" id="1_wovbw"]
+
+[node name="AbilityMovement" type="Node2D" unique_id=972111916]
+script = ExtResource("1_wovbw")
+is_unique = true
