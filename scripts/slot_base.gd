@@ -55,6 +55,17 @@ func _on_slot_attacked(attack_info: AttackSlotInfo) -> void:
 	_redirect_attack_to_card(attack_info)
 
 
+## Когда карточка переместилась
+func _on_card_moved(new_card: CardBase, from_slot: SlotBase, to_slot: SlotBase) -> void:
+	if from_slot == self:
+		card = null
+		return
+	
+	if to_slot == self:
+		card = new_card
+		return
+
+
 ## Перенаправляет атаку на владельца слота
 func _redirect_attack_to_owner(damage: int) -> void:
 	match side:
@@ -82,3 +93,4 @@ func _connect_signals() -> void:
 	EventBus.slot_cursor_left_button_clicked.connect(_on_slot_cursor_left_button_clicked)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
 	EventBus.slot_attacked.connect(_on_slot_attacked)
+	EventBus.card_moved.connect(_on_card_moved)
