@@ -64,6 +64,20 @@ static func get_card_on_opponent_slot(id: int) -> CardBase:
 	return opponent_slot.card
 
 
+## Возвращает карточку на слоте по стороне
+static func get_card_on_slot_by_side(id: int, side: Global.BattleSide) -> CardBase:
+	if not _is_valid_slot_id(id):
+		return null
+	
+	match side:
+		Global.BattleSide.PLAYER:
+			return get_card_on_player_slot(id)
+		Global.BattleSide.OPPONENT:
+			return get_card_on_opponent_slot(id)
+		_:
+			return null
+
+
 ## Возвращает слоты слева и справа относительно слота с указанным ID
 static func get_player_side_slots_relative_to(id: int) -> Array[SlotBase]:
 	if not _is_valid_slot_id(id):
