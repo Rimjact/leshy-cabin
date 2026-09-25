@@ -170,7 +170,7 @@ func _do_turn(slot_id: int) -> void:
 	if abilities_component.has_movement_ability():
 		_logger.info("Карточка выполняет перемещение")
 		var card_movement_ability := abilities_component.get_movement_ability()
-		card_movement_ability.move_to(self, slot_id)
+		card_movement_ability.move_from(self, slot_id)
 
 
 ## Выделяет карточку среди прочих
