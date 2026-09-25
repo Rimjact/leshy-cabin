@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://1aunetenmfeh" path="res://objects/abilities/node_card_ability_defence_mighty_leap.tscn" id="10_1jvgl"]
 [ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="11_85xsx"]
 [ext_resource type="PackedScene" uid="uid://bdamp3rl2jd64" path="res://objects/node_card_barter_component.tscn" id="11_frpw6"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="11_pyjdp"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="12_43vdd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
@@ -67,6 +68,8 @@ position = Vector2(0, 20)
 [node name="AbilityAttack" parent="CardAbilitiesComponent" unique_id=732636901 instance=ExtResource("9_eo5uo")]
 
 [node name="AbilityDefence" parent="CardAbilitiesComponent" unique_id=64316009 instance=ExtResource("10_1jvgl")]
+
+[node name="AbilitySacriface" parent="CardAbilitiesComponent" unique_id=1343465025 instance=ExtResource("11_pyjdp")]
 
 [node name="CardBarterComponent" parent="." unique_id=568678405 instance=ExtResource("11_frpw6")]
 currency = 1
