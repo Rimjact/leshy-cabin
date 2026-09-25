@@ -6,7 +6,7 @@ extends CardAbility
 
 @abstract
 ## Выполняет перемещение на слот
-func move_to(card: CardBase, slot: SlotBase) -> void
+func move_to(card: CardBase, slot_id: int) -> void
 
 
 ## Регистрирует способность карточки в компонент
