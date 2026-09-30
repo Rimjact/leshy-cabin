@@ -67,6 +67,8 @@ signal deck_fill_completed(deck: DeckBase)
 signal deck_cards_count_updated(deck: DeckBase)
 ## Вызывается, когда карточка из колоды была выдана
 signal deck_card_given()
+## Вызывается, когда колода опустела
+signal deck_was_empty(deck: DeckBase)
 
 ######## BELL ########
 ## Вызывается, когда курсор навёлся на звоночек
