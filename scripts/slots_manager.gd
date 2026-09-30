@@ -121,6 +121,39 @@ static func get_slot_by_card_side(slot_id: int, card_side: Global.BattleSide) ->
 			return null
 
 
+## Возвращает id слота игрока по его экземпляру, вернёт -1 если не найден
+static func get_player_slot_id(slot: SlotBase) -> int:
+	var id: int = 0
+	for ply_slot: SlotBase in player_slots: 
+		if ply_slot == slot:
+			return id
+		id = id + 1
+	
+	return -1
+
+
+## Возвращает id слота оппонента по его экземпляру, вернёт -1 если не найден
+static func get_opponent_slot_id(slot: SlotBase) -> int:
+	var id: int = 0
+	for opponent_slot: SlotBase in opponent_slots:
+		if opponent_slot == slot:
+			return id
+		id = id + 1
+	
+	return -1
+
+
+## Возвращает id слота по его экземпляру, вернёт -1 если не найден
+static func get_slot_id(slot: SlotBase) -> int:
+	match slot.side:
+		Global.BattleSide.PLAYER:
+			return get_player_slot_id(slot)
+		Global.BattleSide.OPPONENT:
+			return get_opponent_slot_id(slot)
+		_:
+			return -1
+
+
 ## Проверяет валидность указанного ID слота
 static func _is_valid_slot_id(id: int) -> bool:
 	if id < 0 or id > 3:
