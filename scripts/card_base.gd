@@ -152,7 +152,7 @@ func _on_card_attacked(attack_info: AttackCardInfo) -> void:
 
 
 ## Когда карточка переместилась
-func _on_card_moved(card: CardBase, from_slot: SlotBase, to_slot: SlotBase) -> void:
+func _on_card_moved(card: CardBase, _from_slot: SlotBase, to_slot: SlotBase) -> void:
 	if card != self:
 		return
 	
