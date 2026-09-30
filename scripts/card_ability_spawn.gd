@@ -6,7 +6,7 @@ extends CardAbility
 
 @abstract
 ## Спавнит карточки на указаных слотах
-func spawn_cards_at(summoner: CardBase, slots: Array[SlotBase]) -> void
+func spawn_cards_from(summoner: CardBase, slot_id: int) -> void
 
 
 ## Регистрирует способность карточки в компонент
