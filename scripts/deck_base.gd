@@ -66,11 +66,20 @@ func _give_card() -> void:
 	EventBus.deck_card_given.emit()
 	
 	if cards.size() == 0:
-		_logger.info("Колода пуста. Начат процесс удаления")
-		queue_free()
+		EventBus.deck_was_empty.emit(self)
+
+
+## Когда колода опустела
+func _on_deck_was_empty(deck: DeckBase) -> void:
+	if deck != self:
+		return
+	
+	_logger.info("Колода пуста и удаляется")
+	queue_free()
 
 
 ## Подключает к сигналам Шины
 func _connect_signals() -> void:
 	EventBus.deck_cursor_left_button_clicked.connect(_on_deck_cursor_left_button_clicked)
 	EventBus.game_state_changed.connect(_on_game_state_changed)
+	EventBus.deck_was_empty.connect(_on_deck_was_empty)
