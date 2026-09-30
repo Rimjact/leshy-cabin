@@ -35,10 +35,10 @@ func _on_deck_was_empty(_deck: DeckBase) -> void:
 func _to_next_game_state() -> void:
 	if state in [Global.GameState.GAME_INIT, Global.GameState.OPPONENT_PICK_CARD]:
 		if _ply_decs_empty_count == 2:
-			_change_game_state(Global.GameState.PLAYER_PICK_CARD)
+			_change_game_state(Global.GameState.PLAYER_TURN)
 			return
 		
-		_change_game_state(Global.GameState.PLAYER_TURN)
+		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
 	
 	if state in [Global.GameState.PLAYER_CARDS_ATTACK]:
 		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
