@@ -24,6 +24,8 @@ extends Node2D
 
 var _logger: GameLogger
 
+var _played: bool = false
+
 
 func _ready() -> void:
 	_logger = Logging.create_logger(self.name)
@@ -135,6 +137,8 @@ func _on_change_pos_tween_completed(target_state: Global.CardState) -> void:
 func _on_battle_player_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
 		return
+	if _played:
+		return
 	
 	_do_turn(slot_id)
 
@@ -142,6 +146,8 @@ func _on_battle_player_card_turn(card: CardBase, slot_id: int) -> void:
 ## Когда ход в битве перешёл карточке оппонента
 func _on_battle_opponent_card_turn(card: CardBase, slot_id: int) -> void:
 	if card != self:
+		return
+	if _played:
 		return
 	
 	_do_turn(slot_id)
@@ -167,6 +173,16 @@ func _on_card_moved(card: CardBase, _from_slot: SlotBase, to_slot: SlotBase) -> 
 	_change_pos_tween(to_slot.global_position, Global.CardState.IN_SLOT)
 
 
+## Когда карточки игрока закончили атаковать
+func _on_battle_player_cards_attack_ended() -> void:
+	_played = false
+
+
+## Когда карточки оппонента закончили атаковать
+func _on_battle_opponent_cards_attack_ended() -> void:
+	_played = false
+
+
 ## Карточка выполняет свой ход
 func _do_turn(slot_id: int) -> void:
 	_logger.info("Карточка начала свой ход")
@@ -187,6 +203,8 @@ func _do_turn(slot_id: int) -> void:
 		_logger.info("Карточка выполняет перемещение")
 		var card_movement_ability := abilities_component.get_movement_ability()
 		card_movement_ability.move_from(self, slot_id)
+	
+	_played = true
 
 
 ## Выделяет карточку среди прочих
@@ -279,3 +297,5 @@ func _connect_to_signals() -> void:
 	EventBus.battle_opponent_card_turn.connect(_on_battle_opponent_card_turn)
 	EventBus.card_attacked.connect(_on_card_attacked)
 	EventBus.card_moved.connect(_on_card_moved)
+	EventBus.battle_player_cards_attack_ended.connect(_on_battle_player_cards_attack_ended)
+	EventBus.battle_opponent_cards_attack_ended.connect(_on_battle_opponent_cards_attack_ended)
