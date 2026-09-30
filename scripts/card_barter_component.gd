@@ -57,8 +57,9 @@ func _on_barter_card_sacrifaced(card: CardBase) -> void:
 	if card != parent_card:
 		return
 	
-	var sacriface_ability := card.abilities_component.get_sacriface_ability()
-	sacriface_ability.sacriface(card)
+	if card.abilities_component.has_sacriface_ability():
+		var sacriface_ability := card.abilities_component.get_sacriface_ability()
+		sacriface_ability.sacriface(card)
 
 
 ## Подключает сигналы Шины
