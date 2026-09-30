@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://co8p08e35t62"]
 
 [ext_resource type="Script" uid="uid://v6cwhfa1gwc" path="res://scripts/card_ability_spawn_dam_master.gd" id="1_hul3j"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_rgtud"]
 
 [node name="AbilitySpawn" type="Node2D" unique_id=972111916]
 script = ExtResource("1_hul3j")
 is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=898343309]
+texture = ExtResource("2_rgtud")
+region_enabled = true
+region_rect = Rect2(0, 96, 16, 16)

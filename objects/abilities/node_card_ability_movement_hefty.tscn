@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://c7853wlvgarx6"]
 
 [ext_resource type="Script" uid="uid://to7ie8n0pi3e" path="res://scripts/card_ability_movement_hefty.gd" id="1_wovbw"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_nvmki"]
 
 [node name="AbilityMovement" type="Node2D" unique_id=972111916]
 script = ExtResource("1_wovbw")
 is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=628839712]
+texture = ExtResource("2_nvmki")
+region_enabled = true
+region_rect = Rect2(16, 80, 16, 16)

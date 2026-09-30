@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://dw83nm6joofs7"]
 
 [ext_resource type="Script" uid="uid://n33kx3bhkwlp" path="res://scripts/card_ability_sacriface_many_lives.gd" id="1_lntl0"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_sa4ey"]
 
 [node name="AbilitySacriface" type="Node2D" unique_id=972111916]
 script = ExtResource("1_lntl0")
 is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=737149342]
+texture = ExtResource("2_sa4ey")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
