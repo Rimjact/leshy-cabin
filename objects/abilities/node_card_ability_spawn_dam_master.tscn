@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://co8p08e35t62"]
+
+[ext_resource type="Script" uid="uid://v6cwhfa1gwc" path="res://scripts/card_ability_spawn_dam_master.gd" id="1_hul3j"]
+
+[node name="AbilitySpawn" type="Node2D" unique_id=972111916]
+script = ExtResource("1_hul3j")
+is_unique = true
