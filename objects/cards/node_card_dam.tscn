@@ -67,7 +67,6 @@ position = Vector2(0, 20)
 
 [node name="CardBarterComponent" parent="." unique_id=568678405 instance=ExtResource("10_qyr1l")]
 currency = 1
-cost = 2
 
 [node name="CardInputComponent" type="Node2D" parent="." unique_id=959203989 node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("11_564ya")
