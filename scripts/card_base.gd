@@ -117,6 +117,13 @@ func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
 	_change_pos_tween(slot.global_position, Global.CardState.IN_SLOT)
 	
 	_logger.info("Карточка помещена на слот " + slot.name)
+	
+	if abilities_component.has_spawn_ability():
+		var spawn_ability := abilities_component.get_spawn_ability()
+		if spawn_ability is CardAbilitySpawnDamMaster:
+			_logger.info("Карточка спавнит плотины")
+			var slot_id: int = SlotsManager.get_slot_id(slot)
+			spawn_ability.spawn_cards_from(self, slot_id)
 
 
 ## Когда твин пермещения карточки завершён
