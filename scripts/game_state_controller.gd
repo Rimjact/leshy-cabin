@@ -6,7 +6,11 @@ extends Node2D
 ## Текущее состояние игры
 static var state: Global.GameState = Global.GameState.GAME_INIT
 
+
 var _logger: GameLogger
+
+## Количество пустых колод игрока
+var _ply_decs_empty_count: int = 0
 
 
 func _ready() -> void:
@@ -22,11 +26,19 @@ static func get_current_state() -> Global.GameState:
 	return state
 
 
+## Когда колода опустела
+func _on_deck_was_empty(_deck: DeckBase) -> void:
+	_ply_decs_empty_count = _ply_decs_empty_count + 1
+
+
 ## Преключает состояние игры на следующее
 func _to_next_game_state() -> void:
 	if state in [Global.GameState.GAME_INIT, Global.GameState.OPPONENT_PICK_CARD]:
-		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
-		return
+		if _ply_decs_empty_count == 2:
+			_change_game_state(Global.GameState.PLAYER_PICK_CARD)
+			return
+		
+		_change_game_state(Global.GameState.PLAYER_TURN)
 	
 	if state in [Global.GameState.PLAYER_CARDS_ATTACK]:
 		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
@@ -51,3 +63,4 @@ func _connect_signals() -> void:
 	EventBus.bell_move_passed.connect(_to_next_game_state)
 	EventBus.battle_player_cards_attack_ended.connect(_to_next_game_state)
 	EventBus.battle_opponent_cards_attack_ended.connect(_to_next_game_state)
+	EventBus.deck_was_empty.connect(_on_deck_was_empty)
