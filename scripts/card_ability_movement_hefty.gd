@@ -34,6 +34,9 @@ func move_from(card: CardBase, slot_id: int) -> void:
 		var n_c_slot := SlotsManager.get_slot_by_card_side(target_slot_id, card_side)
 		
 		var n_c_target_slot_id := get_target_slot_id_by_direction(target_slot_id, direction)
+		if n_c_target_slot_id > 3 or n_c_target_slot_id < 0:
+			return
+		
 		var n_c_target_slot := SlotsManager.get_slot_by_card_side(n_c_target_slot_id, card_side)
 		if n_c_target_slot.card:
 			return
