@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cj6ifk2x3k48g"]
+
+[ext_resource type="Script" uid="uid://crqma2t4xvtko" path="res://scripts/card_ability_defence_loose_tail.gd" id="1_d4lo1"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_ihng5"]
+
+[node name="AbilityDefence" type="Node2D" unique_id=64316009]
+script = ExtResource("1_d4lo1")
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=2027130643]
+texture = ExtResource("2_ihng5")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
