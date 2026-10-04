@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dwpc4t1ys0tog"]
+
+[ext_resource type="Script" uid="uid://beulvxj3ww7oi" path="res://scripts/card_ability_attack_touch_of_death.gd" id="1_nahiu"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_6f3se"]
+
+[node name="AbilityAttack" type="Node2D" unique_id=1838784370]
+script = ExtResource("1_nahiu")
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=46905215]
+texture = ExtResource("2_6f3se")
+region_enabled = true
+region_rect = Rect2(16, 96, 16, 16)
