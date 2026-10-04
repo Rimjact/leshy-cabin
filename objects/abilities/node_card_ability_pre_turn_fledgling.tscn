@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cx7yn4inq63b7"]
+
+[ext_resource type="Script" uid="uid://bkkojubtrctjn" path="res://scripts/card_ability_pre_turn_fledgling.gd" id="1_chlbx"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_8617y"]
+
+[node name="AbilityPreTurn" type="Node2D" unique_id=1838784370]
+script = ExtResource("1_chlbx")
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=46905215]
+texture = ExtResource("2_8617y")
+region_enabled = true
+region_rect = Rect2(0, 112, 16, 16)
