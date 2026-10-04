@@ -6,7 +6,7 @@ extends CardAbility
 
 @abstract
 ## Выполняет действия перед ходом карточки с указанного слота
-func pre_turn(card: CardBase, form_slot_id: int) -> void
+func pre_turn(card: CardBase, from_slot_id: int) -> void
 
 
 ## Регистрирует способность карточки в компонент
