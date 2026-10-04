@@ -154,6 +154,47 @@ static func get_slot_id(slot: SlotBase) -> int:
 			return -1
 
 
+## Возвращает слот слева, если он пуст и имеет верный id, иначе ничего
+static func get_empty_left_slot(from_slot_id: int, side: Global.BattleSide) -> SlotBase:
+	var left_slot_id: int = from_slot_id - 1
+	if left_slot_id < 0:
+		return null
+	
+	var left_slot := get_slot_by_card_side(left_slot_id, side)
+	if left_slot.card:
+		return null
+	
+	return left_slot
+
+
+## Возвращает слот справа, если он пуст и имеет верный id, иначе ничего
+static func get_empty_right_slot(from_slot_id: int, side: Global.BattleSide) -> SlotBase:
+	var right_slot_id: int = from_slot_id + 1
+	if right_slot_id > 3:
+		return null
+	
+	var right_slot := SlotsManager.get_slot_by_card_side(right_slot_id, side)
+	if right_slot.card:
+		return null
+	
+	return right_slot
+
+
+## Возвращает пустые боковые слоты
+static func get_empty_side_slots(from_slot_id: int, side: Global.BattleSide) -> Array[SlotBase]:
+	var empty_slots: Array[SlotBase] = []
+	
+	var left_empty_slot := get_empty_left_slot(from_slot_id, side)
+	if left_empty_slot:
+		empty_slots.append(left_empty_slot)
+	
+	var right_empty_slot := get_empty_right_slot(from_slot_id, side)
+	if right_empty_slot:
+		empty_slots.append(right_empty_slot)
+	
+	return empty_slots
+
+
 ## Проверяет валидность указанного ID слота
 static func _is_valid_slot_id(id: int) -> bool:
 	if id < 0 or id > 3:
