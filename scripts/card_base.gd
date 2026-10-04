@@ -185,6 +185,11 @@ func _on_battle_opponent_cards_attack_ended() -> void:
 
 ## Карточка выполняет свой ход
 func _do_turn(slot_id: int) -> void:
+	if abilities_component.has_pre_turn_ability():
+		_logger.info("Карточка выполняет действия перед ходом")
+		var card_pre_turn_ability := abilities_component.get_pre_turn_ability()
+		card_pre_turn_ability.pre_turn(self, slot_id)
+	
 	_logger.info("Карточка начала свой ход")
 	
 	var target_slots: Array[SlotBase]
@@ -203,6 +208,11 @@ func _do_turn(slot_id: int) -> void:
 		_logger.info("Карточка выполняет перемещение")
 		var card_movement_ability := abilities_component.get_movement_ability()
 		card_movement_ability.move_from(self, slot_id)
+	
+	if abilities_component.has_after_turn_ability():
+		_logger.info("Карточка заканчивает ход")
+		var card_after_turn_ability := abilities_component.get_after_turn_ability()
+		card_after_turn_ability.end_turn(self, slot_id)
 	
 	_played = true
 
