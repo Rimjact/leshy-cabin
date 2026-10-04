@@ -19,6 +19,11 @@ func _spawn_tail(on_slot: SlotBase, card_side: Global.BattleSide) -> CardBase:
 	return tail_card
 
 
+func _update_skink_card_sprite(card: CardBase) -> void:
+	var sprite: Sprite2D = card.get_node("AnimalSprite")
+	sprite.region_rect = Rect2(45.0, 33.0, 43.0, 31.0)
+
+
 ## Выполняет защитную способность "хвост на отсечение"
 func defence(attack_info: AttackCardInfo) -> void:
 	var damage_info := DamageInfo.new(attack_info.damage)
@@ -41,6 +46,8 @@ func defence(attack_info: AttackCardInfo) -> void:
 	
 	var random_target_slot: SlotBase = empty_side_slots.pick_random()
 	EventBus.card_moved.emit(victime_card, victime_slot, random_target_slot)
+	
+	_update_skink_card_sprite(victime_card)
 	
 	var tail_card := _spawn_tail(victime_slot, victime_card_side)
 	EventBus.card_damaged.emit(tail_card, damage_info)
