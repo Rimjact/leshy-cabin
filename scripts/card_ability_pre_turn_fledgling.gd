@@ -6,8 +6,14 @@ extends CardAbilityPreTurn
 ## Имя взрослой карточки
 @export var adult_card_name: String = ""
 
+var _first_turn: bool = true 
+
 
 func pre_turn(card: CardBase, from_slot_id: int) -> void:
+	if _first_turn:
+		_first_turn = false
+		return
+	
 	var card_side: Global.BattleSide = card.side
 	var from_slot: SlotBase = SlotsManager.get_slot_by_card_side(from_slot_id, card_side)
 	
