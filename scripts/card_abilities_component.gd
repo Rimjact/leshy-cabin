@@ -71,6 +71,25 @@ func get_sacriface_ability() -> CardAbilitySacriface:
 	return null
 
 
+## Возвращает способность карточки "перед выполнением хода"
+func get_pre_turn_ability() -> CardAbilityPreTurn:
+	var ability: CardAbility = get_ability(&"CardAbilityPreTurn")
+	if ability is CardAbilityPreTurn:
+		return ability
+	
+	return null
+
+
+## Возвращает способность карточки "после выполнения хода"
+func get_after_turn_ability() -> CardAbilityAfterTurn:
+	var ability: CardAbility = get_ability(&"CardAbilityAfterTurn")
+	if ability is CardAbilityAfterTurn:
+		return ability
+	
+	return null
+
+
+
 ## Проверяет, имеет ли карточка способность по её уникальному имени
 func has_ability(ability_name: StringName) -> bool:
 	return has_meta(ability_name)
@@ -104,6 +123,16 @@ func has_spawn_ability() -> bool:
 ## Проверяет, имеет ли карточка способность приношения в жертву
 func has_sacriface_ability() -> bool:
 	return has_ability(&"CardAbilitySacriface")
+
+
+## Проверяет, имеет ли карточка способность "перед выполнением хода"
+func has_pre_turn_ability() -> bool:
+	return has_ability(&"CardAbilityPreTurn")
+
+
+## Проверяет, имеет ли карточка способность "после выполнения хода"
+func has_after_turn_ability() -> bool:
+	return has_ability(&"CardAbilityAfterTurn")
 
 
 ## Обновляет массив уникальных способностей из дочерних нод
