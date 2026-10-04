@@ -82,7 +82,8 @@ func _redirect_attack_to_card(attack_info: AttackSlotInfo) -> void:
 	var damage: int = attack_info.damage
 	var attacker: CardBase = attack_info.attacker
 	var victime: CardBase = card
-	var attack_card_info := AttackCardInfo.new(damage, attacker, victime)
+	var slot: SlotBase = attack_info.victime_slot
+	var attack_card_info := AttackCardInfo.new(damage, attacker, victime, slot)
 	
 	_logger.info("Перенаправление атаки на карточку {0}".format([card.name]))
 	EventBus.card_attacked.emit(attack_card_info)
