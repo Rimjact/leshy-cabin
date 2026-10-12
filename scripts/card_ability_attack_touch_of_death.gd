@@ -3,13 +3,13 @@ extends CardAbilityAttack
 ## Класс способности атаки "Прикосновение смерти" 
 
 
+## One shot урон
+var _one_shot_damage: int = 99
+
+
 ## Выполняет атаку по целевым слотам с указанным уроном убивая карточки одним ударом
 func attack(card: CardBase, target_slots: Array[SlotBase]) -> void:
-	var damage: int = card.damage_component.damage
-	
 	for slot: SlotBase in target_slots:
 		if slot.card:
-			damage = 99
-		
-		var attack_info := AttackSlotInfo.new(damage, card, slot)
-		EventBus.slot_attacked.emit(attack_info)
+			var attack_info := AttackSlotInfo.new(_one_shot_damage, card, slot)
+			EventBus.slot_attacked.emit(attack_info)
