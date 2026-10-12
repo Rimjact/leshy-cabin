@@ -3,6 +3,11 @@ extends CardAbilitySpawn
 ## Класс обычной способности мастера плотин
 
 
+## Спавнит плотины, когда мастер плотин установлен на слот
+func on_slot_placed(summoner: CardBase, slot_id: int) -> void:
+	spawn_cards_from(summoner, slot_id)
+
+
 func spawn_cards_from(summoner: CardBase, slot_id: int) -> void:
 	var summoner_side: Global.BattleSide = summoner.side
 	

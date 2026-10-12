@@ -159,10 +159,8 @@ func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
 	
 	if abilities_component.has_spawn_ability():
 		var spawn_ability := abilities_component.get_spawn_ability()
-		if spawn_ability is CardAbilitySpawnDamMaster:
-			_logger.info("Карточка спавнит плотины")
-			var slot_id: int = SlotsManager.get_slot_id(slot)
-			spawn_ability.spawn_cards_from(self, slot_id)
+		var slot_id: int = SlotsManager.get_slot_id(slot)
+		spawn_ability.on_slot_placed(self, slot_id)
 
 
 ## Когда твин пермещения карточки завершён
