@@ -223,7 +223,9 @@ func _do_turn(slot_id: int) -> void:
 	if abilities_component.has_pre_turn_ability():
 		_logger.info("Карточка выполняет действия перед ходом")
 		var card_pre_turn_ability := abilities_component.get_pre_turn_ability()
-		card_pre_turn_ability.pre_turn(self, slot_id)
+		var continue_turn: bool = card_pre_turn_ability.pre_turn(self, slot_id)
+		if not continue_turn:
+			return
 	
 	_logger.info("Карточка начала свой ход")
 	

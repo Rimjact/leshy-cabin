@@ -9,10 +9,10 @@ extends CardAbilityPreTurn
 var _first_turn: bool = true 
 
 
-func pre_turn(card: CardBase, from_slot_id: int) -> void:
+func pre_turn(card: CardBase, from_slot_id: int) -> bool:
 	if _first_turn:
 		_first_turn = false
-		return
+		return true
 	
 	var card_side: Global.BattleSide = card.side
 	var from_slot: SlotBase = SlotsManager.get_slot_by_card_side(from_slot_id, card_side)
@@ -26,3 +26,4 @@ func pre_turn(card: CardBase, from_slot_id: int) -> void:
 	from_slot.card = adult_card
 	
 	card.queue_free()
+	return false
