@@ -10,6 +10,8 @@ var attacker: CardBase
 var victime_card: CardBase
 ## Атакованный слот
 var victime_slot: SlotBase
+## Игнорировать карточку
+var ignore_card: bool
 
 
 func _init(dmg: int, atck: CardBase, vict_card: CardBase, vict_slot: SlotBase) -> void:

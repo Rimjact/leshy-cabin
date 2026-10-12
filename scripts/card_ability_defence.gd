@@ -4,6 +4,21 @@ extends CardAbility
 ## Абстрактный класс способности карточки защищаться
 
 
+## Результат приема атаки
+enum AttackReception {
+	HIT_CARD, ## Карта была атакована
+	PASS_TO_OWNER, ## Атака была передана владельцу карты
+}
+
+
+## Принимает атаку
+func receive(attack_info: AttackCardInfo) -> AttackReception:
+	if attack_info.ignore_card:
+		return AttackReception.PASS_TO_OWNER
+	
+	return AttackReception.HIT_CARD
+
+
 @abstract
 ## Выполняет способность защиты карточки
 func defence(attack_info: AttackCardInfo) -> void
