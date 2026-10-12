@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
-[ext_resource type="PackedScene" uid="uid://cj5sjrxje6ea" path="res://objects/cards/node_card_ermine.tscn" id="8_jmar4"]
+[ext_resource type="Resource" path="res://assets/cards/ermine.tres" id="8_ermine"]
+[ext_resource type="PackedScene" path="res://objects/cards/node_card.tscn" id="8_jmar4"]
 [ext_resource type="Script" uid="uid://sn3dgyckpo4a" path="res://scripts/barter_controller.gd" id="9_xn66u"]
 [ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="10_tmjjs"]
 [ext_resource type="LabelSettings" uid="uid://0e6xjv3na50m" path="res://assets/labels/ls_barter_bones_value.tres" id="11_pr842"]
@@ -80,6 +81,7 @@ side = 1
 card = NodePath("Card")
 
 [node name="Card" parent="Table/OpponentSlots/OpponentSlot1" unique_id=621617987 instance=ExtResource("8_jmar4")]
+card_data = ExtResource("8_ermine")
 state = 4
 side = 1
 

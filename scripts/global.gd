@@ -68,7 +68,7 @@ const DECK_ANIMALS_SIZE_COUNT: int = 8
 ## (Константа) Количество карт в колоде белок
 const DECK_SQUIRRELS_SIZE_COUNT: int = 11
 
-## (Константа) Пул имён существующих карточек
+## (Константа) Пул идентификаторов ресурсов карточек
 const CARDS_NAMES_PULL: Array[String] = [
 	"squirrel",
 	"ermine",

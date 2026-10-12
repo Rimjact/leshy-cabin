@@ -15,6 +15,12 @@ func _ready() -> void:
 	_update_counter(health)
 
 
+## Задаёт здоровье из данных карточки и обновляет счётчик
+func apply_health(value: int) -> void:
+	health = value
+	_update_counter(health)
+
+
 ## Когда карточка была вылечена
 func _on_card_healed(card: CardBase, heal_info: HealInfo) -> void:
 	if card != get_parent():

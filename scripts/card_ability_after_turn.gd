@@ -11,15 +11,9 @@ func end_turn(card: CardBase, form_slot_id: int) -> void
 
 ## Регистрирует способность карточки в компонент
 func _enter_tree() -> void:
-	assert(owner is CardBase)
-	
-	if owner is CardBase:
-		var card: CardBase = owner
-		card.abilities_component.set_meta(&"CardAbilityAfterTurn", self)
+	register_ability(&"CardAbilityAfterTurn")
 
 
 ## Убирает регистрацию способности карточки из компонента
 func _exit_tree() -> void:
-	if owner is CardBase:
-		var card: CardBase = owner
-		card.remove_meta(&"CardAbilityAfterTurn")
+	unregister_ability(&"CardAbilityAfterTurn")

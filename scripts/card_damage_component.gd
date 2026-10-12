@@ -15,6 +15,12 @@ func _ready() -> void:
 	_update_counter(damage)
 
 
+## Задаёт урон из данных карточки и обновляет счётчик
+func apply_damage(value: int) -> void:
+	damage = value
+	_update_counter(damage)
+
+
 ## Обновляет текст лэйбла счётчика
 func _update_counter(new_value: int) -> void:
 	counter_label.text = var_to_str(new_value)

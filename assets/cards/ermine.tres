@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=8 format=3]
+
+[ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="2_portrait"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="3_targeting"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="4_attack"]
+[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="5_defence"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="6_sacrifice"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="7_movement"]
+
+[resource]
+script = ExtResource("1_script")
+display_name = "Горностай"
+portrait = ExtResource("2_portrait")
+portrait_region = Rect2(1, 97, 43, 31)
+health = 3
+damage = 1
+currency = 1
+cost = 1
+abilities = Array[PackedScene]([ExtResource("3_targeting"), ExtResource("4_attack"), ExtResource("5_defence"), ExtResource("6_sacrifice"), ExtResource("7_movement")])

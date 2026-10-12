@@ -24,6 +24,17 @@ func _ready() -> void:
 	_show_cost()
 
 
+## Задаёт валюту и стоимость из данных карточки
+func apply_cost(new_currency: Global.BarterCurrency, new_cost: int) -> void:
+	currency = new_currency
+	cost = new_cost
+	_bones_cost_node.hide()
+	_victims_cost_node.hide()
+	for sprite: Sprite2D in _victims_cost_sprites:
+		sprite.hide()
+	_show_cost()
+
+
 ## Показывает стоимость на карточке в текущей валюте обмена
 func _show_cost() -> void:
 	match currency:

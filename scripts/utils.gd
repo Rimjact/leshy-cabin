@@ -2,11 +2,19 @@ extends Node
 ## Глобальный класс со вспомогательным функционалом
 
 
-## Возвращает сцену карточки по её имени 
-func get_card_scene_by_name(card_name: String) -> PackedScene:
-	var cards_path: String = "res://objects/cards/"
-	var card_scene_name: String = "node_card_" + card_name + ".tscn"
-	var card_scene_path: String = cards_path + card_scene_name
-	var card_scene: PackedScene = ResourceLoader.load(card_scene_path)
-	
-	return card_scene
+const CARD_SCENE: PackedScene = preload("res://objects/cards/node_card.tscn")
+const CARD_DATA_DIR: String = "res://assets/cards/"
+
+
+## Возвращает ресурс данных карточки по её идентификатору
+func get_card_data(card_id: String) -> CardData:
+	var card_data_path: String = CARD_DATA_DIR + card_id + ".tres"
+	var card_data: CardData = load(card_data_path) as CardData
+	return card_data
+
+
+## Создаёт карточку и назначает ей ресурс данных
+func create_card(card_data: CardData) -> CardBase:
+	var card: CardBase = CARD_SCENE.instantiate() as CardBase
+	card.card_data = card_data
+	return card

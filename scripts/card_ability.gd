@@ -6,3 +6,39 @@ extends Node2D
 
 ## Является ли способность уникальной
 @export var is_unique: bool = false
+
+var _registered_card: CardBase
+
+
+## Возвращает карточку-владельца по цепочке родителей
+func get_owner_card() -> CardBase:
+	var current: Node = self
+	while current:
+		if current is CardBase:
+			return current as CardBase
+		current = current.get_parent()
+	
+	return null
+
+
+## Регистрирует способность в компоненте карточки
+func register_ability(ability_name: StringName) -> void:
+	var card := get_owner_card()
+	assert(card != null)
+	assert(card.abilities_component != null)
+	
+	_registered_card = card
+	card.abilities_component.set_meta(ability_name, self)
+
+
+## Снимает регистрацию, если этот узел всё ещё занимает слот способности
+func unregister_ability(ability_name: StringName) -> void:
+	if _registered_card == null or not is_instance_valid(_registered_card):
+		_registered_card = null
+		return
+	
+	var abilities := _registered_card.abilities_component
+	if abilities != null and abilities.get_meta(ability_name, null) == self:
+		abilities.remove_meta(ability_name)
+	
+	_registered_card = null

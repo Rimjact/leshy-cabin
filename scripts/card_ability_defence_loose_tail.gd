@@ -7,8 +7,7 @@ var _first_defence: bool = true
 
 
 func _spawn_tail(on_slot: SlotBase, card_side: Global.BattleSide) -> CardBase:
-	var tail_card_scene := Utils.get_card_scene_by_name("skink_tail")
-	var tail_card := tail_card_scene.instantiate() as CardBase
+	var tail_card := Utils.create_card(Utils.get_card_data("skink_tail"))
 	add_child(tail_card)
 	tail_card.reparent(on_slot)
 	tail_card.global_position = on_slot.global_position

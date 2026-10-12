@@ -40,11 +40,10 @@ func _fill_squirrels_deck(deck: DeckBase) -> void:
 		_create_card_instance(deck, Global.CARDS_NAMES_PULL[0])
 
 
-## Создаёт карточку по её имени и добавляет к колоде
-func _create_card_instance(deck: DeckBase, card_name: String) -> void:
-	var card_scene := Utils.get_card_scene_by_name(card_name)
-	
-	var card_instance := card_scene.instantiate() as CardBase
+## Создаёт карточку по её идентификатору и добавляет к колоде
+func _create_card_instance(deck: DeckBase, card_id: String) -> void:
+	var card_data := Utils.get_card_data(card_id)
+	var card_instance := Utils.create_card(card_data)
 	add_child(card_instance)
 	card_instance.global_position = self.global_position
 	card_instance.card_input_component.disable_input()

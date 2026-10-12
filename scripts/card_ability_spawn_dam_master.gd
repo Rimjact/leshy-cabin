@@ -8,8 +8,7 @@ func spawn_cards_from(summoner: CardBase, slot_id: int) -> void:
 	
 	var empty_slots := SlotsManager.get_empty_side_slots(slot_id, summoner_side)
 	for slot: SlotBase in empty_slots:
-		var dam_card_scene := Utils.get_card_scene_by_name("dam")
-		var dam_card := dam_card_scene.instantiate() as CardBase
+		var dam_card := Utils.create_card(Utils.get_card_data("dam"))
 		add_child(dam_card)
 		dam_card.reparent(slot)
 		dam_card.global_position = slot.global_position

@@ -4,10 +4,22 @@ extends Node2D
 
 
 @export_group("Card Properties")
+## Данные карточки
+@export var card_data: CardData:
+	set(value):
+		card_data = value
+		if is_node_ready():
+			_apply_card_data()
 ## Состояние карточки
 @export var state: Global.CardState = Global.CardState.IN_DECK
 ## Сторона карточки
 @export var side: Global.BattleSide = Global.BattleSide.PLAYER
+
+@export_group("View")
+## Подпись имени
+@export var name_label: Label
+## Спрайт портрета
+@export var portrait_sprite: Sprite2D
 
 @export_group("Components")
 ## Компонент здоровья карточки
@@ -31,6 +43,31 @@ func _ready() -> void:
 	_logger = Logging.create_logger(self.name)
 	_logger.add_handler(Logging.create_console_handler())
 	_logger.add_handler(Logging.create_file_handler())
+	_apply_card_data()
+
+
+## Переносит данные ресурса на компоненты и представление карточки
+func _apply_card_data() -> void:
+	if card_data == null:
+		return
+	
+	if name_label:
+		name_label.text = card_data.display_name
+	
+	if portrait_sprite:
+		if card_data.portrait:
+			portrait_sprite.texture = card_data.portrait
+		portrait_sprite.region_enabled = true
+		portrait_sprite.region_rect = card_data.portrait_region
+	
+	if health_component:
+		health_component.apply_health(card_data.health)
+	if damage_component:
+		damage_component.apply_damage(card_data.damage)
+	if barter_component:
+		barter_component.apply_cost(card_data.currency, card_data.cost)
+	if abilities_component:
+		abilities_component.apply_abilities(card_data.abilities)
 
 
 ## Когда курсор навёлся на эту карточку

@@ -135,6 +135,26 @@ func has_after_turn_ability() -> bool:
 	return has_ability(&"CardAbilityAfterTurn")
 
 
+## Заменяет способности карточки экземплярами из переданных сцен
+func apply_abilities(ability_scenes: Array[PackedScene]) -> void:
+	_clear_abilities()
+	
+	for ability_scene: PackedScene in ability_scenes:
+		if ability_scene == null:
+			continue
+		
+		var ability := ability_scene.instantiate() as Node
+		add_child(ability)
+
+
+## Удаляет текущие способности
+func _clear_abilities() -> void:
+	var ability_nodes := get_children()
+	for ability_node: Node in ability_nodes:
+		remove_child(ability_node)
+		ability_node.free()
+
+
 ## Обновляет массив уникальных способностей из дочерних нод
 func _update_unique_abilities_from_children() -> void:
 	_unique_abilities.clear()
