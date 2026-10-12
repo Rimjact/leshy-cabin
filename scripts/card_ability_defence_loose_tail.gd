@@ -3,7 +3,8 @@ extends CardAbilityDefence
 ## Класс защитной способности "хвост на отсечение"
 
 
-var _first_defence: bool = true
+## Лишился хвоста
+var _lost_tail: bool = false
 
 
 func _spawn_tail(on_slot: SlotBase, card_side: Global.BattleSide) -> CardBase:
@@ -28,8 +29,7 @@ func defence(attack_info: AttackCardInfo) -> void:
 	var damage_info := DamageInfo.new(attack_info.damage)
 	var victime_card := attack_info.victime_card
 	
-	if not _first_defence:
-		_first_defence = false
+	if _lost_tail:
 		EventBus.card_damaged.emit(victime_card, damage_info)
 		return
 	
@@ -39,7 +39,6 @@ func defence(attack_info: AttackCardInfo) -> void:
 	
 	var empty_side_slots := SlotsManager.get_empty_side_slots(victime_slot_id, victime_card_side)
 	if empty_side_slots.size() == 0:
-		_first_defence = false
 		EventBus.card_damaged.emit(victime_card, damage_info)
 		return
 	
@@ -51,4 +50,4 @@ func defence(attack_info: AttackCardInfo) -> void:
 	var tail_card := _spawn_tail(victime_slot, victime_card_side)
 	EventBus.card_damaged.emit(tail_card, damage_info)
 	
-	_first_defence = false
+	_lost_tail = true
