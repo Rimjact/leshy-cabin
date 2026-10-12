@@ -12,7 +12,7 @@ enum AttackReception {
 
 
 ## Принимает атаку
-func receive(attack_info: AttackCardInfo) -> AttackReception:
+func receive(attack_info: AttackSlotInfo) -> AttackReception:
 	if attack_info.ignore_card:
 		return AttackReception.PASS_TO_OWNER
 	

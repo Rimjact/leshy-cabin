@@ -43,16 +43,18 @@ func _on_slot_attacked(attack_info: AttackSlotInfo) -> void:
 		_redirect_attack_to_owner(attack_info.damage)
 		return
 	
-	if attack_info.ignore_card:
-		var card_defence_ability := card.abilities_component.get_defence_ability()
-		if card_defence_ability is CardAbilityDefenceMightyLeap:
-			_redirect_attack_to_card(attack_info)
-			return
-		
-		_redirect_attack_to_owner(attack_info.damage)
-		return
+	var defence_ability := card.abilities_component.get_defence_ability()
+	var reception := CardAbilityDefence.AttackReception.HIT_CARD
+	if defence_ability:
+		reception = defence_ability.receive(attack_info)
+	elif attack_info.ignore_card:
+		reception = CardAbilityDefence.AttackReception.PASS_TO_OWNER
 	
-	_redirect_attack_to_card(attack_info)
+	match reception:
+		CardAbilityDefence.AttackReception.HIT_CARD:
+			_redirect_attack_to_card(attack_info)
+		CardAbilityDefence.AttackReception.PASS_TO_OWNER:
+			_redirect_attack_to_owner(attack_info.damage)
 
 
 ## Когда карточка переместилась
