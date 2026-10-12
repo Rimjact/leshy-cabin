@@ -213,6 +213,8 @@ func _is_can_sacrifaced(card: CardBase) -> bool:
 		return false
 	if card.side != Global.BattleSide.PLAYER:
 		return false
+	if not card.abilities_component.has_sacriface_ability():
+		return false
 	if GameStateController.get_current_state() != Global.GameState.PLAYER_TURN:
 		return false
 	

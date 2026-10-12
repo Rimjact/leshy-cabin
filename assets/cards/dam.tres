@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dy82an5d20mwo"]
 
 [ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="2_portrait"]
@@ -11,7 +11,5 @@ display_name = "Плотина"
 portrait = ExtResource("2_portrait")
 portrait_region = Rect2(89, 129, 43, 31)
 health = 2
-damage = 0
 currency = 1
-cost = 0
 abilities = Array[PackedScene]([ExtResource("3_defence"), ExtResource("4_movement")])
