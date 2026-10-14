@@ -18,12 +18,7 @@ func pre_turn(card: CardBase, from_slot_id: int) -> bool:
 	var from_slot: SlotBase = SlotsManager.get_slot_by_card_side(from_slot_id, card_side)
 	
 	var adult_card := Utils.create_card(Utils.get_card_data(adult_card_name))
-	add_child(adult_card)
-	adult_card.reparent(from_slot)
-	adult_card.global_position = from_slot.global_position
-	adult_card.state = Global.CardState.IN_SLOT
-	adult_card.side = card_side
-	from_slot.card = adult_card
-	
+	place_card_on_slot(adult_card, from_slot, card_side)
+
 	card.queue_free()
 	return false

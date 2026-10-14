@@ -9,12 +9,7 @@ var _lost_tail: bool = false
 
 func _spawn_tail(on_slot: SlotBase, card_side: Global.BattleSide) -> CardBase:
 	var tail_card := Utils.create_card(Utils.get_card_data("skink_tail"))
-	add_child(tail_card)
-	tail_card.reparent(on_slot)
-	tail_card.global_position = on_slot.global_position
-	tail_card.state = Global.CardState.IN_SLOT
-	tail_card.side = card_side
-	on_slot.card = tail_card
+	place_card_on_slot(tail_card, on_slot, card_side)
 	
 	return tail_card
 

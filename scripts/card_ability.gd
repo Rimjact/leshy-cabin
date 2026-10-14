@@ -10,6 +10,16 @@ extends Node2D
 var _registered_card: CardBase
 
 
+## Устанавливает карточку на слот с указанной стороной
+func place_card_on_slot(card: CardBase, slot: SlotBase, side: Global.BattleSide) -> void:
+	add_child(card)
+	card.reparent(slot)
+	card.global_position = slot.global_position
+	card.state = Global.CardState.IN_SLOT
+	card.side = side
+	EventBus.slot_card_placed.emit(slot, card)
+
+
 ## Возвращает карточку-владельца по цепочке родителей
 func get_owner_card() -> CardBase:
 	var current: Node = self
