@@ -13,9 +13,3 @@ func receive(attack_info: AttackSlotInfo) -> AttackReception:
 			return AttackReception.HIT_CARD
 
 	return super.receive(attack_info)
-
-
-## Выполняет защитную способность против летунов
-func defence(attack_info: AttackCardInfo) -> void:
-	var damage_info := DamageInfo.new(attack_info.damage)
-	EventBus.card_damaged.emit(attack_info.victime_card, damage_info)
