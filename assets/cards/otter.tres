@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://d0j7ok887qo8r"]
+
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="1_d11v0"]
+[ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_rvrfe"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="1_v28j2"]
+[ext_resource type="PackedScene" path="res://objects/abilities/node_card_ability_defence_diver.tscn" id="2_xpjos"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="3_ovgap"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="4_hun3q"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="5_m5xvb"]
+
+[resource]
+script = ExtResource("1_rvrfe")
+display_name = "Выдра"
+portrait = ExtResource("1_d11v0")
+portrait_region = Rect2(1, 129, 43, 31)
+damage = 1
+currency = 1
+cost = 1
+abilities = Array[PackedScene]([ExtResource("1_v28j2"), ExtResource("2_xpjos"), ExtResource("3_ovgap"), ExtResource("4_hun3q"), ExtResource("5_m5xvb")])
+metadata/_custom_type_script = "uid://dxxewhernsrcb"
