@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://nb3y1kkw013i"]
+
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="1_7th1k"]
+[ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_ii07g"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="1_sfujp"]
+[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="2_a1vg6"]
+[ext_resource type="PackedScene" uid="uid://cu18bj03uft45" path="res://objects/abilities/node_card_ability_movement_sprinter.tscn" id="3_40sbv"]
+
+[resource]
+script = ExtResource("1_ii07g")
+display_name = "Оленёнок"
+portrait = ExtResource("1_7th1k")
+portrait_region = Rect2(1, 65, 43, 31)
+damage = 1
+currency = 2
+cost = 1
+abilities = Array[PackedScene]([ExtResource("1_sfujp"), ExtResource("2_a1vg6"), ExtResource("3_40sbv")])
+metadata/_custom_type_script = "uid://dxxewhernsrcb"

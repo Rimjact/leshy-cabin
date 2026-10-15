@@ -81,6 +81,7 @@ const CARDS_NAMES_PULL: Array[String] = [
 	"bullfrog",
 	"cat",
 	"deer",
+	"elk_fawn",
 	"moose",
 	"beaver",
 	"otter",

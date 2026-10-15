@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d2bm4ewu0a1n3"]
+
+[ext_resource type="Script" uid="uid://bkkojubtrctjn" path="res://scripts/card_ability_pre_turn_fledgling.gd" id="1_7pq8l"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_b07pg"]
+
+[node name="AbilityPreTurn" type="Node2D" unique_id=1838784370]
+script = ExtResource("1_7pq8l")
+adult_card_name = "deer"
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=46905215]
+texture = ExtResource("2_b07pg")
+region_enabled = true
+region_rect = Rect2(0, 112, 16, 16)
