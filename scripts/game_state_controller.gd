@@ -43,6 +43,9 @@ func _on_battle_player_loose() -> void:
 
 ## Преключает состояние игры на следующее
 func _to_next_game_state() -> void:
+	if state in [Global.GameState.PLAYER_WIN, Global.GameState.PLAYER_LOOSE]:
+		return
+
 	if state in [Global.GameState.GAME_INIT, Global.GameState.OPPONENT_PICK_CARD]:
 		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
 		return
