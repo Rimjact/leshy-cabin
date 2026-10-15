@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="3_targeting"]
 [ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="4_attack"]
 [ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="5_defence"]
-[ext_resource type="PackedScene" uid="uid://d2bm4ewu0a1n3" path="res://objects/abilities/node_card_ability_pre_turn_fledgling_deer.tscn" id="6_ikl7f"]
 [ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="6_sacrifice"]
 [ext_resource type="PackedScene" uid="uid://cu18bj03uft45" path="res://objects/abilities/node_card_ability_movement_sprinter.tscn" id="7_movement"]
 
@@ -18,4 +17,4 @@ health = 4
 damage = 2
 currency = 1
 cost = 2
-abilities = Array[PackedScene]([ExtResource("3_targeting"), ExtResource("4_attack"), ExtResource("5_defence"), ExtResource("6_sacrifice"), ExtResource("7_movement"), ExtResource("6_ikl7f"), ExtResource("6_sacrifice"), ExtResource("3_targeting")])
+abilities = Array[PackedScene]([ExtResource("3_targeting"), ExtResource("4_attack"), ExtResource("5_defence"), ExtResource("6_sacrifice"), ExtResource("7_movement")])

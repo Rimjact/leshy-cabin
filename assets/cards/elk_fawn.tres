@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="1_sfujp"]
 [ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="2_a1vg6"]
 [ext_resource type="PackedScene" uid="uid://cu18bj03uft45" path="res://objects/abilities/node_card_ability_movement_sprinter.tscn" id="3_40sbv"]
+[ext_resource type="PackedScene" uid="uid://d2bm4ewu0a1n3" path="res://objects/abilities/node_card_ability_pre_turn_fledgling_deer.tscn" id="4_0xd7n"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="5_p6p8t"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="6_aklnu"]
 
 [resource]
 script = ExtResource("1_ii07g")
@@ -12,7 +15,7 @@ display_name = "Оленёнок"
 portrait = ExtResource("1_7th1k")
 portrait_region = Rect2(1, 65, 43, 31)
 damage = 1
-currency = 2
+currency = 1
 cost = 1
-abilities = Array[PackedScene]([ExtResource("1_sfujp"), ExtResource("2_a1vg6"), ExtResource("3_40sbv")])
+abilities = Array[PackedScene]([ExtResource("1_sfujp"), ExtResource("2_a1vg6"), ExtResource("3_40sbv"), ExtResource("4_0xd7n"), ExtResource("5_p6p8t"), ExtResource("6_aklnu")])
 metadata/_custom_type_script = "uid://dxxewhernsrcb"
