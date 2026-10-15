@@ -18,7 +18,7 @@ func place_card_on_slot(card: CardBase, slot: SlotBase, side: Global.BattleSide)
 	card.scale = Vector2(1.0, 1.0)
 	card.state = Global.CardState.IN_SLOT
 	card.side = side
-	EventBus.slot_card_placed.emit(slot, card)
+	EventBus.slot_card_placed.emit(slot, card, true)
 
 
 ## Возвращает карточку-владельца по цепочке родителей

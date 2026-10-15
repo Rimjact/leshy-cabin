@@ -194,7 +194,7 @@ func _is_card_can_be_placed(slot: SlotBase, card: CardBase) -> bool:
 
 ## Помещает карточку на слот
 func _place_card_to_slot(slot: SlotBase, card: CardBase) -> void:
-	EventBus.slot_card_placed.emit(slot, card)
+	EventBus.slot_card_placed.emit(slot, card, false)
 	
 	cards.erase(card)
 	_card_selected = null

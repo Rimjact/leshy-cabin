@@ -26,7 +26,7 @@ func _on_slot_cursor_left_button_clicked(slot: SlotBase) -> void:
 
 
 ## Когда карточка установлена на слот
-func _on_slot_card_placed(slot: SlotBase, new_card: CardBase) -> void:
+func _on_slot_card_placed(slot: SlotBase, new_card: CardBase, _by_card_ability: bool) -> void:
 	if slot != self:
 		return
 	

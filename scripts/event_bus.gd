@@ -46,7 +46,7 @@ signal slot_cursor_left_button_clicked(slot: SlotBase)
 ## Вызывается, когда произошел правый клик по слоту
 signal slot_cursor_right_button_clicked(slot: SlotBase)
 ## Вызывается, когда карточка установлена на слот
-signal slot_card_placed(slot: SlotBase, card: CardBase)
+signal slot_card_placed(slot: SlotBase, card: CardBase, by_card_ability: bool)
 ## Вызывается, когда слот атакован
 signal slot_attacked(attack_info: AttackSlotInfo)
 

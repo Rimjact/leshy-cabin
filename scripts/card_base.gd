@@ -186,7 +186,7 @@ func _on_player_card_added(card: CardBase) -> void:
 
 
 ## Когда карточка установлена на слот
-func _on_slot_card_placed(slot: SlotBase, card: CardBase) -> void:
+func _on_slot_card_placed(slot: SlotBase, card: CardBase, _by_card_ability: bool) -> void:
 	if card != self:
 		return
 	
