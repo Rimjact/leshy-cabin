@@ -11,7 +11,7 @@
 
 [resource]
 script = ExtResource("1_k370e")
-display_name = "Вонючка"
+display_name = "Жук-вонючка"
 portrait = ExtResource("1_jit76")
 portrait_region = Rect2(45, 97, 43, 31)
 health = 2

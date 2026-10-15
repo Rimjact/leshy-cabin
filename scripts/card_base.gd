@@ -64,7 +64,10 @@ func _apply_card_data() -> void:
 	if card_data == null:
 		return
 	
-	if name_label:
+	var card_name_label := name_label as CardNameLabel
+	if card_name_label:
+		card_name_label.apply_display_name(card_data.display_name)
+	elif name_label:
 		name_label.text = card_data.display_name
 	
 	if portrait_sprite:

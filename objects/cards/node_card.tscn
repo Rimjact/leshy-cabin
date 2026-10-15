@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bdamp3rl2jd64" path="res://objects/node_card_barter_component.tscn" id="8_barter"]
 [ext_resource type="Script" uid="uid://cd650rh5k7885" path="res://scripts/card_input_component.gd" id="9_input"]
 [ext_resource type="Script" uid="uid://fil5s0axuw8o" path="res://scripts/clickbox_component.gd" id="10_click"]
+[ext_resource type="Script" uid="uid://d2x1d6yoy0ykp" path="res://scripts/card_name_label.gd" id="11_name"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
@@ -40,6 +41,7 @@ label_settings = ExtResource("3_label")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+script = ExtResource("11_name")
 
 [node name="AnimalSprite" type="Sprite2D" parent="." unique_id=522803202]
 position = Vector2(0, -4.5)
