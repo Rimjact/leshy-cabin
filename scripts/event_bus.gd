@@ -111,6 +111,10 @@ signal battle_player_attacked(damage: int)
 signal battle_opponent_attacked(damage: int)
 ## Вызывается, когда изменено значение преимущества
 signal battle_advantage_changed(value: int)
+## Вызывается, когда игрок выиграл
+signal battle_player_win()
+## Вызывается, когда игрок проиграл
+signal battle_player_loose()
 
 ######## BARTER CONTROLLER ########
 ## Вызвывается, когда игрок вошел в режим бартера за жертвы
