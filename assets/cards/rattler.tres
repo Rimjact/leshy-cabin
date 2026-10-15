@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cfsutoyhwe4le"]
+
+[ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_0rjr8"]
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="1_i3fs2"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="1_ioxdu"]
+[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="2_vjf7v"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="3_3lhrr"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="4_naaa3"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="5_fj3x1"]
+
+[resource]
+script = ExtResource("1_0rjr8")
+display_name = "Гремучник"
+portrait = ExtResource("1_i3fs2")
+portrait_region = Rect2(133, 97, 43, 31)
+damage = 3
+currency = 2
+cost = 6
+abilities = Array[PackedScene]([ExtResource("1_ioxdu"), ExtResource("2_vjf7v"), ExtResource("3_3lhrr"), ExtResource("4_naaa3"), ExtResource("5_fj3x1")])
+metadata/_custom_type_script = "uid://dxxewhernsrcb"
