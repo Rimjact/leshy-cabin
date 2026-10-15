@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://hs4askqo6lfg" path="res://objects/node_opponent_slot.tscn" id="3_pxwbd"]
 [ext_resource type="PackedScene" uid="uid://chvyeytdgjlk0" path="res://objects/node_deck_animals.tscn" id="3_rum4d"]
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
-[ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_hearts_bar.tscn" id="4_pxwbd"]
+[ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_advantage_bar.tscn" id="4_pxwbd"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
 [ext_resource type="Resource" path="res://assets/cards/ermine.tres" id="8_ermine"]
 [ext_resource type="PackedScene" uid="uid://dtnnyv3cbieqc" path="res://objects/cards/node_card.tscn" id="8_jmar4"]

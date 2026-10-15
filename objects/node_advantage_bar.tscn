@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://nlvv2sadxfm6"]
+[gd_scene format=3 uid="uid://nlvv2sadxfm6"]
 
 [ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="1_tk57x"]
 
@@ -13,148 +13,148 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="HeartsBar" type="Node2D"]
+[node name="AdvantageBar" type="Node2D" unique_id=1749604726]
 
-[node name="HeartsBarSprite" type="Sprite2D" parent="."]
+[node name="AdvantageBarSprite" type="Sprite2D" parent="." unique_id=122616283]
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(64, 0, 13, 85)
 
-[node name="DarkHearts" type="Node2D" parent="."]
+[node name="DarkHearts" type="Node2D" parent="." unique_id=619845540]
 
-[node name="OpponentDarkHeart5" type="Sprite2D" parent="DarkHearts"]
+[node name="OpponentDarkHeart5" type="Sprite2D" parent="DarkHearts" unique_id=447600362]
 visible = false
 position = Vector2(0, -29)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="OpponentDarkHeart4" type="Sprite2D" parent="DarkHearts"]
+[node name="OpponentDarkHeart4" type="Sprite2D" parent="DarkHearts" unique_id=668888671]
 visible = false
 position = Vector2(0, -23)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="OpponentDarkHeart3" type="Sprite2D" parent="DarkHearts"]
+[node name="OpponentDarkHeart3" type="Sprite2D" parent="DarkHearts" unique_id=832591084]
 visible = false
 position = Vector2(0, -17)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="OpponentDarkHeart2" type="Sprite2D" parent="DarkHearts"]
+[node name="OpponentDarkHeart2" type="Sprite2D" parent="DarkHearts" unique_id=203442841]
 visible = false
 position = Vector2(0, -11)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="OpponentDarkHeart1" type="Sprite2D" parent="DarkHearts"]
+[node name="OpponentDarkHeart1" type="Sprite2D" parent="DarkHearts" unique_id=1800716163]
 visible = false
 position = Vector2(0, -5)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="PlayerDarkHeart1" type="Sprite2D" parent="DarkHearts"]
+[node name="PlayerDarkHeart1" type="Sprite2D" parent="DarkHearts" unique_id=1169330319]
 visible = false
 position = Vector2(0, 5)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="PlayerDarkHeart2" type="Sprite2D" parent="DarkHearts"]
+[node name="PlayerDarkHeart2" type="Sprite2D" parent="DarkHearts" unique_id=1596821051]
 visible = false
 position = Vector2(0, 11)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="PlayerDarkHeart3" type="Sprite2D" parent="DarkHearts"]
+[node name="PlayerDarkHeart3" type="Sprite2D" parent="DarkHearts" unique_id=1473044574]
 visible = false
 position = Vector2(0, 17)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="PlayerDarkHeart4" type="Sprite2D" parent="DarkHearts"]
+[node name="PlayerDarkHeart4" type="Sprite2D" parent="DarkHearts" unique_id=49964587]
 visible = false
 position = Vector2(0, 23)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="PlayerDarkHeart5" type="Sprite2D" parent="DarkHearts"]
+[node name="PlayerDarkHeart5" type="Sprite2D" parent="DarkHearts" unique_id=711956184]
 visible = false
 position = Vector2(0, 29)
 texture = ExtResource("1_tk57x")
 region_enabled = true
 region_rect = Rect2(59, 32, 5, 5)
 
-[node name="HeartsLights" type="Node2D" parent="."]
+[node name="HeartsLights" type="Node2D" parent="." unique_id=1163419325]
 
-[node name="OpponentHeartLight5" type="PointLight2D" parent="HeartsLights"]
+[node name="OpponentHeartLight5" type="PointLight2D" parent="HeartsLights" unique_id=1879718139]
 position = Vector2(0, -29)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="OpponentHeartLight4" type="PointLight2D" parent="HeartsLights"]
+[node name="OpponentHeartLight4" type="PointLight2D" parent="HeartsLights" unique_id=1381697335]
 position = Vector2(0, -23)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="OpponentHeartLight3" type="PointLight2D" parent="HeartsLights"]
+[node name="OpponentHeartLight3" type="PointLight2D" parent="HeartsLights" unique_id=1468758698]
 position = Vector2(0, -17)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="OpponentHeartLight2" type="PointLight2D" parent="HeartsLights"]
+[node name="OpponentHeartLight2" type="PointLight2D" parent="HeartsLights" unique_id=1683468021]
 position = Vector2(0, -11)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="OpponentHeartLight1" type="PointLight2D" parent="HeartsLights"]
+[node name="OpponentHeartLight1" type="PointLight2D" parent="HeartsLights" unique_id=1469372887]
 position = Vector2(0, -5)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="PlayerHeartLight1" type="PointLight2D" parent="HeartsLights"]
+[node name="PlayerHeartLight1" type="PointLight2D" parent="HeartsLights" unique_id=963612473]
 position = Vector2(0, 5)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="PlayerHeartLight2" type="PointLight2D" parent="HeartsLights"]
+[node name="PlayerHeartLight2" type="PointLight2D" parent="HeartsLights" unique_id=411261464]
 position = Vector2(0, 11)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="PlayerHeartLight3" type="PointLight2D" parent="HeartsLights"]
+[node name="PlayerHeartLight3" type="PointLight2D" parent="HeartsLights" unique_id=1217247522]
 position = Vector2(0, 17)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="PlayerHeartLight4" type="PointLight2D" parent="HeartsLights"]
+[node name="PlayerHeartLight4" type="PointLight2D" parent="HeartsLights" unique_id=1388718620]
 position = Vector2(0, 23)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="PlayerHeartLight5" type="PointLight2D" parent="HeartsLights"]
+[node name="PlayerHeartLight5" type="PointLight2D" parent="HeartsLights" unique_id=1975778061]
 position = Vector2(0, 29)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
 
-[node name="ArrowSprite" type="Sprite2D" parent="."]
+[node name="ArrowSprite" type="Sprite2D" parent="." unique_id=396100246]
 position = Vector2(3, 0)
 texture = ExtResource("1_tk57x")
 region_enabled = true
