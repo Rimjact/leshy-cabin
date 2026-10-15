@@ -7,6 +7,15 @@ extends Node2D
 @export var _card_attack_timer: Timer
 
 
+## Показатель преимущества
+var advantage: int = 0:
+	set(value):
+		advantage = mini(5, value) if value > 5 else maxi(value, -5)
+		EventBus.battle_advantage_changed.emit(advantage)
+	get():
+		return advantage
+
+
 ## Когда состояние игры изменено
 func _on_game_state_changed(new_state: Global.GameState) -> void:
 	match new_state:
@@ -14,6 +23,16 @@ func _on_game_state_changed(new_state: Global.GameState) -> void:
 			force_player_cards_attack()
 		Global.GameState.OPPONENT_CARDS_ATTACK:
 			force_opponent_cards_attack()
+
+
+## Когда игрок атакован
+func _on_battle_player_attacked(damage: int) -> void:
+	advantage = advantage - damage
+
+
+## Когда опонент атакован
+func _on_battle_opponent_attacked(damage: int) -> void:
+	advantage = advantage + damage
 
 
 ## Выполняет атаку карточками игрока, находящимися в слотах
@@ -59,3 +78,5 @@ func force_opponent_cards_attack() -> void:
 ## Соединяет сигналы Шины
 func _connect_signals() -> void:
 	EventBus.game_state_changed.connect(_on_game_state_changed)
+	EventBus.battle_player_attacked.connect(_on_battle_player_attacked)
+	EventBus.battle_opponent_attacked.connect(_on_battle_opponent_attacked)

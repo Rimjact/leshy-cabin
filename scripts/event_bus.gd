@@ -109,6 +109,8 @@ signal battle_opponent_card_turn(card: CardBase, slot_id: int)
 signal battle_player_attacked(damage: int)
 ## Вызывается, когда атакован оппонент
 signal battle_opponent_attacked(damage: int)
+## Вызывается, когда изменено значение преимущества
+signal battle_advantage_changed(value: int)
 
 ######## BARTER CONTROLLER ########
 ## Вызвывается, когда игрок вошел в режим бартера за жертвы

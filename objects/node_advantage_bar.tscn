@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://nlvv2sadxfm6"]
 
+[ext_resource type="Script" uid="uid://cftat4kvod7qi" path="res://scripts/advantage_bar_controller.gd" id="1_4563w"]
 [ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="1_tk57x"]
 
 [sub_resource type="Gradient" id="Gradient_tk57x"]
@@ -13,7 +14,11 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[node name="AdvantageBar" type="Node2D" unique_id=1749604726]
+[node name="AdvantageBar" type="Node2D" unique_id=1749604726 node_paths=PackedStringArray("player_hearts", "opponent_hearts", "arrow_sprite")]
+script = ExtResource("1_4563w")
+player_hearts = [NodePath("Hearts/PlayerHeart1"), NodePath("Hearts/PlayerHeart2"), NodePath("Hearts/PlayerHeart3"), NodePath("Hearts/PlayerHeart4"), NodePath("Hearts/PlayerHeart5")]
+opponent_hearts = [NodePath("Hearts/OpponentHeart1"), NodePath("Hearts/OpponentHeart2"), NodePath("Hearts/OpponentHeart3"), NodePath("Hearts/OpponentHeart4"), NodePath("Hearts/OpponentHeart5")]
+arrow_sprite = NodePath("ArrowSprite")
 
 [node name="AdvantageBarSprite" type="Sprite2D" parent="." unique_id=122616283]
 texture = ExtResource("1_tk57x")
@@ -131,8 +136,6 @@ region_rect = Rect2(59, 32, 5, 5)
 color = Color(1, 0.23137255, 0.17254902, 1)
 texture = SubResource("GradientTexture2D_dyjve")
 height = 5.0
-
-[node name="HeartsLights" type="Node2D" parent="." unique_id=1163419325]
 
 [node name="ArrowSprite" type="Sprite2D" parent="." unique_id=396100246]
 position = Vector2(3, 0)

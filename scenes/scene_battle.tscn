@@ -167,7 +167,7 @@ region_rect = Rect2(0, 32, 17, 18)
 [node name="Bell" parent="Table" unique_id=1555250619 instance=ExtResource("3_8qdv8")]
 position = Vector2(48, 88)
 
-[node name="HeartsBar" parent="Table" unique_id=1289744523 instance=ExtResource("4_pxwbd")]
+[node name="AdvantageBar" parent="Table" unique_id=1749604726 instance=ExtResource("4_pxwbd")]
 position = Vector2(24, 88)
 
 [node name="SlotsManager" type="Node2D" parent="." unique_id=1520993201 node_paths=PackedStringArray("player_slots_node", "opponent_slots_node")]
