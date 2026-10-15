@@ -37,11 +37,11 @@ func _on_battle_opponent_attacked(damage: int) -> void:
 
 ## Когда показатель преимущества изменился
 func _on_battle_advantage_changed(value: int) -> void:
-	if advantage == 5:
+	if value == 5:
 		EventBus.battle_player_win.emit()
 		return
 	
-	if advantage == -5:
+	if value == -5:
 		EventBus.battle_player_loose.emit()
 
 
