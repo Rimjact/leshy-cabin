@@ -4,17 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_88uu2"]
 [ext_resource type="LabelSettings" uid="uid://c6a8lucxqlr1o" path="res://assets/labels/ls_card_stats.tres" id="3_icf5g"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_debuff"]
-line_spacing = 0.0
-font_size = 36
-font_color = Color(0.72, 0.08, 0.08, 1)
-shadow_size = 0
-
-[node name="CardDamageComponent" type="Node2D" unique_id=1766879586 node_paths=PackedStringArray("counter_label", "debuff_label")]
+[node name="CardDamageComponent" type="Node2D" unique_id=1766879586 node_paths=PackedStringArray("counter_label")]
 script = ExtResource("1_c6lac")
 damage = 2
 counter_label = NodePath("Label")
-debuff_label = NodePath("DebuffLabel")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=690737148]
 position = Vector2(-0.25, 6)
@@ -31,16 +24,4 @@ scale = Vector2(0.25, 0.25)
 text = "0"
 label_settings = ExtResource("3_icf5g")
 horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DebuffLabel" type="Label" parent="."]
-visible = false
-offset_left = -17.0
-offset_top = -9.0
-offset_right = 19.0
-offset_bottom = 39.0
-scale = Vector2(0.25, 0.25)
-text = "-1"
-label_settings = SubResource("LabelSettings_debuff")
-horizontal_alignment = 2
 vertical_alignment = 1

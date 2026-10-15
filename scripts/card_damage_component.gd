@@ -9,8 +9,6 @@ extends Node2D
 @export_group("Components")
 ## Лэйбл счётчика
 @export var counter_label: Label
-## Красная пометка дебаффа на показателе урона
-@export var debuff_label: Label
 
 
 ## Урон карточки без дебаффа
@@ -46,7 +44,9 @@ func remove_stink_source() -> void:
 func _refresh_damage() -> void:
 	damage = _base_damage - _stink_penalty()
 	_update_counter(damage)
-	_update_debuff_label()
+
+	var counter_color: Color = Color.DARK_RED if _stink_penalty() == 1 else Color.BLACK
+	_update_counter_color(counter_color)
 
 
 ## Дебафф отнимает единицу урона, пока действует хотя бы один источник
@@ -63,11 +63,5 @@ func _update_counter(new_value: int) -> void:
 
 
 ## Показывает или скрывает красный текст дебаффа
-func _update_debuff_label() -> void:
-	if debuff_label == null:
-		return
-	
-	var penalty := _stink_penalty()
-	debuff_label.visible = penalty > 0
-	if penalty > 0:
-		debuff_label.text = "-%d" % penalty
+func _update_counter_color(color: Color) -> void:
+	counter_label.label_settings.font_color = color
