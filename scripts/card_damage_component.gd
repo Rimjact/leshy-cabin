@@ -10,6 +10,11 @@ extends Node2D
 ## Лэйбл счётчика
 @export var counter_label: Label
 
+@export_group("Settings")
+## Настройки лэйбла счётчика
+@export var default_label_settings: LabelSettings
+## Настройки лэйбла счётчика при дебаффе
+@export var debuff_label_settings: LabelSettings
 
 ## Урон карточки без дебаффа
 var _base_damage: int = 0
@@ -45,8 +50,8 @@ func _refresh_damage() -> void:
 	damage = _base_damage - _stink_penalty()
 	_update_counter(damage)
 
-	var counter_color: Color = Color.DARK_RED if _stink_penalty() == 1 else Color.BLACK
-	_update_counter_color(counter_color)
+	var counter_ls: LabelSettings = debuff_label_settings if _stink_penalty() == 1 else default_label_settings
+	_update_counter_lable_settings(counter_ls)
 
 
 ## Дебафф отнимает единицу урона, пока действует хотя бы один источник
@@ -63,5 +68,5 @@ func _update_counter(new_value: int) -> void:
 
 
 ## Показывает или скрывает красный текст дебаффа
-func _update_counter_color(color: Color) -> void:
-	counter_label.label_settings.font_color = color
+func _update_counter_lable_settings(ls: LabelSettings) -> void:
+	counter_label.label_settings = ls
