@@ -35,6 +35,16 @@ func _on_battle_opponent_attacked(damage: int) -> void:
 	advantage = advantage + damage
 
 
+## Когда показатель преимущества изменился
+func _on_battle_advantage_changed(value: int) -> void:
+	if advantage == 5:
+		EventBus.battle_player_win.emit()
+		return
+	
+	if advantage == -5:
+		EventBus.battle_player_loose.emit()
+
+
 ## Выполняет атаку карточками игрока, находящимися в слотах
 func force_player_cards_attack() -> void:
 	var cur_slot_id: int = 0
@@ -80,3 +90,4 @@ func _connect_signals() -> void:
 	EventBus.game_state_changed.connect(_on_game_state_changed)
 	EventBus.battle_player_attacked.connect(_on_battle_player_attacked)
 	EventBus.battle_opponent_attacked.connect(_on_battle_opponent_attacked)
+	EventBus.battle_advantage_changed.connect(_on_battle_advantage_changed)
