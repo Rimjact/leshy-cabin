@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://oreknou2sjt8" path="res://scripts/card_ability_stinky.gd" id="1_stinky"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_icon"]
+
+[node name="AbilityStinky" type="Node2D"]
+script = ExtResource("1_stinky")
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="."]
+texture = ExtResource("2_icon")
+region_enabled = true
+region_rect = Rect2(16, 64, 16, 16)

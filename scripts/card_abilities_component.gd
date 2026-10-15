@@ -80,6 +80,15 @@ func get_pre_turn_ability() -> CardAbilityPreTurn:
 	return null
 
 
+## Возвращает способность карточки "Вонючка"
+func get_stinky_ability() -> CardAbilityStinky:
+	var ability: CardAbility = get_ability(&"CardAbilityStinky")
+	if ability is CardAbilityStinky:
+		return ability
+	
+	return null
+
+
 ## Возвращает способность карточки "после выполнения хода"
 func get_after_turn_ability() -> CardAbilityAfterTurn:
 	var ability: CardAbility = get_ability(&"CardAbilityAfterTurn")
@@ -128,6 +137,11 @@ func has_sacriface_ability() -> bool:
 ## Проверяет, имеет ли карточка способность "перед выполнением хода"
 func has_pre_turn_ability() -> bool:
 	return has_ability(&"CardAbilityPreTurn")
+
+
+## Проверяет, имеет ли карточка способность "Вонючка"
+func has_stinky_ability() -> bool:
+	return has_ability(&"CardAbilityStinky")
 
 
 ## Проверяет, имеет ли карточка способность "после выполнения хода"
