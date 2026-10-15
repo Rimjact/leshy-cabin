@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c7nveyq847e46"]
+
+[ext_resource type="PackedScene" uid="uid://bjylicnhwkgog" path="res://objects/abilities/node_card_ability_attack_airborne.tscn" id="1_3q2t3"]
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="1_ovrom"]
+[ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_snv3y"]
+[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="2_h2ckf"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="3_lon7w"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="4_dp2xp"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="5_glg22"]
+
+[resource]
+script = ExtResource("1_snv3y")
+display_name = "Ворон"
+portrait = ExtResource("1_ovrom")
+portrait_region = Rect2(133, 65, 43, 31)
+health = 3
+damage = 2
+currency = 1
+cost = 2
+abilities = Array[PackedScene]([ExtResource("1_3q2t3"), ExtResource("2_h2ckf"), ExtResource("3_lon7w"), ExtResource("4_dp2xp"), ExtResource("5_glg22")])
+metadata/_custom_type_script = "uid://dxxewhernsrcb"

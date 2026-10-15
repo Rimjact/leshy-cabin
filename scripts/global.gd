@@ -85,5 +85,6 @@ const CARDS_NAMES_PULL: Array[String] = [
 	"otter",
 	"skink",
 	"adder",
-	"stinkbug"
+	"stinkbug",
+	"raven"
 ]
