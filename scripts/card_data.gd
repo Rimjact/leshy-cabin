@@ -16,6 +16,6 @@ extends Resource
 ## Валюта обмена
 @export var currency: Global.BarterCurrency = Global.BarterCurrency.FREE
 ## Стоимость в единицах валюты
-@export_range(0, 4, 1) var cost: int = 0
+@export_range(0, 6, 1) var cost: int = 0
 ## Сцены способностей в порядке их следования на карточке
 @export var abilities: Array[PackedScene] = []
