@@ -15,6 +15,7 @@ func place_card_on_slot(card: CardBase, slot: SlotBase, side: Global.BattleSide)
 	add_child(card)
 	card.reparent(slot)
 	card.global_position = slot.global_position
+	card.scale = Vector2(1.0, 1.0)
 	card.state = Global.CardState.IN_SLOT
 	card.side = side
 	EventBus.slot_card_placed.emit(slot, card)
