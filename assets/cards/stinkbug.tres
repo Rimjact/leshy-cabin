@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://jk3emnvcgwq3"]
+
+[ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="1_jit76"]
+[ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_k370e"]
+[ext_resource type="PackedScene" uid="uid://du1hqn088sbbl" path="res://objects/abilities/node_card_ability_attack_default.tscn" id="1_wg35q"]
+[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="2_qd6rq"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="3_tj8mj"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="4_deq7x"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="5_befov"]
+[ext_resource type="PackedScene" path="res://objects/abilities/node_card_ability_stinky.tscn" id="6_n8ry8"]
+
+[resource]
+script = ExtResource("1_k370e")
+display_name = "Жук-вонючка"
+portrait = ExtResource("1_jit76")
+portrait_region = Rect2(45, 97, 43, 31)
+health = 2
+damage = 1
+currency = 2
+cost = 2
+abilities = Array[PackedScene]([ExtResource("1_wg35q"), ExtResource("2_qd6rq"), ExtResource("3_tj8mj"), ExtResource("4_deq7x"), ExtResource("5_befov"), ExtResource("6_n8ry8")])
+metadata/_custom_type_script = "uid://dxxewhernsrcb"
