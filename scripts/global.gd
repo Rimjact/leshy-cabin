@@ -37,6 +37,8 @@ enum GameState {
 	OPPONENT_TURN = 6,
 	OPPONENT_CARDS_ATTACK = 7,
 	OPPONENT_SHOW_HEARTS_BAR = 8,
+	PLAYER_WIN = 9,
+	PLAYER_LOOSE = 10,
 }
 ## Типы стостояния руки
 enum HandState {

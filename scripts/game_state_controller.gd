@@ -31,6 +31,16 @@ func _on_deck_was_empty(_deck: DeckBase) -> void:
 	_ply_decs_empty_count = _ply_decs_empty_count + 1
 
 
+## Когда игрок выиграл
+func _on_battle_player_win() -> void:
+	_change_game_state(Global.GameState.PLAYER_WIN)
+
+
+## Когда игрок проиграл
+func _on_battle_player_loose() -> void:
+	_change_game_state(Global.GameState.PLAYER_LOOSE)
+
+
 ## Преключает состояние игры на следующее
 func _to_next_game_state() -> void:
 	if state in [Global.GameState.GAME_INIT, Global.GameState.OPPONENT_PICK_CARD]:
@@ -65,4 +75,6 @@ func _connect_signals() -> void:
 	EventBus.bell_move_passed.connect(_to_next_game_state)
 	EventBus.battle_player_cards_attack_ended.connect(_to_next_game_state)
 	EventBus.battle_opponent_cards_attack_ended.connect(_to_next_game_state)
+	EventBus.battle_player_win.connect(_on_battle_player_win)
+	EventBus.battle_player_loose.connect(_on_battle_player_loose)
 	EventBus.deck_was_empty.connect(_on_deck_was_empty)
