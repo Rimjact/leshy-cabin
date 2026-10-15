@@ -73,6 +73,7 @@ const CARDS_NAMES_PULL: Array[String] = [
 	"squirrel",
 	"ermine",
 	"wolf",
+	"wolf_cub",
 	"coyote",
 	"sparrow",
 	"grizzly",

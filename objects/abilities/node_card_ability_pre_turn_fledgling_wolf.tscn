@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://x0yqrn4aoi5j"]
+
+[ext_resource type="Script" uid="uid://bkkojubtrctjn" path="res://scripts/card_ability_pre_turn_fledgling.gd" id="1_tm2km"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_3gtwv"]
+
+[node name="AbilityPreTurn" type="Node2D" unique_id=1838784370]
+script = ExtResource("1_tm2km")
+adult_card_name = "wolf"
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="." unique_id=46905215]
+texture = ExtResource("2_3gtwv")
+region_enabled = true
+region_rect = Rect2(0, 112, 16, 16)
