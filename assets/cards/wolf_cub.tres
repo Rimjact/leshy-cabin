@@ -11,7 +11,7 @@
 
 [resource]
 script = ExtResource("1_5r31i")
-display_name = "Волчёнок"
+display_name = "Волчонок"
 portrait = ExtResource("1_ssb4a")
 portrait_region = Rect2(1, 161, 43, 31)
 damage = 1
