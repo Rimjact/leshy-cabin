@@ -1,7 +1,12 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dd8qfc8rduc2w"]
 
+[ext_resource type="PackedScene" uid="uid://dwpc4t1ys0tog" path="res://objects/abilities/node_card_ability_attack_touch_of_death.tscn" id="1_dvc5i"]
 [ext_resource type="Texture2D" uid="uid://pplh2xfw6vyj" path="res://assets/textures/texture_animals.png" id="1_n705q"]
 [ext_resource type="Script" uid="uid://dxxewhernsrcb" path="res://scripts/card_data.gd" id="1_vgta0"]
+[ext_resource type="PackedScene" uid="uid://cwkhq3nf80r4t" path="res://objects/abilities/node_card_ability_defence_default.tscn" id="2_3c7ir"]
+[ext_resource type="PackedScene" uid="uid://cyfk5u7cy4mq4" path="res://objects/abilities/node_card_ability_movement_stay.tscn" id="3_qwa5w"]
+[ext_resource type="PackedScene" uid="uid://bbug36t8ccqdi" path="res://objects/abilities/node_card_ability_sacriface_default.tscn" id="4_yh3yp"]
+[ext_resource type="PackedScene" uid="uid://dpff76jl0imco" path="res://objects/abilities/node_card_ability_targeting_default.tscn" id="5_81o5a"]
 
 [resource]
 script = ExtResource("1_vgta0")
@@ -11,4 +16,5 @@ portrait_region = Rect2(89, 97, 43, 31)
 damage = 1
 currency = 1
 cost = 2
+abilities = Array[PackedScene]([ExtResource("1_dvc5i"), ExtResource("2_3c7ir"), ExtResource("3_qwa5w"), ExtResource("4_yh3yp"), ExtResource("5_81o5a")])
 metadata/_custom_type_script = "uid://dxxewhernsrcb"
