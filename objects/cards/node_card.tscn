@@ -1,4 +1,4 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dtnnyv3cbieqc"]
 
 [ext_resource type="Script" uid="uid://blwuc0q5ksjvn" path="res://scripts/card_base.gd" id="1_card"]
 [ext_resource type="Texture2D" uid="uid://derv8smv52rsi" path="res://assets/textures/texture_card.png" id="2_back"]
@@ -14,7 +14,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oljun"]
 size = Vector2(48, 64)
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("name_label", "portrait_sprite", "health_component", "damage_component", "abilities_component", "barter_component", "card_input_component")]
+[node name="Card" type="Node2D" unique_id=1761155023 node_paths=PackedStringArray("name_label", "portrait_sprite", "health_component", "damage_component", "abilities_component", "barter_component", "card_input_component")]
 z_index = 2
 script = ExtResource("1_card")
 name_label = NodePath("CardNameLabel")
@@ -25,12 +25,12 @@ abilities_component = NodePath("CardAbilitiesComponent")
 barter_component = NodePath("CardBarterComponent")
 card_input_component = NodePath("CardInputComponent")
 
-[node name="CardBackground" type="Sprite2D" parent="."]
+[node name="CardBackground" type="Sprite2D" parent="." unique_id=1120867072]
 texture = ExtResource("2_back")
 region_enabled = true
 region_rect = Rect2(0, 0, 49, 64)
 
-[node name="CardNameLabel" type="Label" parent="."]
+[node name="CardNameLabel" type="Label" parent="." unique_id=360649323]
 offset_left = -22.0
 offset_top = -29.0
 offset_right = 227.0
@@ -41,32 +41,32 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="AnimalSprite" type="Sprite2D" parent="."]
+[node name="AnimalSprite" type="Sprite2D" parent="." unique_id=522803202]
 position = Vector2(0, -4.5)
 texture = ExtResource("4_portrait")
 region_enabled = true
 region_rect = Rect2(1, 1, 43, 31)
 
-[node name="CardHealthComponent" parent="." instance=ExtResource("5_health")]
+[node name="CardHealthComponent" parent="." unique_id=353818519 instance=ExtResource("5_health")]
 position = Vector2(-17, 19)
 
-[node name="CardDamageComponent" parent="." instance=ExtResource("6_damage")]
+[node name="CardDamageComponent" parent="." unique_id=1026186765 instance=ExtResource("6_damage")]
 position = Vector2(17, 19)
 
-[node name="CardAbilitiesComponent" parent="." instance=ExtResource("7_abilities")]
+[node name="CardAbilitiesComponent" parent="." unique_id=304070061 instance=ExtResource("7_abilities")]
 position = Vector2(0, 20)
 
-[node name="CardBarterComponent" parent="." instance=ExtResource("8_barter")]
+[node name="CardBarterComponent" parent="." unique_id=2058275121 instance=ExtResource("8_barter")]
 
-[node name="CardInputComponent" type="Node2D" parent="." node_paths=PackedStringArray("clickbox_component")]
+[node name="CardInputComponent" type="Node2D" parent="." unique_id=1685224023 node_paths=PackedStringArray("clickbox_component")]
 script = ExtResource("9_input")
 clickbox_component = NodePath("../ClickboxComponent")
 
-[node name="ClickboxComponent" type="Area2D" parent="."]
+[node name="ClickboxComponent" type="Area2D" parent="." unique_id=2135137108]
 priority = 2
 script = ExtResource("10_click")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickboxComponent" unique_id=1735687024]
 shape = SubResource("RectangleShape2D_oljun")
 
 [connection signal="ready" from="." to="." method="_connect_to_signals"]
