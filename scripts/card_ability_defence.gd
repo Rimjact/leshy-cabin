@@ -25,6 +25,16 @@ func defence(attack_info: AttackCardInfo) -> void:
 	EventBus.card_damaged.emit(attack_info.victime_card, damage_info)
 
 
+## Вызывается перед выполнением хода карточки
+func prepare_turn(_card: CardBase) -> void:
+	pass
+
+
+## Вызывается после выполнения хода карточки
+func finish_turn(_card: CardBase) -> void:
+	pass
+
+
 ## Регистрирует способность карточки в компонент
 func _enter_tree() -> void:
 	register_ability(&"CardAbilityDefence")

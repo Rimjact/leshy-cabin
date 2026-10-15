@@ -34,9 +34,22 @@ extends Node2D
 @export var card_input_component: CardInputComponent
 
 
+const _FACE_REGION := Rect2(0, 0, 49, 64)
+const _SQUIRREL_BACK_REGION := Rect2(49, 0, 49, 64)
+const _ANIMAL_BACK_REGION := Rect2(98, 0, 49, 64)
+const _FACE_NODE_NAMES: Array[StringName] = [
+	&"CardNameLabel",
+	&"AnimalSprite",
+	&"CardHealthComponent",
+	&"CardDamageComponent",
+	&"CardAbilitiesComponent",
+	&"CardBarterComponent",
+]
+
 var _logger: GameLogger
 
 var _played: bool = false
+var _face_down: bool = false
 
 
 func _ready() -> void:
@@ -68,6 +81,31 @@ func _apply_card_data() -> void:
 		barter_component.apply_cost(card_data.currency, card_data.cost)
 	if abilities_component:
 		abilities_component.apply_abilities(card_data.abilities)
+
+
+## Переворачивает карточку лицевой или задней стороной
+func set_face_down(face_down: bool) -> void:
+	if _face_down == face_down:
+		return
+	
+	_face_down = face_down
+	
+	var background := get_node_or_null("CardBackground") as Sprite2D
+	if background:
+		background.region_rect = _get_back_region() if face_down else _FACE_REGION
+	
+	for node_name: StringName in _FACE_NODE_NAMES:
+		var face_node := get_node_or_null(NodePath(node_name))
+		if face_node:
+			face_node.visible = not face_down
+
+
+## Возвращает область задней стороны на текстуре карточки
+func _get_back_region() -> Rect2:
+	if card_data and card_data.resource_path.get_file() == "squirrel.tres":
+		return _SQUIRREL_BACK_REGION
+	
+	return _ANIMAL_BACK_REGION
 
 
 ## Когда курсор навёлся на эту карточку
@@ -220,6 +258,10 @@ func _on_battle_opponent_cards_attack_ended() -> void:
 
 ## Карточка выполняет свой ход
 func _do_turn(slot_id: int) -> void:
+	var defence_ability := abilities_component.get_defence_ability()
+	if defence_ability:
+		defence_ability.prepare_turn(self)
+	
 	if abilities_component.has_pre_turn_ability():
 		_logger.info("Карточка выполняет действия перед ходом")
 		var card_pre_turn_ability := abilities_component.get_pre_turn_ability()
@@ -250,6 +292,9 @@ func _do_turn(slot_id: int) -> void:
 		_logger.info("Карточка заканчивает ход")
 		var card_after_turn_ability := abilities_component.get_after_turn_ability()
 		card_after_turn_ability.end_turn(self, slot_id)
+	
+	if defence_ability and is_instance_valid(defence_ability):
+		defence_ability.finish_turn(self)
 	
 	_played = true
 

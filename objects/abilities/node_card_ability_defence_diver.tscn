@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cnyfaqw5tf8xd"]
+
+[ext_resource type="Script" uid="uid://diverdef8k2n4p" path="res://scripts/card_ability_defence_diver.gd" id="1_diver"]
+[ext_resource type="Texture2D" uid="uid://bfhk3upw4rsi2" path="res://assets/textures/texture_card_icons.png" id="2_icon"]
+
+[node name="AbilityDefence" type="Node2D"]
+script = ExtResource("1_diver")
+is_unique = true
+
+[node name="AbilityIcon" type="Sprite2D" parent="."]
+texture = ExtResource("2_icon")
+region_enabled = true
+region_rect = Rect2(0, 48, 16, 16)
