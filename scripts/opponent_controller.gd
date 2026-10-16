@@ -40,8 +40,7 @@ func _on_game_state_changed(new_state: Global.GameState) -> void:
 ## Берёт одну карту или сообщает, что взять нечего
 func _pick_card() -> void:
 	var deck: DeckBase = _brain.choose_draw_deck(
-		hand.cards,
-		battle.advantage,
+		_make_situation(),
 		_live_deck(animals_deck),
 		_live_deck(squirrels_deck),
 	)
@@ -64,13 +63,7 @@ func _play_turn() -> void:
 		if not _is_opponent_turn():
 			return
 		
-		var play: OpponentBrain.Play = _brain.choose_play(
-			hand.cards,
-			battle.advantage,
-			bones,
-			_deck_size(_live_deck(animals_deck)),
-			_player_decks_empty(),
-		)
+		var play: OpponentBrain.Play = _brain.choose_play(_make_situation())
 		if play == null:
 			break
 		
@@ -83,6 +76,16 @@ func _play_turn() -> void:
 		EventBus.bell_move_passed.emit()
 
 
+func _make_situation() -> OpponentSituation:
+	var situation := OpponentSituation.new()
+	situation.hand = hand.cards
+	situation.advantage = battle.advantage
+	situation.bones = bones
+	situation.animals_left = _deck_size(_live_deck(animals_deck))
+	situation.player_decks_empty = _player_decks_empty()
+	return situation
+
+
 func _execute_play(play: OpponentBrain.Play) -> void:
 	for sacrifice: CardBase in play.sacrifices:
 		if is_instance_valid(sacrifice):
@@ -92,33 +95,35 @@ func _execute_play(play: OpponentBrain.Play) -> void:
 	if not is_instance_valid(card):
 		return
 	
+	_pay_bones(card)
+	_place_card(play.slot, card)
+
+
+func _pay_bones(card: CardBase) -> void:
 	if card.barter_component.currency == Global.BarterCurrency.BONES:
 		bones -= card.barter_component.cost
-	
+
+
+func _place_card(slot: SlotBase, card: CardBase) -> void:
 	card.side = Global.BattleSide.OPPONENT
-	EventBus.slot_card_placed.emit(play.slot, card, false)
-	_logger.info("Противник разыграл карту на слот " + play.slot.name)
+	EventBus.slot_card_placed.emit(slot, card, false)
+	_logger.info("Противник разыграл карту на слот " + slot.name)
 
 
 ## Приносит карту в жертву, не начисляя кости игроку
 func _sacrifice(card: CardBase) -> void:
-	var slot: SlotBase = _slot_with(card)
+	var slot: SlotBase = SlotsManager.get_opponent_slot_of(card)
 	var ability: CardAbilitySacriface = card.abilities_component.get_sacriface_ability()
-	var stays: bool = ability is CardAbilitySacrifaceManyLives
 	if ability:
 		ability.sacriface(card)
 	
 	bones += OpponentBrain.BONES_PER_SACRIFICE
-	if slot and not stays:
+	if slot and not _sacrifice_stays(ability):
 		slot.card = null
 
 
-func _slot_with(card: CardBase) -> SlotBase:
-	for slot: SlotBase in SlotsManager.opponent_slots:
-		if is_instance_valid(slot.card) and slot.card == card:
-			return slot
-	
-	return null
+func _sacrifice_stays(ability: CardAbilitySacriface) -> bool:
+	return ability is CardAbilitySacrifaceManyLives
 
 
 func _wait_action() -> void:

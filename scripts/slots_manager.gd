@@ -132,6 +132,15 @@ static func get_player_slot_id(slot: SlotBase) -> int:
 	return -1
 
 
+## Возвращает слот оппонента, на котором лежит карта, или null
+static func get_opponent_slot_of(card: CardBase) -> SlotBase:
+	for slot: SlotBase in opponent_slots:
+		if is_instance_valid(slot.card) and slot.card == card:
+			return slot
+	
+	return null
+
+
 ## Возвращает id слота оппонента по его экземпляру, вернёт -1 если не найден
 static func get_opponent_slot_id(slot: SlotBase) -> int:
 	var id: int = 0

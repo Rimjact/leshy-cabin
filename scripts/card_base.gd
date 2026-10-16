@@ -103,9 +103,14 @@ func set_face_down(face_down: bool) -> void:
 			face_node.visible = not face_down
 
 
+## Возвращает true, если это белка
+func is_squirrel() -> bool:
+	return card_data != null and card_data.resource_path.get_file() == "squirrel.tres"
+
+
 ## Возвращает область задней стороны на текстуре карточки
 func _get_back_region() -> Rect2:
-	if card_data and card_data.resource_path.get_file() == "squirrel.tres":
+	if is_squirrel():
 		return _SQUIRREL_BACK_REGION
 	
 	return _ANIMAL_BACK_REGION

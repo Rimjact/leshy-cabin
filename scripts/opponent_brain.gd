@@ -20,10 +20,15 @@ class Payment:
 	var sacrifices: Array[CardBase] = []
 
 
+class SacrificeCandidates:
+	var squirrels: Array[CardBase] = []
+	var others: Array[CardBase] = []
+	var repeatable: CardBase = null
+
+
 ## Выбирает колоду, из которой противник возьмёт карту. null, если брать нечего
 func choose_draw_deck(
-	hand: Array[CardBase],
-	advantage: int,
+	situation: OpponentSituation,
 	animals_deck: DeckBase,
 	squirrels_deck: DeckBase,
 ) -> DeckBase:
@@ -32,15 +37,8 @@ func choose_draw_deck(
 	if not animals_ready and not squirrels_ready:
 		return null
 	
-	var cheapest_blood: int = _cheapest_blood_cost(hand)
-	var blood_ready: int = _sacrifice_capacity(_board_cards())
-	var needs_squirrel: bool = cheapest_blood >= 0 and blood_ready < cheapest_blood
-	if needs_squirrel and squirrels_ready:
+	if _needs_squirrel(situation) and squirrels_ready:
 		return squirrels_deck
-	
-	var victims_are_enough: bool = cheapest_blood < 0 or blood_ready >= cheapest_blood
-	if animals_ready and (advantage < 0 or victims_are_enough):
-		return animals_deck
 	if animals_ready:
 		return animals_deck
 	if squirrels_ready:
@@ -50,150 +48,172 @@ func choose_draw_deck(
 
 
 ## Возвращает лучшее действие или null, если ход пора сдавать
-func choose_play(
-	hand: Array[CardBase],
-	advantage: int,
-	bones: int,
-	animals_left: int,
-	player_decks_empty: bool,
-) -> Play:
-	var empty_slots: Array[SlotBase] = _empty_opponent_slots()
-	var board: Array[CardBase] = _board_cards()
+func choose_play(situation: OpponentSituation) -> Play:
+	var board: OpponentBoard = OpponentBoard.capture()
+	var best: Play = _best_animal_play(situation, board)
+	if best:
+		return best
+	
+	return _setup_squirrel(situation, board)
+
+
+## Ищет самую выгодную животную карту, которую можно оплатить
+func _best_animal_play(situation: OpponentSituation, board: OpponentBoard) -> Play:
 	var best: Play = null
 	var best_score: float = 0.0
 	
-	for card: CardBase in hand:
-		if not is_instance_valid(card) or _is_squirrel(card):
+	for card: CardBase in situation.hand:
+		if not is_instance_valid(card) or card.is_squirrel():
 			continue
 		
-		var payment: Payment = _payment_for(card, bones, board)
+		var payment: Payment = _payment_for(card, situation.bones, board.cards)
 		if not payment.can_pay:
 			continue
 		
-		for slot: SlotBase in _slots_opened_by(payment, empty_slots):
-			var score: float = _score_play(card, slot, advantage, animals_left, player_decks_empty)
+		for slot: SlotBase in _slots_opened_by(payment, board.empty_slots):
+			var score: float = _score_play(card, slot, situation)
 			if score <= best_score:
 				continue
 			
 			best_score = score
-			best = Play.new()
-			best.card = card
-			best.slot = slot
-			best.sacrifices = payment.sacrifices
+			best = _make_play(card, slot, payment.sacrifices)
 	
-	if best:
-		return best
-	
-	return _setup_squirrel(hand, advantage, animals_left, player_decks_empty, empty_slots, board)
+	return best
 
 
 ## Кладёт белку только чтобы потом принести её в жертву под сильную кровную карту
-func _setup_squirrel(
-	hand: Array[CardBase],
-	advantage: int,
-	animals_left: int,
-	player_decks_empty: bool,
-	empty_slots: Array[SlotBase],
-	board: Array[CardBase],
-) -> Play:
-	var squirrel: CardBase = _first_squirrel(hand)
-	if squirrel == null or empty_slots.is_empty():
+func _setup_squirrel(situation: OpponentSituation, board: OpponentBoard) -> Play:
+	var squirrel: CardBase = _first_squirrel(situation.hand)
+	if squirrel == null or board.empty_slots.is_empty():
+		return null
+	if not _has_blood_followup(situation, board, squirrel):
 		return null
 	
-	var blood_ready: int = _sacrifice_capacity(board)
-	var has_followup: bool = false
-	for card: CardBase in hand:
+	var slot: SlotBase = _least_useful_slot(board.empty_slots, situation.advantage)
+	var sacrifices: Array[CardBase] = []
+	return _make_play(squirrel, slot, sacrifices)
+
+
+func _has_blood_followup(
+	situation: OpponentSituation,
+	board: OpponentBoard,
+	squirrel: CardBase,
+) -> bool:
+	var blood_ready: int = _sacrifice_capacity(board.cards)
+	for card: CardBase in situation.hand:
 		if card == squirrel or not is_instance_valid(card):
 			continue
 		if card.barter_component.currency != Global.BarterCurrency.VICTIMS:
 			continue
 		if card.barter_component.cost <= blood_ready:
 			continue
-		
-		for slot: SlotBase in empty_slots:
-			var score: float = _score_play(card, slot, advantage, animals_left, player_decks_empty)
-			if score > 0.0:
-				has_followup = true
-				break
-		
-		if has_followup:
-			break
+		if _scores_on_empty_slot(card, board.empty_slots, situation):
+			return true
 	
-	if not has_followup:
-		return null
-	
-	var play := Play.new()
-	play.card = squirrel
-	play.slot = _least_useful_slot(empty_slots, advantage)
-	return play
+	return false
 
 
-func _score_play(
+func _scores_on_empty_slot(
 	card: CardBase,
-	slot: SlotBase,
-	advantage: int,
-	animals_left: int,
-	player_decks_empty: bool,
-) -> float:
-	var slot_id: int = SlotsManager.get_opponent_slot_id(slot)
-	var lane: CardBase = _live_card(SlotsManager.get_card_on_player_slot(slot_id))
+	empty_slots: Array[SlotBase],
+	situation: OpponentSituation,
+) -> bool:
+	for slot: SlotBase in empty_slots:
+		if _score_play(card, slot, situation) > 0.0:
+			return true
+	
+	return false
+
+
+func _score_play(card: CardBase, slot: SlotBase, situation: OpponentSituation) -> float:
+	var lane: CardBase = _player_card_opposite(slot)
+	return _score_lane(card, lane, situation.advantage) + _score_resources(card, situation)
+
+
+func _score_lane(card: CardBase, lane: CardBase, advantage: int) -> float:
+	if lane == null:
+		return _score_empty_lane(card, advantage)
+	
+	return _score_occupied_lane(card, lane, advantage)
+
+
+func _score_empty_lane(card: CardBase, advantage: int) -> float:
+	var damage: float = card.damage_component.damage
+	var lane_value: float = _empty_lane_value(advantage)
+	if advantage <= -2:
+		# Штраф слабого преимущества в ценности линии плоский и не умножается на урон
+		return damage * (lane_value + 1.0) - 1.0
+	
+	return damage * lane_value
+
+
+func _score_occupied_lane(card: CardBase, lane: CardBase, advantage: int) -> float:
 	var our_damage: int = card.damage_component.damage
 	var our_health: int = card.health_component.health
+	var their_damage: int = lane.damage_component.damage
+	var their_health: int = lane.health_component.health
 	var score: float = 0.0
 	
-	if lane == null:
-		score += our_damage * 3.0
-		if advantage >= 3:
-			score += our_damage * 2.0
-		if advantage <= -2:
-			score -= 1.0
+	if our_damage >= their_health:
+		score += 8.0 + their_damage
 	else:
-		var their_damage: int = lane.damage_component.damage
-		var their_health: int = lane.health_component.health
-		if our_damage >= their_health:
-			score += 8.0 + their_damage
-		else:
-			score += our_damage
-		if advantage <= 0:
-			score += their_damage * 2.0
-		if our_health <= their_damage:
-			score -= 3.0
-		if our_damage >= their_health and our_health > their_damage:
-			score += 4.0
+		score += our_damage
+	if advantage <= 0:
+		score += their_damage * 2.0
+	if our_health <= their_damage:
+		score -= 3.0
+	if our_damage >= their_health and our_health > their_damage:
+		score += 4.0
 	
-	score -= card.barter_component.cost
-	if animals_left <= 2:
+	return score
+
+
+func _score_resources(card: CardBase, situation: OpponentSituation) -> float:
+	var score: float = -card.barter_component.cost
+	if situation.animals_left <= 2:
 		score -= 2.0
-	if player_decks_empty:
+	if situation.player_decks_empty:
 		score += 2.0
 	
 	return score
 
 
 func _payment_for(card: CardBase, bones: int, board: Array[CardBase]) -> Payment:
-	var payment := Payment.new()
 	var currency: Global.BarterCurrency = card.barter_component.currency
 	var cost: int = card.barter_component.cost
 	
 	if currency == Global.BarterCurrency.FREE or cost <= 0:
+		return _free_payment()
+	if currency == Global.BarterCurrency.VICTIMS:
+		return _pay_with_victims(cost, board)
+	if currency == Global.BarterCurrency.BONES:
+		return _pay_with_bones(cost, bones, board)
+	
+	return Payment.new()
+
+
+func _free_payment() -> Payment:
+	var payment := Payment.new()
+	payment.can_pay = true
+	return payment
+
+
+func _pay_with_victims(cost: int, board: Array[CardBase]) -> Payment:
+	var payment := Payment.new()
+	payment.sacrifices = _pick_sacrifices(cost, board)
+	payment.can_pay = payment.sacrifices.size() >= cost
+	return payment
+
+
+func _pay_with_bones(cost: int, bones: int, board: Array[CardBase]) -> Payment:
+	var payment := Payment.new()
+	if bones >= cost:
 		payment.can_pay = true
 		return payment
 	
-	if currency == Global.BarterCurrency.VICTIMS:
-		payment.sacrifices = _pick_sacrifices(cost, board)
-		payment.can_pay = payment.sacrifices.size() >= cost
-		return payment
-	
-	if currency == Global.BarterCurrency.BONES:
-		if bones >= cost:
-			payment.can_pay = true
-			return payment
-		
-		var needed: int = ceili(float(cost - bones) / float(BONES_PER_SACRIFICE))
-		payment.sacrifices = _pick_sacrifices(needed, board)
-		payment.can_pay = payment.sacrifices.size() >= needed
-		return payment
-	
+	var needed: int = ceili(float(cost - bones) / float(BONES_PER_SACRIFICE))
+	payment.sacrifices = _pick_sacrifices(needed, board)
+	payment.can_pay = payment.sacrifices.size() >= needed
 	return payment
 
 
@@ -203,40 +223,39 @@ func _pick_sacrifices(needed: int, board: Array[CardBase]) -> Array[CardBase]:
 	if needed <= 0:
 		return result
 	
-	var squirrels: Array[CardBase] = []
-	var others: Array[CardBase] = []
-	var repeatable: CardBase = null
-	
+	var candidates: SacrificeCandidates = _sacrifice_candidates(board)
+	_take_sacrifices(result, candidates.squirrels, needed)
+	if candidates.repeatable:
+		while result.size() < needed:
+			result.append(candidates.repeatable)
+	_take_sacrifices(result, candidates.others, needed)
+	return result
+
+
+func _sacrifice_candidates(board: Array[CardBase]) -> SacrificeCandidates:
+	var candidates := SacrificeCandidates.new()
 	for card: CardBase in board:
 		if not _can_sacrifice(card):
 			continue
 		if _is_repeatable_sacrifice(card):
-			if repeatable == null:
-				repeatable = card
-		elif _is_squirrel(card):
-			squirrels.append(card)
+			if candidates.repeatable == null:
+				candidates.repeatable = card
+		elif card.is_squirrel():
+			candidates.squirrels.append(card)
 		else:
-			others.append(card)
+			candidates.others.append(card)
 	
-	others.sort_custom(func(a: CardBase, b: CardBase) -> bool:
+	candidates.others.sort_custom(func(a: CardBase, b: CardBase) -> bool:
 		return a.damage_component.damage < b.damage_component.damage
 	)
-	
-	for card: CardBase in squirrels:
+	return candidates
+
+
+func _take_sacrifices(result: Array[CardBase], cards: Array[CardBase], needed: int) -> void:
+	for card: CardBase in cards:
 		if result.size() >= needed:
 			break
 		result.append(card)
-	
-	if repeatable:
-		while result.size() < needed:
-			result.append(repeatable)
-	
-	for card: CardBase in others:
-		if result.size() >= needed:
-			break
-		result.append(card)
-	
-	return result
 
 
 func _sacrifice_capacity(board: Array[CardBase]) -> int:
@@ -249,6 +268,12 @@ func _sacrifice_capacity(board: Array[CardBase]) -> int:
 		count += 1
 	
 	return count
+
+
+func _needs_squirrel(situation: OpponentSituation) -> bool:
+	var cheapest_blood: int = _cheapest_blood_cost(situation.hand)
+	var blood_ready: int = _sacrifice_capacity(OpponentBoard.capture().cards)
+	return cheapest_blood >= 0 and blood_ready < cheapest_blood
 
 
 func _cheapest_blood_cost(hand: Array[CardBase]) -> int:
@@ -279,21 +304,31 @@ func _least_useful_slot(empty_slots: Array[SlotBase], advantage: int) -> SlotBas
 
 
 func _lane_value(slot: SlotBase, advantage: int) -> float:
-	var slot_id: int = SlotsManager.get_opponent_slot_id(slot)
-	var player_card: CardBase = _live_card(SlotsManager.get_card_on_player_slot(slot_id))
+	var player_card: CardBase = _player_card_opposite(slot)
 	if player_card == null:
-		var value: float = 3.0
-		if advantage >= 3:
-			value += 2.0
-		if advantage <= -2:
-			value -= 1.0
-		return value
+		return _empty_lane_value(advantage)
 	
 	var their_damage: float = player_card.damage_component.damage
 	if advantage <= 0:
 		return their_damage * 2.0
 	
 	return their_damage
+
+
+## База 3, бонус при преимуществе от 3, плоский штраф при преимуществе до -2
+func _empty_lane_value(advantage: int) -> float:
+	var value: float = 3.0
+	if advantage >= 3:
+		value += 2.0
+	if advantage <= -2:
+		value -= 1.0
+	
+	return value
+
+
+func _player_card_opposite(slot: SlotBase) -> CardBase:
+	var slot_id: int = SlotsManager.get_opponent_slot_id(slot)
+	return _live_card(SlotsManager.get_card_on_player_slot(slot_id))
 
 
 ## Пустые слоты и слоты, которые освободит эта оплата
@@ -305,43 +340,16 @@ func _slots_opened_by(payment: Payment, empty_slots: Array[SlotBase]) -> Array[S
 		if not is_instance_valid(sacrifice) or _is_repeatable_sacrifice(sacrifice):
 			continue
 		
-		var slot: SlotBase = _slot_of(sacrifice)
+		var slot: SlotBase = SlotsManager.get_opponent_slot_of(sacrifice)
 		if slot and not slots.has(slot):
 			slots.append(slot)
 	
 	return slots
 
 
-func _slot_of(card: CardBase) -> SlotBase:
-	for slot: SlotBase in SlotsManager.opponent_slots:
-		if is_instance_valid(slot.card) and slot.card == card:
-			return slot
-	
-	return null
-
-
-func _empty_opponent_slots() -> Array[SlotBase]:
-	var slots: Array[SlotBase] = []
-	for slot: SlotBase in SlotsManager.opponent_slots:
-		if _live_card(slot.card) == null:
-			slots.append(slot)
-	
-	return slots
-
-
-func _board_cards() -> Array[CardBase]:
-	var cards: Array[CardBase] = []
-	for slot: SlotBase in SlotsManager.opponent_slots:
-		var card: CardBase = _live_card(slot.card)
-		if card:
-			cards.append(card)
-	
-	return cards
-
-
 func _first_squirrel(hand: Array[CardBase]) -> CardBase:
 	for card: CardBase in hand:
-		if is_instance_valid(card) and _is_squirrel(card):
+		if is_instance_valid(card) and card.is_squirrel():
 			return card
 	
 	return null
@@ -356,13 +364,6 @@ func _is_repeatable_sacrifice(card: CardBase) -> bool:
 	return ability is CardAbilitySacrifaceManyLives
 
 
-func _is_squirrel(card: CardBase) -> bool:
-	if card == null or card.card_data == null:
-		return false
-	
-	return card.card_data.resource_path.get_file() == "squirrel.tres"
-
-
 func _deck_has_cards(deck: DeckBase) -> bool:
 	return deck != null and is_instance_valid(deck) and not deck.cards.is_empty()
 
@@ -372,3 +373,11 @@ func _live_card(card: Variant) -> CardBase:
 		return null
 	
 	return card as CardBase
+
+
+func _make_play(card: CardBase, slot: SlotBase, sacrifices: Array[CardBase]) -> Play:
+	var play := Play.new()
+	play.card = card
+	play.slot = slot
+	play.sacrifices = sacrifices
+	return play
