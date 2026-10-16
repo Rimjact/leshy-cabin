@@ -26,6 +26,9 @@ func _ready() -> void:
 func _update_hearts_view(value: int) -> void:
     _show_all_hearts()
     
+    if value == 0:
+        _move_arrow(0.0)
+
     if value > 0:
         _hide_opponent_hearts(value)
         return
