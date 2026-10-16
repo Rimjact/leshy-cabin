@@ -100,6 +100,15 @@ func _on_barter_card_sacrifaced(_card: CardBase) -> void:
 	_show_victims_cost_counter(card_cost - sacriface_count)
 
 
+## Когда карточка была уничтожена
+func _on_card_destroyed(card: CardBase) -> void:
+	if card.side != Global.BattleSide.PLAYER:
+		return
+	
+	bones += 2
+	_update_bones_counter_text()
+
+
 ## Когда обмен карточки завершён за жертвы
 func _on_barter_card_victims_completed(_card: CardBase) -> void:
 	_logger.info("Игрок завершил обмен карточки за жертвы")
@@ -186,6 +195,7 @@ func _exit_from_sacriface_mode() -> void:
 func _connect_signals() -> void:
 	EventBus.card_selected.connect(_on_card_selected)
 	EventBus.card_deselected.connect(_on_card_deselected)
+	EventBus.card_destroyed.connect(_on_card_destroyed)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
 	EventBus.barter_sacriface_mode_entered.connect(_on_barter_sacriface_mode_entered)
 	EventBus.barter_sacriface_mode_exited.connect(_on_barter_sacriface_mode_exited)
