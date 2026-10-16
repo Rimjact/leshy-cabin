@@ -9,15 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://chvyeytdgjlk0" path="res://objects/node_deck_animals.tscn" id="3_rum4d"]
 [ext_resource type="PackedScene" uid="uid://bbmu6yclvk8ku" path="res://objects/node_deck_squirrels.tscn" id="4_3oc74"]
 [ext_resource type="PackedScene" uid="uid://nlvv2sadxfm6" path="res://objects/node_advantage_bar.tscn" id="4_pxwbd"]
+[ext_resource type="Script" uid="uid://bilbei0vsxms0" path="res://scripts/opponent_cards_controller.gd" id="5_opphand"]
 [ext_resource type="Script" uid="uid://dh4nwyahp7flb" path="res://scripts/player_cards_controller.gd" id="5_pxl38"]
-[ext_resource type="Resource" path="res://assets/cards/ermine.tres" id="8_ermine"]
-[ext_resource type="PackedScene" uid="uid://dtnnyv3cbieqc" path="res://objects/cards/node_card.tscn" id="8_jmar4"]
 [ext_resource type="Script" uid="uid://sn3dgyckpo4a" path="res://scripts/barter_controller.gd" id="9_xn66u"]
 [ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="10_tmjjs"]
 [ext_resource type="LabelSettings" uid="uid://0e6xjv3na50m" path="res://assets/labels/ls_barter_bones_value.tres" id="11_pr842"]
 [ext_resource type="Script" uid="uid://cxamya185v4fj" path="res://scripts/slots_manager.gd" id="11_qga8c"]
 [ext_resource type="Script" uid="uid://bs0vq34qscr50" path="res://scripts/battle_controller.gd" id="11_tfcxk"]
 [ext_resource type="LabelSettings" uid="uid://c5hg4bphx82l4" path="res://assets/labels/ls_barter_bones_substruct_value.tres" id="12_y12tl"]
+[ext_resource type="Script" uid="uid://cuutyysm3xdgh" path="res://scripts/opponent_controller.gd" id="13_oppctl"]
 
 [node name="BattleScene" type="CanvasLayer" unique_id=1252692285]
 layer = 0
@@ -53,6 +53,21 @@ position = Vector2(28, 0)
 [node name="SquirrelsDeck" parent="Table/PlayerDecks" unique_id=595082322 instance=ExtResource("4_3oc74")]
 position = Vector2(-28, 0)
 
+[node name="OpponentDecks" type="Node2D" parent="Table" unique_id=1326386119]
+position = Vector2(364, -16)
+
+[node name="AnimalsDeck" parent="Table/OpponentDecks" unique_id=461684528 instance=ExtResource("3_rum4d")]
+position = Vector2(28, 0)
+side = 1
+
+[node name="SquirrelsDeck" parent="Table/OpponentDecks" unique_id=364915966 instance=ExtResource("4_3oc74")]
+position = Vector2(-28, 0)
+side = 1
+
+[node name="OpponentCardsController" type="Node2D" parent="Table" unique_id=1571869410]
+position = Vector2(180, -16)
+script = ExtResource("5_opphand")
+
 [node name="PlayerCardsController" type="Node2D" parent="Table" unique_id=2000464908]
 position = Vector2(180, 200)
 script = ExtResource("5_pxl38")
@@ -75,14 +90,8 @@ position = Vector2(84, 35)
 [node name="OpponentSlots" type="Node2D" parent="Table" unique_id=1621853922]
 position = Vector2(180, 88)
 
-[node name="OpponentSlot1" parent="Table/OpponentSlots" unique_id=2003118212 node_paths=PackedStringArray("card") instance=ExtResource("3_pxwbd")]
+[node name="OpponentSlot1" parent="Table/OpponentSlots" unique_id=2003118212 instance=ExtResource("3_pxwbd")]
 position = Vector2(-84, -35)
-side = 1
-card = NodePath("Card")
-
-[node name="Card" parent="Table/OpponentSlots/OpponentSlot1" unique_id=621617987 instance=ExtResource("8_jmar4")]
-card_data = ExtResource("8_ermine")
-state = 4
 side = 1
 
 [node name="OpponentSlot2" parent="Table/OpponentSlots" unique_id=1429249207 instance=ExtResource("3_pxwbd")]
@@ -182,11 +191,27 @@ _card_attack_timer = NodePath("CardAttackTimer")
 [node name="CardAttackTimer" type="Timer" parent="BattleController" unique_id=506672764]
 one_shot = true
 
+[node name="OpponentController" type="Node2D" parent="." unique_id=1124780018 node_paths=PackedStringArray("animals_deck", "squirrels_deck", "player_animals_deck", "player_squirrels_deck", "hand", "battle", "action_timer")]
+script = ExtResource("13_oppctl")
+animals_deck = NodePath("../Table/OpponentDecks/AnimalsDeck")
+squirrels_deck = NodePath("../Table/OpponentDecks/SquirrelsDeck")
+player_animals_deck = NodePath("../Table/PlayerDecks/AnimalsDeck")
+player_squirrels_deck = NodePath("../Table/PlayerDecks/SquirrelsDeck")
+hand = NodePath("../Table/OpponentCardsController")
+battle = NodePath("../BattleController")
+action_timer = NodePath("ActionTimer")
+
+[node name="ActionTimer" type="Timer" parent="OpponentController" unique_id=1426659289]
+wait_time = 0.35
+one_shot = true
+
 [node name="GameStateController" type="Node2D" parent="." unique_id=1327787416]
 script = ExtResource("3_pxl38")
 
+[connection signal="ready" from="Table/OpponentCardsController" to="Table/OpponentCardsController" method="_connect_signals"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_enable_picking_sort"]
 [connection signal="ready" from="Table/PlayerCardsController" to="Table/PlayerCardsController" method="_connect_to_signals"]
 [connection signal="ready" from="BattleController" to="BattleController" method="_connect_signals"]
+[connection signal="ready" from="OpponentController" to="OpponentController" method="_connect_signals"]
 [connection signal="ready" from="GameStateController" to="GameStateController" method="_to_next_game_state"]
 [connection signal="ready" from="GameStateController" to="GameStateController" method="_connect_signals"]
