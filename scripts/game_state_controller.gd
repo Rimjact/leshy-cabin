@@ -27,7 +27,10 @@ static func get_current_state() -> Global.GameState:
 
 
 ## Когда колода опустела
-func _on_deck_was_empty(_deck: DeckBase) -> void:
+func _on_deck_was_empty(deck: DeckBase) -> void:
+	if deck.side != Global.BattleSide.PLAYER:
+		return
+	
 	_ply_decs_empty_count = _ply_decs_empty_count + 1
 
 
@@ -46,11 +49,15 @@ func _to_next_game_state() -> void:
 	if state in [Global.GameState.PLAYER_WIN, Global.GameState.PLAYER_LOOSE]:
 		return
 
-	if state in [Global.GameState.GAME_INIT, Global.GameState.OPPONENT_PICK_CARD]:
+	if state == Global.GameState.GAME_INIT:
 		_change_game_state(Global.GameState.PLAYER_PICK_CARD)
 		return
 	
-	if state in [Global.GameState.PLAYER_CARDS_ATTACK]:
+	if state == Global.GameState.PLAYER_CARDS_ATTACK:
+		_change_game_state(Global.GameState.OPPONENT_PICK_CARD)
+		return
+	
+	if state == Global.GameState.OPPONENT_CARDS_ATTACK:
 		_logger.debug("Пустых колод у игрока: " + var_to_str(_ply_decs_empty_count))
 		if _ply_decs_empty_count == 2:
 			_change_game_state(Global.GameState.PLAYER_TURN)
@@ -75,6 +82,7 @@ func _change_game_state(new_state: Global.GameState) -> void:
 ## Подключает сигналы Шины
 func _connect_signals() -> void:
 	EventBus.deck_card_given.connect(_to_next_game_state)
+	EventBus.opponent_pick_resolved.connect(_to_next_game_state)
 	EventBus.bell_move_passed.connect(_to_next_game_state)
 	EventBus.battle_player_cards_attack_ended.connect(_to_next_game_state)
 	EventBus.battle_opponent_cards_attack_ended.connect(_to_next_game_state)

@@ -188,10 +188,25 @@ func _on_player_card_added(card: CardBase) -> void:
 	_logger.info("Карточка добавлена игроку в руки")
 
 
+## Когда противнику добавлена карточка
+func _on_opponent_card_added(card: CardBase) -> void:
+	if card != self:
+		return
+	
+	card_input_component.disable_input()
+	set_face_down(true)
+	visible = true
+	state = Global.CardState.IN_HAND
+	_logger.info("Карточка добавлена противнику в руки")
+
+
 ## Когда карточка установлена на слот
 func _on_slot_card_placed(slot: SlotBase, card: CardBase, _by_card_ability: bool) -> void:
 	if card != self:
 		return
+	
+	if side == Global.BattleSide.OPPONENT:
+		set_face_down(false)
 	
 	state = Global.CardState.ON_MOVE
 	_change_pos_tween(slot.global_position, Global.CardState.IN_SLOT)
@@ -387,6 +402,7 @@ func _connect_to_signals() -> void:
 	EventBus.card_in_player_deck_position_updated.connect(_on_card_in_player_deck_position_updated)
 	EventBus.card_destroyed.connect(_on_card_destroyed)
 	EventBus.player_card_added.connect(_on_player_card_added)
+	EventBus.opponent_card_added.connect(_on_opponent_card_added)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
 	EventBus.battle_player_card_turn.connect(_on_battle_player_card_turn)
 	EventBus.battle_opponent_card_turn.connect(_on_battle_opponent_card_turn)

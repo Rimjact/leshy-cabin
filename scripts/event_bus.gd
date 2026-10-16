@@ -92,6 +92,14 @@ signal player_card_added(card: CardBase)
 ## Вызывается, когда у игрока убарна карточка
 signal player_card_removed(card: CardBase)
 
+######## OPPONENT ########
+## Вызывается, когда противнику добавлена карточка
+signal opponent_card_added(card: CardBase)
+## Вызывается, когда количество карт в руке противника обновлено
+signal opponent_cards_count_changed()
+## Вызывается, когда противник закончил брать карточку или пропустил взятие
+signal opponent_pick_resolved()
+
 ######## GAME STATE CONTROLLER ########
 ## Вызывается, когда состояние игры изменено
 signal game_state_changed(state: Global.GameState)

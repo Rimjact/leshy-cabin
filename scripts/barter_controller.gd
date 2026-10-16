@@ -64,6 +64,8 @@ func _on_card_deselected(card: CardBase) -> void:
 func _on_slot_card_placed(_slot: SlotBase, card: CardBase, by_card_ability: bool) -> void:
 	if by_card_ability:
 		return
+	if card.side != Global.BattleSide.PLAYER:
+		return
 	if card.barter_component.currency == Global.BarterCurrency.BONES:
 		bones -= card.barter_component.cost
 		_update_bones_counter_text()

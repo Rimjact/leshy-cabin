@@ -57,6 +57,14 @@ func _on_slot_attacked(attack_info: AttackSlotInfo) -> void:
 			_redirect_attack_to_owner(attack_info.damage)
 
 
+## Когда карточка уничтожена
+func _on_card_destroyed(destroyed_card: CardBase) -> void:
+	if destroyed_card != card:
+		return
+	
+	card = null
+
+
 ## Когда карточка переместилась
 func _on_card_moved(new_card: CardBase, from_slot: SlotBase, to_slot: SlotBase) -> void:
 	if from_slot == self:
@@ -96,4 +104,5 @@ func _connect_signals() -> void:
 	EventBus.slot_cursor_left_button_clicked.connect(_on_slot_cursor_left_button_clicked)
 	EventBus.slot_card_placed.connect(_on_slot_card_placed)
 	EventBus.slot_attacked.connect(_on_slot_attacked)
+	EventBus.card_destroyed.connect(_on_card_destroyed)
 	EventBus.card_moved.connect(_on_card_moved)
