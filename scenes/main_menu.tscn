@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bwp6v0x5eym8f"]
+
+[ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_a8gd2"]
+[ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_hstxw"]
+
+[node name="MainMenuScene" type="CanvasLayer" unique_id=1252692285]
+layer = 0
+
+[node name="Background" type="TextureRect" parent="." unique_id=1473880473]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a8gd2")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1079478341]
+position = Vector2(213, 120)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1096187331]
+color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1677803358]
+position = Vector2(213, 120)
+texture = ExtResource("2_hstxw")
+height = 125.0
