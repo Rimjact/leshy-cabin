@@ -1,0 +1,387 @@
+[gd_scene format=3 uid="uid://bwp6v0x5eym8f"]
+
+[ext_resource type="Texture2D" uid="uid://ueb1r27g3ddi" path="res://assets/textures/canvas_texture_table.tres" id="1_3kjnk"]
+[ext_resource type="Texture2D" uid="uid://dtyi5v24xt3p7" path="res://assets/textures/texture_table_light.png" id="2_lbamw"]
+[ext_resource type="SpriteFrames" uid="uid://r44aqvqo6e2y" path="res://assets/animations/sf_first_candle_fire.tres" id="3_1movh"]
+[ext_resource type="Texture2D" uid="uid://dod3uw8a3bbo2" path="res://assets/textures/towel.png" id="3_v0kd0"]
+[ext_resource type="Texture2D" uid="uid://c6hi3io61m5xg" path="res://assets/textures/texture_candle_fire_light.png" id="4_v0kd0"]
+[ext_resource type="Texture2D" uid="uid://cdnxop556e7tp" path="res://assets/textures/canvas_texture_menu.tres" id="5_lbamw"]
+[ext_resource type="SpriteFrames" uid="uid://b6cprmtsecxk7" path="res://assets/animations/sf_third_candle_fire.tres" id="7_3re45"]
+[ext_resource type="SpriteFrames" uid="uid://b3ces4g2dyug2" path="res://assets/animations/sf_second_candle_fire.tres" id="7_6k25j"]
+[ext_resource type="LabelSettings" uid="uid://bcleeey1e1fuw" path="res://assets/labels/ls_menu_buttons.tres" id="7_v0kd0"]
+[ext_resource type="Script" uid="uid://bota2y60qkwo" path="res://scripts/menu_buttons_hover.gd" id="8_hover"]
+[ext_resource type="Script" uid="uid://d3fr4twkmayu2" path="res://scripts/menu_deck_button_hover.gd" id="11_toqhm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1movh"]
+atlas = ExtResource("5_lbamw")
+region = Rect2(173, 32, 78, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k25j"]
+atlas = ExtResource("5_lbamw")
+region = Rect2(113, 0, 15, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0kd0"]
+atlas = ExtResource("5_lbamw")
+region = Rect2(129, 0, 19, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3re45"]
+atlas = ExtResource("5_lbamw")
+region = Rect2(148, 0, 19, 18)
+
+[node name="MainMenuScene" type="CanvasLayer" unique_id=1252692285]
+layer = 0
+
+[node name="Background" type="TextureRect" parent="." unique_id=1473880473]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3kjnk")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1079478341]
+position = Vector2(213, 120)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1096187331]
+color = Color(0.15294118, 0.15294118, 0.15294118, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1677803358]
+visible = false
+position = Vector2(213, 120)
+texture = ExtResource("2_lbamw")
+height = 125.0
+
+[node name="TowelSprite" type="Sprite2D" parent="." unique_id=1521678373]
+position = Vector2(198.5, 120)
+texture = ExtResource("3_v0kd0")
+
+[node name="MainMenu" type="Control" parent="." unique_id=1094641329]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="CenterContainer" parent="MainMenu" unique_id=901162965]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="TitlePlate" type="TextureRect" parent="MainMenu/Header" unique_id=768920464]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+mouse_filter = 2
+stretch_mode = 3
+
+[node name="TitleLabel" type="Label" parent="MainMenu/Header/TitlePlate" unique_id=407605491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuTexture" type="TextureRect" parent="MainMenu" unique_id=166890309]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.5
+offset_top = -50.5
+offset_right = 39.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_1movh")
+stretch_mode = 2
+
+[node name="FirstCandleFire" type="Node2D" parent="MainMenu/MenuTexture" unique_id=36835433]
+position = Vector2(28, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainMenu/MenuTexture/FirstCandleFire" unique_id=1125452274]
+sprite_frames = ExtResource("3_1movh")
+autoplay = "default"
+centered = false
+offset = Vector2(-3, -10)
+
+[node name="PointLight2D" type="PointLight2D" parent="MainMenu/MenuTexture/FirstCandleFire" unique_id=1797136985]
+position = Vector2(0, -3)
+color = Color(1, 0.66515005, 0.33279657, 1)
+energy = 0.5
+texture = ExtResource("4_v0kd0")
+texture_scale = 0.35
+height = 90.0
+
+[node name="SecondCandleFire" type="Node2D" parent="MainMenu/MenuTexture" unique_id=1058410481]
+position = Vector2(41, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainMenu/MenuTexture/SecondCandleFire" unique_id=1274245392]
+sprite_frames = ExtResource("7_6k25j")
+autoplay = "default"
+centered = false
+offset = Vector2(-3, -10)
+
+[node name="PointLight2D" type="PointLight2D" parent="MainMenu/MenuTexture/SecondCandleFire" unique_id=1719943865]
+position = Vector2(0, -3)
+color = Color(1, 0.66515005, 0.33279657, 1)
+energy = 0.5
+texture = ExtResource("4_v0kd0")
+texture_scale = 0.35
+height = 90.0
+
+[node name="ThirdCandleFire" type="Node2D" parent="MainMenu/MenuTexture" unique_id=873925352]
+position = Vector2(56, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MainMenu/MenuTexture/ThirdCandleFire" unique_id=1475998892]
+sprite_frames = ExtResource("7_3re45")
+autoplay = "default"
+centered = false
+offset = Vector2(-3, -10)
+
+[node name="PointLight2D" type="PointLight2D" parent="MainMenu/MenuTexture/ThirdCandleFire" unique_id=1691870510]
+position = Vector2(0, -3)
+color = Color(1, 0.66515005, 0.33279657, 1)
+energy = 0.5
+texture = ExtResource("4_v0kd0")
+texture_scale = 0.35
+height = 90.0
+
+[node name="Buttons" type="VBoxContainer" parent="MainMenu/MenuTexture" unique_id=1877850058]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -41.0
+offset_right = 36.0
+offset_bottom = 51.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+script = ExtResource("8_hover")
+
+[node name="MultiplayerButton" type="TextureButton" parent="MainMenu/MenuTexture/Buttons" unique_id=1707644028]
+custom_minimum_size = Vector2(60, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Caption" type="Label" parent="MainMenu/MenuTexture/Buttons/MultiplayerButton" unique_id=1810253313]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -13.0
+offset_right = 48.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset_ratio = Vector2(0.5, 0.65)
+theme_override_font_sizes/font_size = 16
+text = "Мультиплеер"
+label_settings = ExtResource("7_v0kd0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SingleplayerButton" type="TextureButton" parent="MainMenu/MenuTexture/Buttons" unique_id=899558060]
+custom_minimum_size = Vector2(60, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Caption" type="Label" parent="MainMenu/MenuTexture/Buttons/SingleplayerButton" unique_id=1740426775]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -14.5
+offset_right = 48.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset_ratio = Vector2(0.5, 0.65)
+theme_override_font_sizes/font_size = 16
+text = "Одиночная"
+label_settings = ExtResource("7_v0kd0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="MainMenu/MenuTexture/Buttons" unique_id=700144735]
+custom_minimum_size = Vector2(54, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Caption" type="Label" parent="MainMenu/MenuTexture/Buttons/SettingsButton" unique_id=473007511]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 48.0
+offset_bottom = 5.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+pivot_offset_ratio = Vector2(0.5, 0.65)
+theme_override_font_sizes/font_size = 16
+text = "Настройки"
+label_settings = ExtResource("7_v0kd0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Footer" type="CenterContainer" parent="MainMenu" unique_id=811219350]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="FooterPlate" type="TextureRect" parent="MainMenu/Footer" unique_id=1324414024]
+custom_minimum_size = Vector2(180, 24)
+layout_mode = 2
+mouse_filter = 2
+stretch_mode = 3
+
+[node name="FooterLabel" type="Label" parent="MainMenu/Footer/FooterPlate" unique_id=1817353128]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Corners" type="Control" parent="MainMenu" unique_id=1232849321]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopLeft" type="TextureRect" parent="MainMenu/Corners" unique_id=135628775]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+stretch_mode = 3
+
+[node name="TopRight" type="TextureRect" parent="MainMenu/Corners" unique_id=526605171]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+mouse_filter = 2
+stretch_mode = 3
+
+[node name="BottomLeft" type="TextureRect" parent="MainMenu/Corners" unique_id=1928565927]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 32.0
+grow_vertical = 0
+mouse_filter = 2
+stretch_mode = 3
+
+[node name="DeckButton" type="TextureButton" parent="MainMenu/Corners/BottomLeft" unique_id=1535644135]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.5
+offset_top = -12.0
+offset_right = 7.5
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_6k25j")
+script = ExtResource("11_toqhm")
+
+[node name="PointLight2D" type="PointLight2D" parent="MainMenu/Corners/BottomLeft" unique_id=2028843085]
+position = Vector2(0, 32)
+color = Color(1, 0.66515005, 0.33279657, 1)
+texture = ExtResource("4_v0kd0")
+texture_scale = 0.2
+height = 90.0
+
+[node name="BottomRight" type="TextureRect" parent="MainMenu/Corners" unique_id=1988433677]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+stretch_mode = 3
+
+[node name="ExitButton" type="TextureButton" parent="MainMenu/Corners/BottomRight" unique_id=1050286449]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.5
+offset_top = -9.0
+offset_right = 9.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("AtlasTexture_v0kd0")
+texture_hover = SubResource("AtlasTexture_3re45")
+
+[node name="PointLight2D" type="PointLight2D" parent="MainMenu/Corners/BottomRight" unique_id=190744228]
+position = Vector2(30, 32)
+color = Color(1, 0.66515005, 0.33279657, 1)
+texture = ExtResource("4_v0kd0")
+texture_scale = 0.2
+height = 90.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bosn66xrsn0p7"]
+[gd_scene format=3 uid="uid://bosn66xrsn0p7"]
 
 [ext_resource type="Texture2D" uid="uid://dp2bcd0cvo5q1" path="res://assets/textures/canvas_texture_table_elements.tres" id="1_7ijnq"]
 [ext_resource type="Script" uid="uid://duh6kj7jpnnu7" path="res://scripts/bell_base.gd" id="1_u2efn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dl0nt6o55rgme" path="res://scripts/bell_sprite_component.gd" id="3_htc22"]
 [ext_resource type="Script" uid="uid://cj25q0ov0r7te" path="res://scripts/bell_eyes_light_component.gd" id="3_qj2gq"]
 [ext_resource type="Script" uid="uid://d3hpipe1sbbkt" path="res://scripts/bell_input_component.gd" id="3_wtld6"]
+
 
 [sub_resource type="Gradient" id="Gradient_7ijnq"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)

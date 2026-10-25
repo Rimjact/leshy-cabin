@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b3ces4g2dyug2"]
+
+[ext_resource type="Texture2D" uid="uid://d1o2ovbjntcgj" path="res://assets/textures/texture_second_candle_fire.png" id="1_5tx36"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5tvo"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(0, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkq67"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(6, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qcbs"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(12, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7v3yo"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(18, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ype8d"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(24, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4bm8"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(30, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stqu4"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(36, 0, 6, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ge71"]
+atlas = ExtResource("1_5tx36")
+region = Rect2(42, 0, 6, 10)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5tvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tkq67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qcbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7v3yo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ype8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4bm8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stqu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ge71")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
